@@ -1,0 +1,22 @@
+{
+  "name": "retailplanet.io",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "node %NODE_DEBUG_OPTION% server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "author": "Werner Glanzer",
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@zeit/next-sass": "^1.0.1",
+    "express": "^4.16.4",
+    "http-proxy-middleware": "^0.19.1",
+    "next": "^7.0.2",
+    "node-sass": "^4.11.0",
+    "react": "^16.7.0",
+    "react-bootstrap": "^1.0.0-beta.3",
+    "react-dom": "^16.7.0"
+  }
+}

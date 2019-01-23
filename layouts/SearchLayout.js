@@ -1,0 +1,22 @@
+import PageHeader from "../components/navigation/PageHeader.js";
+import {Container} from "react-bootstrap";
+
+//noinspection JSUnusedGlobalSymbols
+export default (props) => (
+    <div>
+      <PageHeader withLogo/>
+      <Container className="d-flex flex-column">
+        {props.children}
+      </Container>
+
+      <style global jsx>{`
+      html,
+      body,
+      body > div:first-child,
+      div#__next,
+      div#__next > div {
+        height: 100%;
+      }
+    `}</style>
+    </div>
+);
