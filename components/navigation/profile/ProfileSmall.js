@@ -23,7 +23,7 @@ export default class ProfileSmall extends Component
 
   render()
   {
-    if (this.state.session.user)
+    if (this.state.session && this.state.session.user)
     {
       return (
           <NavDropdown title={this._createUserComp()} id="basic-nav-dropdown" alignRight>
@@ -45,7 +45,6 @@ export default class ProfileSmall extends Component
 
   _handleSignOut(event)
   {
-    console.log(event);
     event.preventDefault();
     NextAuth.signout()
         .then(() => {

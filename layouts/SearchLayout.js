@@ -4,7 +4,7 @@ import {Container} from "react-bootstrap";
 //noinspection JSUnusedGlobalSymbols
 export default (props) => (
     <div>
-      <PageHeader withLogo/>
+      <PageHeader session={props.session} withLogo/>
       <Container className="d-flex flex-column">
         {props.children}
       </Container>

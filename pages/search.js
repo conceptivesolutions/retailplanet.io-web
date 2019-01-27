@@ -2,6 +2,7 @@ import SearchLayout from "../layouts/SearchLayout";
 import {Component} from "react";
 import SearchResultInput from "../components/results/SearchResultInput";
 import SearchResultList from "../components/results/SearchResultList";
+import {NextAuth} from "next-auth/client";
 
 //noinspection JSUnusedGlobalSymbols
 export default class Search extends Component
@@ -12,7 +13,8 @@ export default class Search extends Component
     super(props);
     this.state = {
       query: decodeURIComponent(this.props.query.query),
-      results: null
+      results: null,
+      session: this.props.session
     }
   }
 
@@ -30,7 +32,7 @@ export default class Search extends Component
   render()
   {
     return (
-        <SearchLayout>
+        <SearchLayout session={this.state.session}>
           <SearchResultInput query={this.state.query} onSubmit={e => this.setState({results: null, query: e.target.inputQuery.value})}/>
           <div className="d-flex flex-row">
             <SearchResultList query={this.state.query} results={this.state.results}/>
@@ -57,10 +59,14 @@ export default class Search extends Component
     return url;
   }
 
+
   //noinspection JSUnusedGlobalSymbols
-  static getInitialProps({query})
+  static async getInitialProps(pRequest)
   {
-    return {query};
+    return {
+      session: await NextAuth.init({req: pRequest.req}),
+      query: pRequest.query
+    }
   }
 
 }
