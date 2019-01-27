@@ -10,7 +10,7 @@ import './IndexLayout.scss'
  */
 export default (props) => (
     <div>
-      <PageHeader fixedTop/>
+      <PageHeader session={props.session} fixedTop/>
       <Container className="h-100">
         {props.children}
       </Container>

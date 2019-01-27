@@ -1,5 +1,7 @@
 import {Component} from 'react';
-import {Nav, Navbar} from "react-bootstrap";
+import {Nav, Navbar, NavItem} from "react-bootstrap";
+import {NextAuth} from "next-auth/client";
+import ProfileSmall from "./profile/ProfileSmall";
 
 /**
  * props.withLogo = Wenn vorhanden dann wird ein Logo links oben reingerendert
@@ -27,8 +29,12 @@ export default class PageHeader extends Component
               {/*<NavDropdown.Divider />*/}
               {/*<NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>*/}
               {/*</NavDropdown>*/}
-              <Nav.Link className="disabled" href="/">Deutsch</Nav.Link>
-              <Nav.Link className="disabled" href="/">Login</Nav.Link>
+              <NavItem>
+                <Nav.Link className="disabled" href="/">Deutsch</Nav.Link>
+              </NavItem>
+              <NavItem>
+                <ProfileSmall session={this.props.session}/>
+              </NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>);
