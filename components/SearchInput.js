@@ -19,12 +19,18 @@ export default class SearchInput extends Component
   render()
   {
     return (
-        <Form className="col-8" onSubmit={e => SearchInput.onSearch(e)}>
-          <InputGroup className="searchInput mb-3 shadow">
+        <Form className="col-12" onSubmit={e => SearchInput.onSearch(e)}>
+          <div className="phrase">Search for specific Items.<br/><b>Buy from a local store</b></div>
+          <InputGroup className="searchInput shadow">
             <FormControl type="Query" placeholder="Dursuchen Sie über 300.000 Produkte" name="inputQuery" className="searchField"/>
             <InputGroup.Append>
               <Button variant="primary" type="submit" className="px-4 border-0 searchButton">Suchen</Button>
             </InputGroup.Append>
+          </InputGroup>
+          <InputGroup className="country-filter">
+            <Form.Check custom inline label="Deutschland" type="checkbox" id="custom-inline-checkbox1" checked/>
+            <Form.Check custom inline disabled label="Österreich" type="checkbox" id="custom-inline-checkbox2"/>
+            <Form.Check custom inline disabled label="Schweiz" type="checkbox" id="custom-inline-checkbox3"/>
           </InputGroup>
         </Form>
     );
