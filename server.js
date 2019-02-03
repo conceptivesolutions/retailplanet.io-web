@@ -23,10 +23,8 @@ nextApp
       // Get instance of Express from NextAuth instance
       const expressApp = nextAuthApp.expressApp;
 
-      if (dev)
-        expressApp.use('/api', proxy({target: 'http://localhost:8080', changeOrigin: true}));
-      else
-        expressApp.use('/api', proxy({target: 'http://' + process.env.BACKEND_PORT_8080_TCP_ADDR + ':8080', changeOrigin: true}));
+      // /api -> backend
+      expressApp.use('/api', proxy({target: process.env.BACKEND_URL, changeOrigin: true}));
 
       // Default catch-all handler to allow Next.js to handle all other routes
       expressApp.all('*', (req, res) => {
