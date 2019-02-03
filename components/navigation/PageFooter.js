@@ -14,13 +14,13 @@ export default class PageFooter extends Component
     return (
         <Navbar fixed="bottom" variant="dark" expand="lg" className="pageFooter border-0">
           <Nav>
-            <Nav.Link className="text-white ml-3 mr-4" href="/">About</Nav.Link>
+            <Nav.Link className="text-white ml-3 mr-4" href="/" disabled>Impressum</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link className="text-white mr-4" href="/">Privacy Policy</Nav.Link>
+            <Nav.Link className="text-white mr-4" href="/" disabled>Datenschutz</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link className="text-white" href="/">Terms of Use</Nav.Link>
+            <Nav.Link className="text-white" href="/" disabled>Nutzungsbedingungen</Nav.Link>
           </Nav>
           <Nav className="mr-auto"/>
           <Nav>
