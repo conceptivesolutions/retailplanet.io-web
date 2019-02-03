@@ -1,6 +1,7 @@
 import * as React from 'react';
 import App, {Container} from 'next/app';
 import Head from 'next/head';
+import '../static/styles/styles.scss'
 
 //noinspection JSUnusedGlobalSymbols
 export default class MyApp extends App
@@ -14,7 +15,6 @@ export default class MyApp extends App
           <Head>
             <title>retailplanet.io</title>
             <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-            <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css"/>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"/>
           </Head>
           <Container>

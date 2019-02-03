@@ -1,6 +1,7 @@
 import {Component} from 'react';
 import Router from 'next/router'
-import {Button, Form, Image, Row} from "react-bootstrap";
+import {Button, Form, FormControl, InputGroup} from "react-bootstrap";
+import './SearchInput.scss'
 
 /**
  * SearchInput = EingabeFeld auf der Startseite
@@ -19,15 +20,12 @@ export default class SearchInput extends Component
   {
     return (
         <Form className="col-8" onSubmit={e => SearchInput.onSearch(e)}>
-            <Row className="justify-content-center px-5 pb-4 justify-content-center">
-                <Image src="/static/retailplanet-logo.svg"/>
-          </Row>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Control type="Query" placeholder="Search" name="inputQuery"/>
-          </Form.Group>
-          <Row className="justify-content-center mb-5">
-            <Button variant="primary" type="submit" className="px-5 py-2">Search</Button>
-          </Row>
+          <InputGroup className="searchInput mb-3 shadow">
+            <FormControl type="Query" placeholder="Dursuchen Sie über 300.000 Produkte" name="inputQuery" className="searchField"/>
+            <InputGroup.Append>
+              <Button variant="primary" type="submit" className="px-4 border-0 searchButton">Suchen</Button>
+            </InputGroup.Append>
+          </InputGroup>
         </Form>
     );
   }

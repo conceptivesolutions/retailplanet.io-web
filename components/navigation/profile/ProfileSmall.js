@@ -1,16 +1,17 @@
-import {Component} from "react";
+import * as React from "react";
 import {NextAuth} from "next-auth/client";
 import getConfig from 'next/config';
 import Router from "next/dist/lib/router";
-import {Image, Nav, NavDropdown} from "react-bootstrap";
+import {Nav, NavDropdown} from "react-bootstrap";
 import "./ProfileSmall.scss"
+import ANavDropdown from "../../abstract/ANavDropdown";
 
 /**
  * props.session = Die aktuelle Session (optional)
  *
  * @author w.glanzer, 27.01.2019
  */
-export default class ProfileSmall extends Component
+export default class ProfileSmall extends React.Component
 {
 
   constructor(props)
@@ -27,9 +28,9 @@ export default class ProfileSmall extends Component
     if (this.state.session && this.state.session.user)
     {
       return (
-          <NavDropdown title={this._createUserComp()} id="basic-nav-dropdown" alignRight>
+          <ANavDropdown title={this._createUserComp()} alignRight>
             <NavDropdown.Item onClick={e => this._handleSignOut(e)}>Logout</NavDropdown.Item>
-          </NavDropdown>
+          </ANavDropdown>
       )
     }
     else
@@ -38,10 +39,10 @@ export default class ProfileSmall extends Component
 
   _createUserComp()
   {
-    return <span>
-      <Image src="/static/dummies/def128x128.jpg" className="profilepic mr-2"/>
+    return <React.Fragment>
+      <i className="fa fa-dragon profilepic mr-2 rounded-circle"/>
       {this.state.session.user.name}
-    </span>
+    </React.Fragment>
   }
 
   _handleSignOut(event)

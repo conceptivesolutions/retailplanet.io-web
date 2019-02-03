@@ -1,7 +1,9 @@
-import {Component} from 'react';
-import {Nav, Navbar, NavItem} from "react-bootstrap";
+import * as React from 'react';
+import {Image, Nav, Navbar} from "react-bootstrap";
 import {NextAuth} from "next-auth/client";
 import ProfileSmall from "./profile/ProfileSmall";
+import './PageHeader.scss'
+import ANavDropdown from "../abstract/ANavDropdown";
 
 /**
  * props.withLogo = Wenn vorhanden dann wird ein Logo links oben reingerendert
@@ -9,32 +11,33 @@ import ProfileSmall from "./profile/ProfileSmall";
  *
  * @author w.glanzer, 14.01.2019
  */
-export default class PageHeader extends Component
+export default class PageHeader extends React.Component
 {
   render()
   {
     return (
-        <Navbar fixed={this.props.fixedTop ? "top" : ""} bg="light" expand="lg" className="border-0">
+        <Navbar fixed={this.props.fixedTop ? "top" : ""} bg="light" expand="lg" className="pageHeader border-0">
           {this.renderLogo()}
-          <Nav.Link className="disabled" href="/">About</Nav.Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto"/>
-            {/*<Nav.Link href="#home">Home</Nav.Link>*/}
             <Nav>
-              {/*<NavDropdown title="Deutsch" id="basic-nav-dropdown" alignRight>*/}
-              {/*<NavDropdown.Item className="disabled">No other languages available</NavDropdown.Item>*/}
-              {/*<NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>*/}
-              {/*<NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>*/}
-              {/*<NavDropdown.Divider />*/}
-              {/*<NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>*/}
-              {/*</NavDropdown>*/}
-              <NavItem>
-                <Nav.Link className="disabled" href="/">Deutsch</Nav.Link>
-              </NavItem>
-              <NavItem>
+              <Nav.Item className="mx-2 border-left"/>
+              <Nav.Item>
+                <ANavDropdown title="Elektronik"/>
+              </Nav.Item>
+            </Nav>
+            <Nav className="mr-auto"/>
+            <Nav>
+              <Nav.Item>
+                <ANavDropdown title={<React.Fragment>
+                  <Image className="lang-flag mr-2" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"/>
+                  Deutsch
+                </React.Fragment>}/>
+              </Nav.Item>
+              <Nav.Item className="mx-2 border-left"/>
+              <Nav.Item>
                 <ProfileSmall session={this.props.session}/>
-              </NavItem>
+              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Navbar>);
@@ -43,6 +46,6 @@ export default class PageHeader extends Component
   renderLogo()
   {
     if (this.props.withLogo)
-      return (<Navbar.Brand href="/"><i className="fa fa-shopping-cart mr-2"/>retailplanet.io</Navbar.Brand>);
+      return (<Navbar.Brand href="/"><Image src="/static/retailplanet-logo.svg"/></Navbar.Brand>);
   }
 }

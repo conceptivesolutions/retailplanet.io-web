@@ -9,8 +9,8 @@ import './IndexLayout.scss'
  * @author w.glanzer, 14.01.2019
  */
 export default (props) => (
-    <div>
-      <PageHeader session={props.session} fixedTop/>
+    <div className="rootContainer">
+      <PageHeader session={props.session} fixedTop withLogo/>
       <Container className="h-100">
         {props.children}
       </Container>

@@ -1,0 +1,19 @@
+@import "../../static/styles/variables";
+
+.pageHeader {
+  padding: 0 0.25rem;
+}
+
+.pageHeader .navbar-brand img {
+  padding: 0.25rem;
+  height: $default-navbar-height;
+}
+
+.pageHeader .nav-item {
+  height: $default-navbar-height
+}
+
+// Temporary
+.lang-flag {
+  height: 0.75rem;
+}
