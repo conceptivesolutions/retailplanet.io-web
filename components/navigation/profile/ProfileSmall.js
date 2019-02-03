@@ -1,5 +1,6 @@
 import {Component} from "react";
 import {NextAuth} from "next-auth/client";
+import getConfig from 'next/config';
 import Router from "next/dist/lib/router";
 import {Image, Nav, NavDropdown} from "react-bootstrap";
 import "./ProfileSmall.scss"
@@ -48,8 +49,9 @@ export default class ProfileSmall extends Component
     event.preventDefault();
     NextAuth.signout()
         .then(() => {
-          // Redirect aufs Callback, um neuen State zu propagieren
-          Router.push('/auth/callback')
+          const {publicRuntimeConfig} = getConfig();
+          Router.push(publicRuntimeConfig.keycloak_url + "/auth/realms/" + publicRuntimeConfig.keycloak_realm +
+                          "/protocol/openid-connect/logout?redirect_uri=" + publicRuntimeConfig.logout_redirect_url);
         })
   }
 

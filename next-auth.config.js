@@ -9,7 +9,7 @@ module.exports = () => {
           // This is the config block we return, ready to be passed to NextAuth
           resolve({
                     port: 3000,
-                    sessionSecret: process.env.SESSION_SECRET || 'dummySecret123',
+                    sessionSecret: process.env.SESSION_SECRET,
                     // Maximum Session Age in ms (optional, default is 7 days).
                     // The expiry time for a session is reset every time a user revisits
                     // the site or revalidates their session token. This is the maximum
