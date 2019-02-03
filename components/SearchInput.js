@@ -22,7 +22,7 @@ export default class SearchInput extends Component
         <Form className="col-12" onSubmit={e => SearchInput.onSearch(e)}>
           <div className="phrase">Search for specific Items.<br/><b>Buy from a local store</b></div>
           <InputGroup className="searchInput shadow">
-            <FormControl type="Query" placeholder="Dursuchen Sie über 300.000 Produkte" name="inputQuery" className="searchField"/>
+            <FormControl type="Query" placeholder="Durchsuchen Sie über 6.00.000 Produkte" name="inputQuery" className="searchField"/>
             <InputGroup.Append>
               <Button variant="primary" type="submit" className="px-4 border-0 searchButton">Suchen</Button>
             </InputGroup.Append>
