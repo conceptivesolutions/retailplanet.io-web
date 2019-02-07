@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import {Nav, Navbar} from "react-bootstrap"
-import './PageFooter.scss'
+import css from './PageFooter.scss'
 
 /**
  * Genereller Footer
@@ -12,7 +12,7 @@ export default class PageFooter extends Component
   render()
   {
     return (
-        <Navbar fixed="bottom" variant="dark" expand="lg" className="pageFooter border-0">
+        <Navbar fixed="bottom" variant="dark" expand="lg" className={`${css.pageFooter} border-0`}>
           <Nav>
             <Nav.Link className="text-white ml-3 mr-4" href="/" disabled>Impressum</Nav.Link>
           </Nav>

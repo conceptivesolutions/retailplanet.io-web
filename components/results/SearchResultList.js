@@ -1,6 +1,5 @@
 import {Component} from "react";
-import PreviewItem from "./preview/PreviewItem";
-import './SearchResultList.scss'
+import css from './SearchResultList.scss'
 
 /**
  * props.query = Der eingegebene Query

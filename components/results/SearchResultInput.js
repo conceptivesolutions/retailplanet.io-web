@@ -1,7 +1,7 @@
 import {Component} from "react";
 import {Button, Form, FormControl, InputGroup} from "react-bootstrap";
 import Router from "next/dist/lib/router";
-import './SearchResultInput.scss'
+import css from './SearchResultInput.scss'
 
 /**
  * props.query = Such-Query als String
@@ -16,7 +16,7 @@ export default class SearchResultInput extends Component
   {
     return (
         <Form className="w-100 mt-auto" onSubmit={e => this.onSearch(e)}>
-          <InputGroup className="searchInputResult shadow">
+          <InputGroup className={`${css.searchInputResult} shadow`}>
             <FormControl type="Query" placeholder="Durchsuchen Sie über 6.00.000 Produkte" name="inputQuery" className="searchField"
                          defaultValue={decodeURIComponent(this.props.query)}/>
             <InputGroup.Append>

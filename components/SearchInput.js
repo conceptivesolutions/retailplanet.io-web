@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import Router from 'next/router'
 import {Button, Form, FormControl, InputGroup} from "react-bootstrap";
-import './SearchInput.scss'
+import css from './SearchInput.scss'
 
 /**
  * SearchInput = EingabeFeld auf der Startseite
@@ -20,15 +20,15 @@ export default class SearchInput extends Component
   {
     return (
         <Form className="col-12" onSubmit={e => SearchInput.onSearch(e)}>
-          <div className="phrase">Search for specific Items.<br/><b>Buy from a local store</b></div>
-          <InputGroup className="searchInput shadow">
-            <FormControl type="Query" placeholder="Durchsuchen Sie über 6.00.000 Produkte" name="inputQuery" className="searchField"/>
+          <div className={css.phrase}>Search for specific Items.<br/><b>Buy from a local store</b></div>
+          <InputGroup className={`${css.searchInput} shadow`}>
+            <FormControl type="Query" placeholder="Durchsuchen Sie über 6.00.000 Produkte" name="inputQuery" className={css.searchField}/>
             <InputGroup.Append>
-              <Button variant="primary" type="submit" className="px-4 border-0 searchButton">Suchen</Button>
+              <Button variant="primary" type="submit" className={`${css.searchButton} px-4 border-0`}>Suchen</Button>
             </InputGroup.Append>
           </InputGroup>
-          <InputGroup className="country-filter">
-            <Form.Check custom inline label="Deutschland" type="checkbox" id="custom-inline-checkbox1" checked/>
+          <InputGroup className={css.countryFilter}>
+            <Form.Check custom inline label="Deutschland" type="checkbox" id="custom-inline-checkbox1" defaultChecked/>
             <Form.Check custom inline disabled label="Österreich" type="checkbox" id="custom-inline-checkbox2"/>
             <Form.Check custom inline disabled label="Schweiz" type="checkbox" id="custom-inline-checkbox3"/>
           </InputGroup>

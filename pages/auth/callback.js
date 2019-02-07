@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import Router from 'next/router'
 import {NextAuth} from 'next-auth/client'
-import './callback.scss'
+import css from './callback.scss'
 
 //noinspection JSUnusedGlobalSymbols
 export default class extends Component
@@ -27,8 +27,8 @@ export default class extends Component
   render()
   {
     return (
-        <a href="/" className="circle-loader">
-          <svg className="circle" width="60" height="60" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <a href="/" className={css.circleLoader}>
+          <svg className={css.circle} width="60" height="60" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <circle cx="30" cy="30" r="15"/>
           </svg>
           <noscript>

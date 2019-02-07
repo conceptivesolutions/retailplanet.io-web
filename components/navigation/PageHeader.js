@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Image, Nav, Navbar} from "react-bootstrap";
 import {NextAuth} from "next-auth/client";
 import ProfileSmall from "./profile/ProfileSmall";
-import './PageHeader.scss'
+import css from './PageHeader.scss'
 import ANavDropdown from "../abstract/ANavDropdown";
 import SearchResultInput from "../results/SearchResultInput"
 
@@ -17,7 +17,7 @@ export default class PageHeader extends React.Component
   render()
   {
     return (
-        <Navbar fixed={this.props.fixedTop ? "top" : ""} bg="light" expand="lg" className="pageHeader border-0">
+        <Navbar fixed={this.props.fixedTop ? "top" : ""} bg="light" expand="lg" className={`${css.pageHeader} border-0`}>
           {this.renderLogo()}
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
@@ -32,7 +32,7 @@ export default class PageHeader extends React.Component
             <Nav>
               <Nav.Item>
                 <ANavDropdown title={<React.Fragment>
-                  <Image className="lang-flag mr-2" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"/>
+                  <Image className={`${css.langFlag} mr-2`} src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"/>
                   Deutsch
                 </React.Fragment>}/>
               </Nav.Item>

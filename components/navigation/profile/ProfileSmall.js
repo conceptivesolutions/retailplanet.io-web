@@ -3,7 +3,7 @@ import {NextAuth} from "next-auth/client";
 import getConfig from 'next/config';
 import Router from "next/dist/lib/router";
 import {Nav, NavDropdown} from "react-bootstrap";
-import "./ProfileSmall.scss"
+import css from "./ProfileSmall.scss"
 import ANavDropdown from "../../abstract/ANavDropdown";
 
 /**
@@ -40,7 +40,7 @@ export default class ProfileSmall extends React.Component
   _createUserComp()
   {
     return <React.Fragment>
-      <i className="fa fa-dragon profilepic mr-2 rounded-circle"/>
+      <i className={`fa fa-dragon ${css.profilepic} mr-2 rounded-circle`}/>
       {this.state.session.user.name}
     </React.Fragment>
   }

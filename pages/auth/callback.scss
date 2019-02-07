@@ -2,7 +2,7 @@ body {
   background-color: #fff;
 }
 
-.circle-loader {
+.circleLoader {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -12,7 +12,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.circle-loader .circle {
+.circleLoader .circle {
   fill: transparent;
   stroke: rgba(0, 0, 0, 0.2);
   stroke-width: 4px;

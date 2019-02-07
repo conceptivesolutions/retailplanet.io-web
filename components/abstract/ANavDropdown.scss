@@ -1,20 +1,20 @@
 @import "../../static/styles/_variables.scss";
 
-.innerDrop .nav-link {
+.innerDrop :global(.nav-link) {
   padding: 0;
   display: flex;
   align-items: center;
 }
 
-.innerDrop .dropdown-toggle::after {
+.innerDrop :global(.dropdown-toggle::after) {
   display: none;
 }
 
-.dropdown-toggle-custom {
+.dropdownToggleCustom {
   margin-left: 0.5rem;
   color: $primary;
 }
 
-.dropdown-disabled {
+.dropdownDisabled {
   color: rgba(0, 0, 0, 0.3);
 }
