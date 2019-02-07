@@ -1,6 +1,5 @@
 import SearchLayout from "../layouts/SearchLayout";
 import {Component} from "react";
-import SearchResultInput from "../components/results/SearchResultInput";
 import SearchResultList from "../components/results/SearchResultList";
 import {NextAuth} from "next-auth/client";
 
@@ -32,8 +31,8 @@ export default class Search extends Component
   render()
   {
     return (
-        <SearchLayout session={this.state.session}>
-          <SearchResultInput query={this.state.query} onSubmit={e => this.setState({results: null, query: e.target.inputQuery.value})}/>
+        <SearchLayout session={this.state.session} query={this.state.query}
+                      onSubmit={e => this.setState({results: null, query: e.target.inputQuery.value})}>
           <div className="d-flex flex-row">
             <SearchResultList query={this.state.query} results={this.state.results}/>
           </div>

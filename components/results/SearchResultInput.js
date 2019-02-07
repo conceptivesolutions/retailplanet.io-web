@@ -1,6 +1,7 @@
 import {Component} from "react";
-import {Button, Form} from "react-bootstrap";
+import {Button, Form, FormControl, InputGroup} from "react-bootstrap";
 import Router from "next/dist/lib/router";
+import './SearchResultInput.scss'
 
 /**
  * props.query = Such-Query als String
@@ -14,9 +15,14 @@ export default class SearchResultInput extends Component
   render()
   {
     return (
-        <Form className="d-flex flex-row mb-2" onSubmit={e => this.onSearch(e)}>
-          <Form.Control type="Query" placeholder="Search" name="inputQuery" defaultValue={decodeURIComponent(this.props.query)}/>
-          <Button variant="primary" type="submit" className="ml-2">Search</Button>
+        <Form className="w-100 mt-auto" onSubmit={e => this.onSearch(e)}>
+          <InputGroup className="searchInputResult shadow">
+            <FormControl type="Query" placeholder="Durchsuchen Sie über 6.00.000 Produkte" name="inputQuery" className="searchField"
+                         defaultValue={decodeURIComponent(this.props.query)}/>
+            <InputGroup.Append>
+              <Button variant="primary" type="submit" className="px-4 border-0 searchButton">Suchen</Button>
+            </InputGroup.Append>
+          </InputGroup>
         </Form>
     );
   }

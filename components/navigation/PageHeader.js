@@ -4,6 +4,7 @@ import {NextAuth} from "next-auth/client";
 import ProfileSmall from "./profile/ProfileSmall";
 import './PageHeader.scss'
 import ANavDropdown from "../abstract/ANavDropdown";
+import SearchResultInput from "../results/SearchResultInput"
 
 /**
  * props.withLogo = Wenn vorhanden dann wird ein Logo links oben reingerendert
@@ -27,6 +28,7 @@ export default class PageHeader extends React.Component
               </Nav.Item>
             </Nav>
             <Nav className="mr-auto"/>
+            {this.renderSearchBar()}
             <Nav>
               <Nav.Item>
                 <ANavDropdown title={<React.Fragment>
@@ -47,5 +49,18 @@ export default class PageHeader extends React.Component
   {
     if (this.props.withLogo)
       return (<Navbar.Brand href="/"><Image src="/static/retailplanet-logo.svg"/></Navbar.Brand>);
+  }
+
+  renderSearchBar()
+  {
+    if (this.props.withSearch)
+    {
+      return <React.Fragment>
+        <Nav.Item className="mx-2">
+          <SearchResultInput query={this.props.query} onSubmit={this.props.onSubmit}/>
+        </Nav.Item>
+        <Nav className="mr-auto"/>
+      </React.Fragment>
+    }
   }
 }
