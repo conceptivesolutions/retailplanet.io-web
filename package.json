@@ -1,7 +1,9 @@
 {
   "name": "retailplanet.io",
   "version": "1.0.0",
-  "description": "",
+  "description": "retailplanet.io",
+  "repository": "https://github.com/wglanzer/retailplanet.io",
+  "license": "CC-ND",
   "scripts": {
     "dev": "node %NODE_DEBUG_OPTION% server.js",
     "build": "next build",
