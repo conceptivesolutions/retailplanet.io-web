@@ -2,9 +2,9 @@ import * as React from 'react';
 import {Image, Nav, Navbar} from "react-bootstrap";
 import {NextAuth} from "next-auth/client";
 import ProfileSmall from "./profile/ProfileSmall";
-import css from './PageHeader.scss'
-import ANavDropdown from "../abstract/ANavDropdown";
-import SearchResultInput from "../results/SearchResultInput"
+import css from './Header.scss'
+import ANavDropdown from "./dropdown/ANavDropdown";
+import Searchbar from "../search/Searchbar";
 
 /**
  * props.withLogo = Wenn vorhanden dann wird ein Logo links oben reingerendert
@@ -12,7 +12,7 @@ import SearchResultInput from "../results/SearchResultInput"
  *
  * @author w.glanzer, 14.01.2019
  */
-export default class PageHeader extends React.Component
+export default class Header extends React.Component
 {
   render()
   {
@@ -57,7 +57,7 @@ export default class PageHeader extends React.Component
     {
       return <React.Fragment>
         <Nav.Item className="mx-2">
-          <SearchResultInput query={this.props.query} onSubmit={this.props.onSubmit}/>
+          <Searchbar query={this.props.query} onSubmit={this.props.onSubmit}/>
         </Nav.Item>
         <Nav className="mr-auto"/>
       </React.Fragment>

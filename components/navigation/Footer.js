@@ -1,13 +1,13 @@
-import {Component} from 'react';
+import * as React from 'react';
 import {Nav, Navbar} from "react-bootstrap"
-import css from './PageFooter.scss'
+import css from './Footer.scss'
 
 /**
  * Genereller Footer
  *
  * @author w.glanzer, 14.01.2019
  */
-export default class PageFooter extends Component
+export default class Footer extends React.Component
 {
   render()
   {

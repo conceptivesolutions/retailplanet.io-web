@@ -1,6 +1,6 @@
-import { Container } from 'react-bootstrap';
-import PageHeader from '../components/header/PageHeader.js';
-import PageFooter from '../components/navigation/PageFooter.js';
+import {Container} from 'react-bootstrap';
+import Header from '../components/navigation/Header.js';
+import Footer from '../components/navigation/Footer.js';
 import css from './IndexLayout.scss';
 
 /**
@@ -10,10 +10,10 @@ import css from './IndexLayout.scss';
  */
 export default (props) => (
     <div className={css.rootContainer}>
-      <PageHeader session={props.session} fixedTop withLogo/>
+      <Header session={props.session} fixedTop withLogo/>
       <Container className="h-100">
         {props.children}
       </Container>
-      <PageFooter/>
+      <Footer/>
     </div>
 );

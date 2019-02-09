@@ -1,6 +1,5 @@
 import SearchLayout from "../layouts/SearchLayout";
 import {Component} from "react";
-import SearchResultList from "../components/results/SearchResultList";
 import {NextAuth} from "next-auth/client";
 
 //noinspection JSUnusedGlobalSymbols
@@ -34,7 +33,7 @@ export default class Search extends Component
         <SearchLayout session={this.state.session} query={this.state.query}
                       onSubmit={e => this.setState({results: null, query: e.target.inputQuery.value})}>
           <div className="d-flex flex-row">
-            <SearchResultList query={this.state.query} results={this.state.results}/>
+
           </div>
         </SearchLayout>
     )

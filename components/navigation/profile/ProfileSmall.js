@@ -4,7 +4,7 @@ import getConfig from 'next/config';
 import Router from "next/dist/lib/router";
 import {Nav, NavDropdown} from "react-bootstrap";
 import css from "./ProfileSmall.scss"
-import ANavDropdown from "../../abstract/ANavDropdown";
+import ANavDropdown from "../dropdown/ANavDropdown";
 
 /**
  * props.session = Die aktuelle Session (optional)
