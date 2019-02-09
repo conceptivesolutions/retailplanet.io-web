@@ -8,7 +8,7 @@
     "dev": "node %NODE_DEBUG_OPTION% server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "storybook": "start-storybook -p 3009"
+    "storybook": "start-storybook -s ./static -p 3009"
   },
   "author": "Werner Glanzer",
   "dependencies": {

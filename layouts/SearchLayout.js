@@ -1,5 +1,5 @@
-import PageHeader from "../components/navigation/PageHeader.js";
-import {Container} from "react-bootstrap";
+import PageHeader from '../components/header/PageHeader.js';
+import { Container } from 'react-bootstrap';
 
 //noinspection JSUnusedGlobalSymbols
 export default (props) => (
