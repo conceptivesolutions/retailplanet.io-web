@@ -7,15 +7,13 @@
   "scripts": {
     "dev": "node %NODE_DEBUG_OPTION% server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "storybook": "start-storybook -p 3009"
   },
   "author": "Werner Glanzer",
   "dependencies": {
     "@babel/core": "^7.2.2",
     "@exlinc/keycloak-passport": "^1.0.2",
-    "@fortawesome/fontawesome-svg-core": "^1.2.14",
-    "@fortawesome/free-solid-svg-icons": "^5.7.1",
-    "@fortawesome/react-fontawesome": "^0.1.4",
     "@zeit/next-sass": "^1.0.1",
     "bootstrap": "^4.2.1",
     "express": "^4.16.4",
@@ -27,5 +25,13 @@
     "react": "^16.7.0",
     "react-bootstrap": "^1.0.0-beta.3",
     "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "4.0.2",
+    "@storybook/addon-info": "4.0.2",
+    "@storybook/addon-links": "4.0.2",
+    "@storybook/addons": "4.0.2",
+    "@storybook/react": "4.0.2",
+    "babel-loader": "^8.0.5"
   }
 }
