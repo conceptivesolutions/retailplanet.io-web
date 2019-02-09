@@ -7,7 +7,8 @@ module.exports = withSass(
     cssModules: true,
     cssLoaderOptions: {
       getLocalIdent: (loaderContext, localIdentName, localName) => {
-        if (!cssHelper.canBeTransformed(loaderContext.resourcePath.replace(/\\/g, '/'), false)) {
+        if (!cssHelper.canBeTransformed(loaderContext.resourcePath.replace(/\\/g, '/')))
+        {
           return localName;
         }
         const fileName = path.basename(loaderContext.resourcePath);

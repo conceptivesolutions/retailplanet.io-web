@@ -14,7 +14,8 @@ module.exports = (config) => {
             importLoaders: 1,
             modules: true,
             getLocalIdent: (loaderContext, localIdentName, localName) => {
-              if (!cssHelper.canBeTransformed(loaderContext.resourcePath.replace(/\\/g, '/'), true)) {
+              if (!cssHelper.canBeTransformed(loaderContext.resourcePath.replace(/\\/g, '/')))
+              {
                 return localName;
               }
               const fileName = path.basename(loaderContext.resourcePath);
