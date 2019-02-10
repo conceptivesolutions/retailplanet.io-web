@@ -1,6 +1,8 @@
 @import "../../static/styles/variables";
 
 $rating-color: #fee502;
+$image-width-xl: 255px;
+$image-height-xl: 255px;
 
 .container {
   height: 363px;
@@ -8,12 +10,16 @@ $rating-color: #fee502;
 }
 
 .imageWrapper {
+  min-width: $image-width-xl;
+  max-width: $image-width-xl;
+  min-height: $image-height-xl;
+  max-height: $image-height-xl;
   margin-bottom: 0.5rem;
 }
 
 .image {
-  max-width: 400px;
-  max-height: 255px;
+  max-width: $image-width-xl;
+  max-height: $image-height-xl;
 }
 
 .title {
