@@ -18,7 +18,7 @@ export default class Searchbar extends React.Component
   {
     return (
         <InputGroup className={this.props.className}>
-          <FormControl type="Query" placeholder="Durchsuchen Sie über 6.000.000 Produkte" name="inputQuery"
+          <FormControl type="Query" placeholder="Durchsuchen Sie über 6.000.000 Produkte" name="query"
                        className={`${css.searchField}`} defaultValue={this.getSearchValue()}/>
           <InputGroup.Append>
             <Button variant="primary" type="submit" className={`${css.searchButton} px-4 border-0`}>Suchen</Button>

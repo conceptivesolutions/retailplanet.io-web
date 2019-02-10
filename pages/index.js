@@ -47,7 +47,7 @@ export default class Index extends Component
     pEvent.preventDefault();
 
     //noinspection JSUnresolvedVariable
-    let inputQuery = encodeURIComponent(pEvent.target.inputQuery.value);
+    let inputQuery = encodeURIComponent(pEvent.target.query.value);
 
     //noinspection JSUnresolvedVariable
     Router.push({pathname: '/search', query: {query: inputQuery}});
