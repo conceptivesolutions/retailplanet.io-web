@@ -1,0 +1,13 @@
+# Common
+/.idea/*
+!/.idea/codeStyleSettings.xml
+!/.idea/projectCodeStyle.xml
+!/.idea/runConfigurations
+target
+*.iml
+
+# Node-Exclusions
+node_modules
+.next
+.vscode
+.cache
