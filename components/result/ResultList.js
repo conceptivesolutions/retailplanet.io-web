@@ -11,6 +11,9 @@ export default class ResultList extends React.Component
 
   render()
   {
+    if (!this.props.data || !this.props.data.items)
+      return <span>No data</span>;
+
     return <div className={"d-flex flex-wrap mb-3 mr-3"}>
       {this.props.data.items.map((pItem, pIndex) => {
         return <ResultItem className={`ml-3 mt-3`} data={pItem} key={pIndex}/>
