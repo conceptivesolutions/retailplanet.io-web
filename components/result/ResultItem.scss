@@ -25,6 +25,11 @@ $image-height-xl: 255px;
 .title {
   * {
     margin-bottom: 0.2rem;
+    max-width: $image-width-xl;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
   }
 }
 
@@ -37,6 +42,11 @@ $image-height-xl: 255px;
 
 .market {
   color: #777;
+  max-width: $image-width-xl;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
 }
 
 .ratingCount {
