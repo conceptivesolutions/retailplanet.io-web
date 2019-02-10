@@ -1,6 +1,7 @@
 import SearchLayout from "../layouts/SearchLayout";
 import {Component} from "react";
 import {NextAuth} from "next-auth/client";
+import ResultList from "../components/result/ResultList";
 
 //noinspection JSUnusedGlobalSymbols
 export default class Search extends Component
@@ -31,10 +32,8 @@ export default class Search extends Component
   {
     return (
         <SearchLayout session={this.state.session} query={this.state.query}
-                      onSubmit={e => this.setState({results: null, query: e.target.inputQuery.value})}>
-          <div className="d-flex flex-row">
-
-          </div>
+                      onSubmit={e => this.setState({results: null, query: e.target.query.value})}>
+          <ResultList data={this.state.results}/>
         </SearchLayout>
     )
   }
@@ -45,7 +44,20 @@ export default class Search extends Component
     fetch(Search.buildQuery(encodedQuery))
         .then(response => response.json())
         .then(json => {
-          this.setState(({results: json}))
+          const data = {
+            items: json.elements.map(pElement => {
+              return {
+                name: pElement.name,
+                price: pElement.price,
+                image: pElement.previews ? pElement.previews[0] : "",
+                source: "TESTMARKET",
+                rating: 3.5,
+                ratingCount: 42
+              }
+            })
+          };
+
+          this.setState(({results: data}))
         });
   }
 
