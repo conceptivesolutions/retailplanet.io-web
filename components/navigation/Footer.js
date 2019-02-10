@@ -4,6 +4,7 @@ import css from './Footer.scss'
 
 /**
  * Genereller Footer
+ * props.fixedBottom = gesetzt, wenn er unten fixiert sein soll
  *
  * @author w.glanzer, 14.01.2019
  */
@@ -12,7 +13,7 @@ export default class Footer extends React.Component
   render()
   {
     return (
-        <Navbar fixed="bottom" variant="dark" expand="lg" className={`${css.pageFooter} border-0`}>
+        <Navbar fixed={this.props.fixedBottom ? "bottom" : ""} variant="dark" expand="lg" className={`${css.pageFooter} border-0`}>
           <Nav>
             <Nav.Link className="text-white ml-3 mr-4" href="/" disabled>Impressum</Nav.Link>
           </Nav>

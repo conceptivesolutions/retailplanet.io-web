@@ -14,6 +14,6 @@ export default (props) => (
       <Container className="h-100">
         {props.children}
       </Container>
-      <Footer/>
+      <Footer fixedBottom/>
     </div>
 );
