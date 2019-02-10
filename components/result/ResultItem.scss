@@ -1,0 +1,59 @@
+@import "../../static/styles/variables";
+
+$rating-color: #fee502;
+
+.container {
+  height: 363px;
+  padding: 0.5rem;
+}
+
+.imageWrapper {
+  margin-bottom: 0.5rem;
+}
+
+.image {
+  max-width: 400px;
+  max-height: 255px;
+}
+
+.title {
+  * {
+    margin-bottom: 0.2rem;
+  }
+}
+
+.price {
+  color: $body-color;
+  font-size: 120%;
+  font-weight: bold;
+  margin-right: 0.15rem;
+}
+
+.market {
+  color: #777;
+}
+
+.ratingCount {
+  color: #777;
+}
+
+.ratingFull {
+  width: 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: $rating-color;
+}
+
+.ratingHalf {
+  width: 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: $rating-color;
+}
+
+.ratingEmpty {
+  width: 1rem;
+  text-align: center;
+  font-weight: 400;
+  color: $rating-color;
+}
