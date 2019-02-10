@@ -56,20 +56,20 @@ $image-height-xl: 255px;
 .ratingFull {
   width: 1rem;
   text-align: center;
-  font-weight: bold;
+  font-weight: bold !important;
   color: $rating-color;
 }
 
 .ratingHalf {
   width: 1rem;
   text-align: center;
-  font-weight: bold;
+  font-weight: bold !important;
   color: $rating-color;
 }
 
 .ratingEmpty {
   width: 1rem;
   text-align: center;
-  font-weight: 400;
+  font-weight: 400 !important;
   color: $rating-color;
 }
