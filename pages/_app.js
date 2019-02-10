@@ -27,7 +27,7 @@ export default class MyApp extends App
             <meta name="msapplication-config" content="/static/favicons/browserconfig.xml"/>
             <meta name="theme-color" content="#ffffff"/>
             <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
-            {/*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"/>*/}
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"/>
           </Head>
           <Container>
             <Component {...pageProps} />
