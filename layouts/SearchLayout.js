@@ -1,10 +1,10 @@
-import Header from '../components/navigation/Header.js';
 import {Container} from 'react-bootstrap';
+import SearchHeader from "../components/search/SearchHeader";
 
 //noinspection JSUnusedGlobalSymbols
 export default (props) => (
     <div>
-      <Header session={props.session} query={props.query} onSubmit={props.onSubmit} withLogo withSearch/>
+      <SearchHeader session={props.session} query={props.query} onSubmit={props.onSubmit} withLogo/>
       <Container className="d-flex flex-column">
         {props.children}
       </Container>

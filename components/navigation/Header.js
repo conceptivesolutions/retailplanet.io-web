@@ -4,11 +4,11 @@ import {NextAuth} from "next-auth/client";
 import ProfileSmall from "./profile/ProfileSmall";
 import css from './Header.scss'
 import ANavDropdown from "./dropdown/ANavDropdown";
-import Searchbar from "../search/Searchbar";
 
 /**
  * props.withLogo = Wenn vorhanden dann wird ein Logo links oben reingerendert
  * props.fixedTop = Wenn vorhanden dann wird der Header mit einer absoluten top-position dargestellt
+ * props.session = Die aktuelle Session
  *
  * @author w.glanzer, 14.01.2019
  */
@@ -28,7 +28,7 @@ export default class Header extends React.Component
               </Nav.Item>
             </Nav>
             <Nav className="mr-auto"/>
-            {this.renderSearchBar()}
+            {this.renderCustomComponents()}
             <Nav>
               <Nav.Item>
                 <ANavDropdown title={<React.Fragment>
@@ -51,16 +51,10 @@ export default class Header extends React.Component
       return (<Navbar.Brand href="/"><Image src="/static/retailplanet-logo.svg"/></Navbar.Brand>);
   }
 
-  renderSearchBar()
+  /**
+   * Rendert Custom Components
+   */
+  renderCustomComponents()
   {
-    if (this.props.withSearch)
-    {
-      return <React.Fragment>
-        <Nav.Item className="mx-2">
-          <Searchbar query={this.props.query} onSubmit={this.props.onSubmit}/>
-        </Nav.Item>
-        <Nav className="mr-auto"/>
-      </React.Fragment>
-    }
   }
 }

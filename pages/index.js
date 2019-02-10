@@ -28,7 +28,7 @@ export default class Index extends Component
             <div className="row h-100 justify-content-center align-items-center">
               <Form className="col-12" onSubmit={e => Index.onSearch(e)}>
                 <div className={css.phrase}>Search for specific Items.<br/><b>Buy from a local store</b></div>
-                <Searchbar/>
+                <Searchbar className={"shadow"}/>
                 <CountrySelection/>
               </Form>
             </div>
