@@ -18,13 +18,17 @@
     "bootstrap": "^4.2.1",
     "express": "^4.16.4",
     "http-proxy-middleware": "^0.19.1",
+    "leaflet": "^1.4.0",
     "nedb": "^1.8.0",
     "next": "^7.0.2",
     "next-auth": "^1.12.1",
     "node-sass": "^4.11.0",
     "react": "^16.7.0",
     "react-bootstrap": "^1.0.0-beta.3",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-geolocated": "^2.4.0",
+    "react-leaflet": "^2.2.0",
+    "react-leaflet-universal": "^1.2.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "4.0.2",
