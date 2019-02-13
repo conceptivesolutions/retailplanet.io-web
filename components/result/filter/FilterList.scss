@@ -1,0 +1,11 @@
+@import "../../../static/styles/styles";
+
+.filterContainer {
+  padding: 1rem;
+  position: fixed;
+  //padding-top: $real-navbar-height;
+  left: 0;
+  width: $filter-menu-width-xl;
+  height: 100vh;
+  background: $header-background;
+}

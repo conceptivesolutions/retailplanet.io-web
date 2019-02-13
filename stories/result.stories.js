@@ -3,6 +3,8 @@ import {storiesOf} from '@storybook/react';
 import '../static/styles/styles.scss';
 import ResultItem from "../components/result/ResultItem";
 import ResultList from "../components/result/ResultList";
+import FilterList from "../components/result/filter/FilterList";
+import CategoryFilter from "../components/result/filter/impl/CategoryFilter";
 
 function mockItemData()
 {
@@ -35,4 +37,10 @@ storiesOf('Search/Result', module)
     ))
     .add('Result List', () => (
         <ResultList data={mockItemDataArray()}/>
-    ));
+    ))
+    .add('Result Filter List', () => (
+        <FilterList>
+          <CategoryFilter/>
+        </FilterList>
+    ))
+;
