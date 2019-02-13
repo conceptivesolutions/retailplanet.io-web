@@ -1,6 +1,7 @@
+import React from "react";
 import {Container} from 'react-bootstrap';
-import Header from '../components/navigation/Header.js';
-import Footer from '../components/navigation/Footer.js';
+import Header from "../components/navigation/Header";
+import Footer from '../components/navigation/Footer';
 import css from './IndexLayout.scss';
 
 /**

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {Nav, Navbar} from "react-bootstrap"
+import {Nav, Navbar} from "react-bootstrap";
+import {NextAuth} from "next-auth/client";
 import css from './Footer.scss'
 
 /**

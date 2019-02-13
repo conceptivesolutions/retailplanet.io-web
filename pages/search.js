@@ -1,5 +1,5 @@
-import SearchLayout from "../layouts/SearchLayout";
 import {Component} from "react";
+import SearchLayout from "../layouts/SearchLayout";
 import {NextAuth} from "next-auth/client";
 import ResultList from "../components/result/ResultList";
 

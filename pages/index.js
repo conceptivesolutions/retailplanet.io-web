@@ -4,7 +4,7 @@ import {NextAuth} from "next-auth/client";
 import IndexLayout from "../layouts/IndexLayout";
 import {Form} from "react-bootstrap";
 import Searchbar from "../components/search/Searchbar";
-import Router from "next/dist/lib/router";
+import Router from "next/router";
 import css from "./index.scss"
 import CountrySelection from "../components/search/CountrySelection";
 
