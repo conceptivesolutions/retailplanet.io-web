@@ -15,6 +15,16 @@
       <env name="BACKEND_URL" value="http://localhost:8080" />
       <env name="LOGOUT_REDIRECT_URL" value="http://localhost:3000" />
     </envs>
-    <method v="2" />
+    <method v="2">
+      <option name="NpmBeforeRunTask" enabled="true">
+        <package-json value="$PROJECT_DIR$/package.json" />
+        <command value="run" />
+        <scripts>
+          <script value="build" />
+        </scripts>
+        <node-interpreter value="project" />
+        <envs />
+      </option>
+    </method>
   </configuration>
 </component>
