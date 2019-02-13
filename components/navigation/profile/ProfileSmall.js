@@ -1,7 +1,7 @@
 import * as React from "react";
 import {NextAuth} from "next-auth/client";
 import getConfig from 'next/config';
-import Router from "next/dist/lib/router";
+import Router from "next/router";
 import {Nav, NavDropdown} from "react-bootstrap";
 import css from "./ProfileSmall.scss"
 import ANavDropdown from "../dropdown/ANavDropdown";
