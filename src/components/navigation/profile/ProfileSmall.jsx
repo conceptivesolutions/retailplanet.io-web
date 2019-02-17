@@ -29,7 +29,6 @@ export default class ProfileSmall extends React.Component {
     this.state = {
       session: this.props.session,
     };
-    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   createUserComp() {
