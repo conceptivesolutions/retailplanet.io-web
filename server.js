@@ -26,10 +26,13 @@ nextApp
     const { expressApp } = nextAuthApp;
 
     // /api -> backend
-    expressApp.use('/api', proxy({
-      target: process.env.BACKEND_URL,
-      changeOrigin: true,
-    }));
+    expressApp.use(
+      '/api',
+      proxy({
+        target: process.env.BACKEND_URL,
+        changeOrigin: true,
+      }),
+    );
 
     // Default catch-all handler to allow Next.js to handle all other routes
     expressApp.all('*', (req, res) => {

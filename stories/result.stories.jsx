@@ -19,18 +19,30 @@ function mockItemData() {
 function mockItemDataArray() {
   return {
     items: [
-      mockItemData(), mockItemData(), mockItemData(), mockItemData(), mockItemData(),
-      mockItemData(), mockItemData(), mockItemData(), mockItemData(), mockItemData(),
-      mockItemData(), mockItemData(), mockItemData(), mockItemData(), mockItemData(),
-      mockItemData(), mockItemData(), mockItemData(), mockItemData(), mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
+      mockItemData(),
     ],
   };
 }
 
 storiesOf('Search/Result', module)
-  .add('Result Item', () => (
-    <ResultItem data={mockItemData()} />
-  ))
-  .add('Result List', () => (
-    <ResultList data={mockItemDataArray()} />
-  ));
+  .add('Result Item', () => <ResultItem data={mockItemData()} />)
+  .add('Result List', () => <ResultList data={mockItemDataArray()} />);

@@ -54,12 +54,11 @@ export default class Search extends React.Component {
           })),
         };
 
-        this.setState(({
+        this.setState({
           results: data,
-        }));
+        });
       });
   }
-
 
   render() {
     return (
@@ -69,7 +68,8 @@ export default class Search extends React.Component {
         onSubmit={e => this.setState({
           results: null,
           query: e.target.query.value,
-        })}
+        })
+        }
       >
         <ResultList data={this.state.results} />
       </SearchLayout>

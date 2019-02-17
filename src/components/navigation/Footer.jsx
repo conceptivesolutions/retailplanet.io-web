@@ -11,13 +11,19 @@ import css from './Footer.scss';
 export default props => (
   <Navbar fixed={props.fixedBottom ? 'bottom' : ''} variant="dark" expand="lg" className={`${css.pageFooter} border-0`}>
     <Nav>
-      <Nav.Link className="text-white ml-3 mr-4" href="/" disabled>Impressum</Nav.Link>
+      <Nav.Link className="text-white ml-3 mr-4" href="/" disabled>
+        Impressum
+      </Nav.Link>
     </Nav>
     <Nav>
-      <Nav.Link className="text-white mr-4" href="/" disabled>Datenschutz</Nav.Link>
+      <Nav.Link className="text-white mr-4" href="/" disabled>
+        Datenschutz
+      </Nav.Link>
     </Nav>
     <Nav>
-      <Nav.Link className="text-white" href="/" disabled>Nutzungsbedingungen</Nav.Link>
+      <Nav.Link className="text-white" href="/" disabled>
+        Nutzungsbedingungen
+      </Nav.Link>
     </Nav>
     <Nav className="mr-auto" />
     <Nav>

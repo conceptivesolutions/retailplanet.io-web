@@ -17,8 +17,10 @@ export default class ProfileSmall extends React.Component {
     NextAuth.signout()
       .then(() => {
         const { publicRuntimeConfig } = getConfig();
-        Router.push(`${publicRuntimeConfig.keycloak_url}/auth/realms/${publicRuntimeConfig.keycloak_realm}`
-          + `/protocol/openid-connect/logout?redirect_uri=${publicRuntimeConfig.logout_redirect_url}`);
+        Router.push(
+          `${publicRuntimeConfig.keycloak_url}/auth/realms/${publicRuntimeConfig.keycloak_realm}`
+          + `/protocol/openid-connect/logout?redirect_uri=${publicRuntimeConfig.logout_redirect_url}`,
+        );
       });
   }
 

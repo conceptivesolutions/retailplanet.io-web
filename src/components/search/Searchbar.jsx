@@ -27,7 +27,9 @@ export default class Searchbar extends React.Component {
           defaultValue={this.getSearchValue()}
         />
         <InputGroup.Append>
-          <Button variant="primary" type="submit" className={`${css.searchButton} px-4 border-0`}>Suchen</Button>
+          <Button variant="primary" type="submit" className={`${css.searchButton} px-4 border-0`}>
+            Suchen
+          </Button>
         </InputGroup.Append>
       </InputGroup>
     );

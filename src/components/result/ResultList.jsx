@@ -12,7 +12,9 @@ export default (props) => {
   return (
     <div className="d-flex flex-wrap mb-3 mr-3">
       {/* eslint-disable-next-line react/no-array-index-key */}
-      {props.data.items.map((pItem, pIndex) => <ResultItem className="ml-3 mt-3" data={pItem} key={pIndex} />)}
+      {props.data.items.map((pItem, pIndex) => (
+        <ResultItem className="ml-3 mt-3" data={pItem} key={pIndex} />
+      ))}
     </div>
   );
 };

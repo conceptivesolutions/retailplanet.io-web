@@ -21,6 +21,4 @@ storiesOf('Navigation', module)
       <Header withLogo query="Encoded%20Value" />
     </div>
   ))
-  .add('Page Footer', () => (
-    <Footer />
-  ));
+  .add('Page Footer', () => <Footer />);

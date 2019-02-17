@@ -60,7 +60,9 @@
     "object-curly-newline": [
       "error",
       {
-        "ObjectExpression": "always",
+        "ObjectExpression": {
+          "minProperties": 1
+        },
         "ObjectPattern": {
           "multiline": true
         },

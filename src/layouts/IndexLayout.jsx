@@ -12,9 +12,7 @@ import css from './IndexLayout.scss';
 export default props => (
   <div className={css.rootContainer}>
     <Header session={props.session} fixedTop withLogo />
-    <Container className="h-100">
-      {props.children}
-    </Container>
+    <Container className="h-100">{props.children}</Container>
     <Footer fixedBottom />
   </div>
 );

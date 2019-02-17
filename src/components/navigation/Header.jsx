@@ -16,7 +16,13 @@ import Searchbar from '../search/Searchbar';
  */
 export default class Header extends React.Component {
   renderLogo() {
-    if (this.props.withLogo) return (<Navbar.Brand href="/"><Image src="/static/retailplanet-logo.svg" /></Navbar.Brand>);
+    if (this.props.withLogo) {
+      return (
+        <Navbar.Brand href="/">
+          <Image src="/static/retailplanet-logo.svg" />
+        </Navbar.Brand>
+      );
+    }
     return null;
   }
 
@@ -55,12 +61,13 @@ export default class Header extends React.Component {
           {this.renderCustomComponents()}
           <Nav>
             <Nav.Item>
-              <ANavDropdown title={(
-                <React.Fragment>
-                  <Image className={`${css.langFlag} mr-2`} src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg" />
-                  Deutsch
-                </React.Fragment>
-              )}
+              <ANavDropdown
+                title={(
+                  <React.Fragment>
+                    <Image className={`${css.langFlag} mr-2`} src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg" />
+                    Deutsch
+                  </React.Fragment>
+                )}
               />
             </Nav.Item>
             <Nav.Item className="mx-2 border-left" />

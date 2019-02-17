@@ -16,7 +16,7 @@ export default class ResultItem extends React.Component {
   renderRating() {
     const rating = this.props.data.rating || 0;
     const resultRatingArr = [];
-    for (let i = 0; i < rating; i++) resultRatingArr.push((i + 1 <= rating) ? 100 : 50);
+    for (let i = 0; i < rating; i++) resultRatingArr.push(i + 1 <= rating ? 100 : 50);
     for (let i = resultRatingArr.length; i < 5; i++) resultRatingArr.push(0);
 
     return (
@@ -47,7 +47,9 @@ export default class ResultItem extends React.Component {
         <div className={css.imageWrapper}>
           <Image className={css.image} src={this.props.data.image} />
         </div>
-        <span className={css.title}><h5>{this.props.data.name}</h5></span>
+        <span className={css.title}>
+          <h5>{this.props.data.name}</h5>
+        </span>
         <div className={css.market}>
           <span className={css.price}>
             {this.props.data.price}
