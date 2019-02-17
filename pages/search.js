@@ -1,7 +1,7 @@
 import {Component} from "react";
-import SearchLayout from "../layouts/SearchLayout";
+import SearchLayout from "../src/layouts/SearchLayout";
 import {NextAuth} from "next-auth/client";
-import ResultList from "../components/result/ResultList";
+import ResultList from "../src/components/result/ResultList";
 
 //noinspection JSUnusedGlobalSymbols
 export default class Search extends Component

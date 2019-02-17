@@ -1,5 +1,5 @@
 const path = require('path');
-const cssHelper = require('../helpers/CSSLoaderHelper');
+const cssHelper = require('../src/helpers/CSSLoaderHelper');
 
 module.exports = (config) => {
 

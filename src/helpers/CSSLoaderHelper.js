@@ -1,7 +1,7 @@
 const path = require('path');
 
 const avoidPaths = ['node_modules', 'static'].map(d => path
-    .join(__dirname, '..', d)
+    .join(__dirname, '..', '..', d)
   .replace(/\\/g, '/'));
 
 module.exports = {

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {storiesOf} from '@storybook/react';
 import '../static/styles/styles.scss';
-import ResultItem from "../components/result/ResultItem";
-import ResultList from "../components/result/ResultList";
+import ResultItem from "./src/components/result/ResultItem";
+import ResultList from "./src/components/result/ResultList";
 
 function mockItemData()
 {

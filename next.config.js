@@ -1,6 +1,6 @@
 const path = require('path');
 const withSass = require('@zeit/next-sass');
-const cssHelper = require('./helpers/CSSLoaderHelper');
+const cssHelper = require('./src/helpers/CSSLoaderHelper');
 
 module.exports = withSass(
   {

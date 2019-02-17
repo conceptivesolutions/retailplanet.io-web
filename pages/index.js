@@ -1,12 +1,12 @@
 import * as React from "react";
 import {Component} from "react";
 import {NextAuth} from "next-auth/client";
-import IndexLayout from "../layouts/IndexLayout";
+import IndexLayout from "../src/layouts/IndexLayout";
 import {Form} from "react-bootstrap";
-import Searchbar from "../components/search/Searchbar";
+import Searchbar from "../src/components/search/Searchbar";
 import Router from "next/router";
 import css from "./index.scss"
-import CountrySelection from "../components/search/CountrySelection";
+import CountrySelection from "../src/components/search/CountrySelection";
 
 //noinspection JSUnusedGlobalSymbols
 export default class Index extends Component
