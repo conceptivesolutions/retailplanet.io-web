@@ -2,11 +2,12 @@ import * as React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
 import '../static/styles/styles.scss';
+import { Provider } from 'react-redux';
+import withReduxStore from '../src/helpers/withReduxStore';
 
-// noinspection JSUnusedGlobalSymbols
-export default class MyApp extends App {
+class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, reduxStore } = this.props;
 
     return (
       <React.Fragment>
@@ -15,7 +16,6 @@ export default class MyApp extends App {
           <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png" />
-          <link rel="manifest" href="/static/favicons/site.webmanifest" />
           <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
           <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
           <meta name="apple-mobile-web-app-title" content="retailplanet.io" />
@@ -28,9 +28,14 @@ export default class MyApp extends App {
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
         </Head>
         <Container>
-          <Component {...pageProps} />
+          <Provider store={reduxStore}>
+            <Component {...pageProps} />
+          </Provider>
         </Container>
       </React.Fragment>
     );
   }
 }
+
+// noinspection JSUnusedGlobalSymbols
+export default withReduxStore(MyApp);
