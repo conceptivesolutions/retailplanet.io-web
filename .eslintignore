@@ -1,0 +1,6 @@
+*.iml
+*.css
+*.scss
+package-lock.json
+concepts/
+static/

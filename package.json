@@ -17,6 +17,7 @@
     "@zeit/next-sass": "^1.0.1",
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "http-proxy-middleware": "^0.19.1",
     "nedb": "^1.8.0",
     "next": "^8.0.1",
@@ -32,6 +33,15 @@
     "@storybook/addon-links": "4.1.11",
     "@storybook/addons": "4.1.11",
     "@storybook/react": "4.1.11",
-    "babel-loader": "^8.0.5"
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.14.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-css-modules": "^2.11.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-json": "^1.4.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "stylelint": "^9.10.1",
+    "stylelint-config-standard": "^18.2.0"
   }
 }

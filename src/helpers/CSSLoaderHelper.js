@@ -6,11 +6,11 @@ const avoidPaths = ['node_modules', 'static'].map(d => path
 
 module.exports = {
 
-  canBeTransformed: function (pathToCheck) {
-    return !avoidPaths.some(function (v) {
+  canBeTransformed(pathToCheck) {
+    return !avoidPaths.some((v) => {
       const p = pathToCheck.substr(0, pathToCheck.lastIndexOf('/') + 1);
       return p.includes(v);
     });
-  }
+  },
 
 };
