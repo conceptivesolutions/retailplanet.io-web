@@ -1,3 +1,4 @@
+const compression = require('compression');
 const next = require('next');
 const nextAuth = require('next-auth');
 const proxy = require('http-proxy-middleware');
@@ -24,6 +25,12 @@ nextApp
   .then((nextAuthApp) => {
     // Get instance of Express from NextAuth instance
     const { expressApp } = nextAuthApp;
+
+    // Set specific properties only in production
+    if (!dev) {
+      // Compression
+      expressApp.use(compression());
+    }
 
     // /api -> backend
     expressApp.use(
