@@ -4,11 +4,10 @@
   "description": "retailplanet.io",
   "repository": "https://github.com/con-ceptive/retailplanet.io-backend",
   "license": "CC-ND",
-  "main": "server.js",
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "storybook": "start-storybook -s ./static -p 3009",
     "fix-styles": "prettier-stylelint --write"
   },
