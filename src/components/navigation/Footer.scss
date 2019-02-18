@@ -1,3 +1,7 @@
 .pageFooter {
   background-color: #000;
 }
+
+.pageFooter :global(.navbar-nav a) {
+  cursor: pointer;
+}

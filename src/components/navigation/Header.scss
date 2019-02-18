@@ -11,6 +11,7 @@
   :global(.navbar-brand img) {
     padding: 0.25rem;
     height: $default-navbar-height;
+    cursor: pointer;
   }
 }
 

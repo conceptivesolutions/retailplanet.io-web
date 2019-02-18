@@ -3,15 +3,20 @@ import { NextAuth } from 'next-auth/client';
 import { connect } from 'react-redux';
 import SearchLayout from '../src/layouts/SearchLayout';
 import ResultList from '../src/components/result/ResultList';
+import { setSession } from '../src/reducers/sessionReducer';
 
 class Search extends React.Component {
   // noinspection JSUnusedGlobalSymbols
-  static async getInitialProps(pRequest) {
+  static async getInitialProps({ req }) {
     return {
       session: await NextAuth.init({
-        req: pRequest.req,
+        req,
       }),
     };
+  }
+
+  componentDidMount() {
+    this.props.onSetSession(this.props.session);
   }
 
   render() {
@@ -27,4 +32,10 @@ const mapStateToProps = state => ({
   query: state.search.query,
 });
 
-export default connect(mapStateToProps)(Search);
+const mapDispatchToProps = dispatch => ({
+  onSetSession: (session) => {
+    dispatch(setSession(session));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

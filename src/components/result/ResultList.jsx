@@ -6,7 +6,7 @@ import ResultItem from './ResultItem';
  * @author w.glanzer, 10.02.2019
  */
 const ResultList = (props) => {
-  if (!props.results) return <span>No data</span>;
+  if (!props.results || props.results.length === 0) return <span>No data</span>;
 
   return (
     <div className="d-flex flex-wrap mb-3 mr-3">

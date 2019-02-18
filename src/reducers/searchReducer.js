@@ -4,7 +4,7 @@ const initSearchState = {
   query: '',
   countries: [],
   loading: false,
-  results: {},
+  results: [],
   error: null,
 };
 

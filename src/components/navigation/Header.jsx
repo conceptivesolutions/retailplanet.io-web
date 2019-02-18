@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { push } from 'connected-next-router';
 import { Image, Nav, Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import ProfileSmall from './profile/ProfileSmall';
@@ -16,7 +17,7 @@ class Header extends React.Component {
   renderLogo() {
     if (this.props.withLogo) {
       return (
-        <Navbar.Brand href="/">
+        <Navbar.Brand className="link" onClick={() => this.props.onHomeClick()}>
           <Image src="/static/retailplanet-logo.svg" />
         </Navbar.Brand>
       );
@@ -81,4 +82,10 @@ const mapStateToProps = state => ({
   isSearch: state.router.location.pathname !== '/',
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+  onHomeClick: () => {
+    dispatch(push('/'));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
