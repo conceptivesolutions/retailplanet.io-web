@@ -1,6 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies, import/prefer-default-export */
+/* import/prefer-default-export */
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createRouterMiddleware, initialRouterState, routerReducer } from 'connected-next-router';
 import thunkMiddleware from 'redux-thunk';
 import searchReducer from './reducers/searchReducer';
