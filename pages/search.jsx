@@ -3,7 +3,6 @@ import { NextAuth } from 'next-auth/client';
 import { connect } from 'react-redux';
 import SearchLayout from '../src/layouts/SearchLayout';
 import ResultList from '../src/components/result/ResultList';
-import { runSearch } from '../src/reducers/searchReducer';
 
 class Search extends React.Component {
   // noinspection JSUnusedGlobalSymbols
@@ -14,14 +13,6 @@ class Search extends React.Component {
       }),
     };
   }
-
-  componentDidMount() {
-    this.props.onRunSearch();
-  }
-
-  // componentDidUpdate() {
-  //   if (!this.state.results) this.loadSearchResults();
-  // }
 
   render() {
     return (
@@ -36,10 +27,4 @@ const mapStateToProps = state => ({
   query: state.search.query,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onRunSearch: () => {
-    dispatch(runSearch());
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps)(Search);

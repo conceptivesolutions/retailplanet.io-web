@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import css from './Searchbar.scss';
-import { setQuery } from '../../reducers/searchReducer';
+import { runSearch, setQuery } from '../../reducers/searchReducer';
 
 /**
  * @author w.glanzer, 14.01.2019
@@ -48,6 +48,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onExecute: (query) => {
     dispatch(push(`/search?query=${encodeURIComponent(query)}`));
+    dispatch(runSearch(query));
   },
 });
 
