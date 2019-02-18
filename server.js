@@ -1,4 +1,5 @@
 const compression = require('compression');
+const express = require('express');
 const next = require('next');
 const nextAuth = require('next-auth');
 const proxy = require('http-proxy-middleware');
@@ -30,6 +31,11 @@ nextApp
     if (!dev) {
       // Compression
       expressApp.use(compression());
+
+      // Static content
+      expressApp.use(express.static(`${__dirname}/static`, {
+        maxAge: 31557600,
+      }));
     }
 
     // /api -> backend
