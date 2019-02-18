@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { NextAuth } from 'next-auth/client';
-import { Form } from 'react-bootstrap';
-import Router from 'next/router';
+import { connect } from 'react-redux';
 import IndexLayout from '../src/layouts/IndexLayout';
 import Searchbar from '../src/components/search/Searchbar';
 import css from './index.scss';
 import CountrySelection from '../src/components/search/CountrySelection';
+import { setSession } from '../src/reducers/sessionReducer';
 
-// noinspection JSUnusedGlobalSymbols
-export default class Index extends React.Component {
+class Index extends React.Component {
   // noinspection JSUnusedGlobalSymbols
   static async getInitialProps({ req }) {
     return {
@@ -18,43 +17,36 @@ export default class Index extends React.Component {
     };
   }
 
-  /**
-   * Wird aufgerufen, wenn die Suche gestartet werden soll
-   *
-   * @param pEvent Event
-   */
-  static onSearch(pEvent) {
-    pEvent.preventDefault();
-
-    // noinspection JSUnresolvedVariable
-    const inputQuery = encodeURIComponent(pEvent.target.query.value);
-
-    // noinspection JSUnresolvedVariable
-    Router.push({
-      pathname: '/search',
-      query: {
-        query: inputQuery,
-      },
-    });
+  componentDidMount() {
+    this.props.onSetSession(this.props.session);
   }
 
   render() {
     return (
-      <IndexLayout session={this.props.session}>
+      <IndexLayout>
         <div className="container h-100">
           <div className="row h-100 justify-content-center align-items-center">
-            <Form className="col-12" onSubmit={e => Index.onSearch(e)}>
+            <div className="col-12">
               <div className={css.phrase}>
                 Search for specific Items.
                 <br />
                 <b>Buy from a local store</b>
               </div>
-              <Searchbar className="shadow" />
-              <CountrySelection />
-            </Form>
+              <Searchbar>
+                <CountrySelection />
+              </Searchbar>
+            </div>
           </div>
         </div>
       </IndexLayout>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  onSetSession: (session) => {
+    dispatch(setSession(session));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(Index);

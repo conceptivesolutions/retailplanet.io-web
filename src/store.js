@@ -1,41 +1,26 @@
-import { applyMiddleware, createStore } from 'redux';
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies, import/prefer-default-export */
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { createRouterMiddleware, initialRouterState, routerReducer } from 'connected-next-router';
 import thunkMiddleware from 'redux-thunk';
+import searchReducer from './reducers/searchReducer';
+import sessionReducer from './reducers/sessionReducer';
 
-// Initial State
-const initialState = {};
+const routerMiddleware = createRouterMiddleware();
 
-// export const actionTypes = {
-//   TICK: 'TICK',
-//   INCREMENT: 'INCREMENT',
-//   DECREMENT: 'DECREMENT',
-//   RESET: 'RESET',
-// };
-
-// Reducers
-export const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    // case actionTypes.TICK:
-    //   return Object.assign({}, state, {
-    //     lastUpdate: action.ts,
-    //     light: !!action.light,
-    //   });
-    default:
-      return state;
+export function makeStore(initialState = {}, options) {
+  if (options.asPath) {
+    // eslint-disable-next-line no-param-reassign
+    initialState.router = initialRouterState(options.asPath);
   }
-};
 
-/**
- * Initialize Store
- *
- * @param state
- * @returns {Store<any, Action> & *}
- */
-export function initializeStore(state = initialState) {
   return createStore(
-    reducer,
-    state,
-    composeWithDevTools(applyMiddleware(thunkMiddleware)),
+    combineReducers({
+      search: searchReducer,
+      session: sessionReducer,
+      router: routerReducer,
+    }),
+    initialState,
+    composeWithDevTools(applyMiddleware(routerMiddleware, thunkMiddleware)),
   );
 }

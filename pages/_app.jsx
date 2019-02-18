@@ -3,11 +3,13 @@ import App, { Container } from 'next/app';
 import Head from 'next/head';
 import '../static/styles/styles.scss';
 import { Provider } from 'react-redux';
-import withReduxStore from '../src/helpers/withReduxStore';
+import { ConnectedRouter } from 'connected-next-router';
+import withRedux from 'next-redux-wrapper';
+import { makeStore } from '../src/store';
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps, reduxStore } = this.props;
+    const { Component, pageProps, store } = this.props;
 
     return (
       <React.Fragment>
@@ -28,8 +30,10 @@ class MyApp extends App {
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
         </Head>
         <Container>
-          <Provider store={reduxStore}>
-            <Component {...pageProps} />
+          <Provider store={store}>
+            <ConnectedRouter>
+              <Component {...pageProps} />
+            </ConnectedRouter>
           </Provider>
         </Container>
       </React.Fragment>
@@ -38,4 +42,4 @@ class MyApp extends App {
 }
 
 // noinspection JSUnusedGlobalSymbols
-export default withReduxStore(MyApp);
+export default withRedux(makeStore)(MyApp);

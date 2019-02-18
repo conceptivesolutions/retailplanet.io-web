@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Form, Image, Nav, Navbar } from 'react-bootstrap';
+import { Image, Nav, Navbar } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import ProfileSmall from './profile/ProfileSmall';
 import css from './Header.scss';
 import ANavDropdown from './dropdown/ANavDropdown';
@@ -8,13 +9,10 @@ import Searchbar from '../search/Searchbar';
 /**
  * props.withLogo = Wenn vorhanden dann wird ein Logo links oben reingerendert
  * props.fixedTop = Wenn vorhanden dann wird der Header mit einer absoluten top-position dargestellt
- * props.session = Die aktuelle Session
- * props.query (optional) = Der aktuelle Query
- * props.onSubmit (optional) = Aktion, die beim Suchen ausgeführt werden soll
  *
  * @author w.glanzer, 14.01.2019
  */
-export default class Header extends React.Component {
+class Header extends React.Component {
   renderLogo() {
     if (this.props.withLogo) {
       return (
@@ -30,13 +28,11 @@ export default class Header extends React.Component {
    * Rendert Custom Components
    */
   renderCustomComponents() {
-    if (this.props.query && this.props.onSubmit) {
+    if (this.props.isSearch) {
       return (
         <React.Fragment>
           <Nav.Item className="d-flex align-items-center mx-2">
-            <Form onSubmit={this.props.onSubmit}>
-              <Searchbar className={`${css.searchBar}`} query={this.props.query} onSubmit={this.props.onSubmit} />
-            </Form>
+            <Searchbar className={`${css.searchBar}`} />
           </Nav.Item>
           <Nav className="mr-auto" />
         </React.Fragment>
@@ -72,7 +68,7 @@ export default class Header extends React.Component {
             </Nav.Item>
             <Nav.Item className="mx-2 border-left" />
             <Nav.Item>
-              <ProfileSmall session={this.props.session} />
+              <ProfileSmall />
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>
@@ -80,3 +76,9 @@ export default class Header extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isSearch: state.router.location.pathname !== '/',
+});
+
+export default connect(mapStateToProps)(Header);
