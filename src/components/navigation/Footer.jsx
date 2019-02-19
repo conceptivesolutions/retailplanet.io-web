@@ -13,18 +13,13 @@ import css from './Footer.scss';
 const Footer = props => (
   <Navbar fixed={props.fixedBottom ? 'bottom' : ''} variant="dark" expand="lg" className={`${css.pageFooter} border-0`}>
     <Nav>
-      <Nav.Link className="text-white ml-3 mr-4" onClick={() => props.onLinkClicked('/')} disabled>
+      <Nav.Link className="text-white ml-3 mr-4" onClick={() => props.onLinkClicked('/imprint')}>
         Impressum
       </Nav.Link>
     </Nav>
     <Nav>
-      <Nav.Link className="text-white mr-4" onClick={() => props.onLinkClicked('/')} disabled>
+      <Nav.Link className="text-white mr-4" onClick={() => props.onLinkClicked('/privacy')}>
         Datenschutz
-      </Nav.Link>
-    </Nav>
-    <Nav>
-      <Nav.Link className="text-white" onClick={() => props.onLinkClicked('/')} disabled>
-        Nutzungsbedingungen
       </Nav.Link>
     </Nav>
     <Nav className="mr-auto" />
