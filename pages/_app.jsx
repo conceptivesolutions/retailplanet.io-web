@@ -20,6 +20,7 @@ class MyApp extends App {
           <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png" />
           <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
           <link rel="shortcut icon" href="/static/favicons/favicon.ico" />
+          <meta name="robots" content="noindex" />
           <meta name="apple-mobile-web-app-title" content="retailplanet.io" />
           <meta name="application-name" content="retailplanet.io" />
           <meta name="msapplication-TileColor" content="#da532c" />
@@ -27,6 +28,7 @@ class MyApp extends App {
           <meta name="msapplication-config" content="/static/favicons/browserconfig.xml" />
           <meta name="theme-color" content="#ffffff" />
           <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+          <meta name="google-site-verification" content="YD3PhwzJ76avDVPzv0ds-WCowoldAqNC9XQ_ztkEkbI" />
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
         </Head>
         <Container>
