@@ -6,3 +6,6 @@ $font-size-base: 0.9rem;
 
 // Overwritten colors in bootstrap
 $primary: #3399db;
+
+// Import whole bootstrap
+@import "../../../node_modules/bootstrap/scss/bootstrap";

@@ -1,11 +1,11 @@
+// Functions and Variables for common usecases
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins/breakpoints";
+
 // Colors
 $header-background: #f3f3f3;
 
 // Sizes
 $default-navbar-height: 2.5rem;
 $filter-menu-width-xl: 25rem;
-
-// Functions and Variables for common usecases
-@import "../../node_modules/bootstrap/scss/functions";
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/mixins/breakpoints";

@@ -38,7 +38,6 @@ class MyApp extends App {
           <meta name="theme-color" content="#ffffff" />
           <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
           <meta name="google-site-verification" content="YD3PhwzJ76avDVPzv0ds-WCowoldAqNC9XQ_ztkEkbI" />
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
           <link rel="stylesheet" href="/static/styles/global.css" />
         </Head>
         <Container>
