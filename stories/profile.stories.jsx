@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import '../static/styles/styles.scss';
 import { Nav, Navbar } from 'react-bootstrap';
 import ProfileSmall from '../src/components/navigation/profile/ProfileSmall';
 

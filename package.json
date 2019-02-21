@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "storybook": "start-storybook -s ./static -p 3009",
-    "fix-styles": "prettier-stylelint --write"
+    "fix-styles": "prettier-stylelint --write",
+    "generate-styles": "node-sass ./static/styles/global -o ./static/styles/global"
   },
   "prettier": {},
   "author": "Werner Glanzer",

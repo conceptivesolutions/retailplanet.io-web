@@ -1,12 +1,11 @@
-// Farben
-$primary: #3399db;
+// Colors
 $header-background: #f3f3f3;
 
-// Größen
+// Sizes
 $default-navbar-height: 2.5rem;
 $filter-menu-width-xl: 25rem;
 
-// Funktionen und Variablen
+// Functions and Variables for common usecases
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins/breakpoints";

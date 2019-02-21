@@ -1,17 +1,10 @@
-const path = require('path');
 const withSass = require('@zeit/next-sass');
-const cssHelper = require('./src/helpers/CSSLoaderHelper');
 
 module.exports = withSass({
   cssModules: true,
   cssLoaderOptions: {
-    getLocalIdent: (loaderContext, localIdentName, localName) => {
-      if (!cssHelper.canBeTransformed(loaderContext.resourcePath.replace(/\\/g, '/'))) {
-        return localName;
-      }
-      const fileName = path.basename(loaderContext.resourcePath);
-      return `${fileName.replace(/\.[^/.]+$/, '')}___${localName}`;
-    },
+    importLoaders: 1,
+    localIdentName: '[local]___[hash:base64:5]',
   },
   publicRuntimeConfig: {
     keycloak_realm: process.env.OAUTH_REALM,

@@ -1,6 +1,3 @@
-const path = require('path');
-const cssHelper = require('../src/helpers/CSSLoaderHelper');
-
 module.exports = (config) => {
 
   config.module.rules.push(
@@ -13,14 +10,7 @@ module.exports = (config) => {
           options: {
             importLoaders: 1,
             modules: true,
-            getLocalIdent: (loaderContext, localIdentName, localName) => {
-              if (!cssHelper.canBeTransformed(loaderContext.resourcePath.replace(/\\/g, '/')))
-              {
-                return localName;
-              }
-              const fileName = path.basename(loaderContext.resourcePath);
-              return `${fileName.replace(/\.[^/.]+$/, '')}___${localName}`;
-            }
+            localIdentName: '[local]___[hash:base64:5]',
           }
         },
         require.resolve('sass-loader')
