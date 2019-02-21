@@ -1,9 +1,11 @@
 import * as React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
+import I18n from 'redux-i18n';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-next-router';
 import withRedux from 'next-redux-wrapper';
+import translations from '../src/i18n/translations';
 import { makeStore } from '../src/store';
 
 class MyApp extends App {
@@ -43,7 +45,9 @@ class MyApp extends App {
         <Container>
           <Provider store={store}>
             <ConnectedRouter>
-              <Component {...pageProps} />
+              <I18n translations={translations} initialLang="en" fallbackLang="de">
+                <Component {...pageProps} />
+              </I18n>
             </ConnectedRouter>
           </Provider>
         </Container>

@@ -1,4 +1,5 @@
 const withSass = require('@zeit/next-sass');
+const path = require('path');
 
 module.exports = withSass({
   cssModules: true,
@@ -10,5 +11,19 @@ module.exports = withSass({
     keycloak_realm: process.env.OAUTH_REALM,
     keycloak_url: process.env.OAUTH_URL,
     logout_redirect_url: process.env.LOGOUT_REDIRECT_URL,
+  },
+  webpack: (config) => {
+    // Server .html-Files in i18n folder via raw-loader, to include it in translations.js
+    config.module.rules.push(
+      {
+        test: /\.html$/,
+        include: [
+          path.resolve(__dirname, 'src', 'i18n'),
+        ],
+        use: 'raw-loader',
+      },
+    );
+
+    return config;
   },
 });
