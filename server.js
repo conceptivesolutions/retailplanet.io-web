@@ -33,8 +33,8 @@ nextApp
       expressApp.use(compression());
 
       // Static content
-      expressApp.use(express.static(`${__dirname}/static`, {
-        maxAge: 31557600,
+      expressApp.use('/static', express.static(`${__dirname}/static`, {
+        maxAge: '365d',
       }));
     }
 
