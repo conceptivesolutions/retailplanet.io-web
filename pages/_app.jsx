@@ -10,6 +10,7 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, store } = this.props;
 
+    // noinspection HtmlUnknownTarget
     return (
       <React.Fragment>
         <Head>
@@ -29,7 +30,7 @@ class MyApp extends App {
           <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
           <meta name="google-site-verification" content="YD3PhwzJ76avDVPzv0ds-WCowoldAqNC9XQ_ztkEkbI" />
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
-          <link rel="stylesheet" href="/styles/global/static.css" />
+          <link rel="stylesheet" href="/static/styles/global.css" />
         </Head>
         <Container>
           <Provider store={store}>
