@@ -7,6 +7,15 @@ import withRedux from 'next-redux-wrapper';
 import { makeStore } from '../src/store';
 
 class MyApp extends App {
+  // noinspection JSUnusedGlobalSymbols
+  static async getInitialProps({ Component, ctx }) {
+    let pageProps = {};
+    if (Component.getInitialProps) pageProps = await Component.getInitialProps(ctx);
+    return {
+      pageProps,
+    };
+  }
+
   render() {
     const { Component, pageProps, store } = this.props;
 
