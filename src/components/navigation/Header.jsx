@@ -6,6 +6,7 @@ import ProfileSmall from './profile/ProfileSmall';
 import css from './Header.scss';
 import ANavDropdown from './dropdown/ANavDropdown';
 import Searchbar from '../search/Searchbar';
+import Language from './Language';
 
 /**
  * props.withLogo = Wenn vorhanden dann wird ein Logo links oben reingerendert
@@ -58,14 +59,7 @@ class Header extends React.Component {
           {this.renderCustomComponents()}
           <Nav>
             <Nav.Item>
-              <ANavDropdown
-                title={(
-                  <React.Fragment>
-                    <Image className={`${css.langFlag} mr-2`} src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg" />
-                    Deutsch
-                  </React.Fragment>
-                )}
-              />
+              <Language />
             </Nav.Item>
             <Nav.Item className="mx-2 border-left" />
             <Nav.Item>
