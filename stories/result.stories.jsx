@@ -2,6 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import ResultItem from '../src/components/result/ResultItem';
 import ResultList from '../src/components/result/ResultList';
+import { withReduxStore } from '../.storybook/decorators';
 
 function mockItemData() {
   return {
@@ -43,5 +44,6 @@ function mockItemDataArray() {
 }
 
 storiesOf('Search/Result', module)
+  .addDecorator(withReduxStore)
   .add('Result Item', () => <ResultItem data={mockItemData()} />)
   .add('Result List', () => <ResultList data={mockItemDataArray()} />);

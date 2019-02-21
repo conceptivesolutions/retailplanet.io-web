@@ -1,4 +1,4 @@
-/* import/prefer-default-export */
+/* eslint-disable import/prefer-default-export,no-param-reassign */
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createRouterMiddleware, initialRouterState, routerReducer } from 'connected-next-router';
@@ -9,10 +9,7 @@ import sessionReducer from './reducers/sessionReducer';
 const routerMiddleware = createRouterMiddleware();
 
 export function makeStore(initialState = {}, options) {
-  if (options.asPath) {
-    // eslint-disable-next-line no-param-reassign
-    initialState.router = initialRouterState(options.asPath);
-  }
+  if (options && options.asPath) initialState.router = initialRouterState(options.asPath);
 
   return createStore(
     combineReducers({
