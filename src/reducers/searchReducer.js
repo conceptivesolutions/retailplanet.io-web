@@ -8,7 +8,6 @@ const initSearchState = {
 };
 
 export const searchActions = {
-  RUN_SEARCH: 'RUN_SEARCH',
   SEARCH: 'SEARCH',
 };
 
