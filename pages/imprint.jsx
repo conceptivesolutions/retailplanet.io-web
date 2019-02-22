@@ -34,14 +34,10 @@ class Imprint extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  query: state.search.query,
-});
-
 const mapDispatchToProps = dispatch => ({
   onSetSession: (session) => {
     dispatch(setSession(session));
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Imprint);
+export default connect(null, mapDispatchToProps)(Imprint);
