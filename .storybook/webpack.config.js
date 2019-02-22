@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = (config) => {
 
   config.module.rules.push(
@@ -15,6 +17,13 @@ module.exports = (config) => {
         },
         require.resolve('sass-loader')
       ]
+    },
+    {
+      test: /\.html$/,
+      include: [
+        path.resolve(__dirname, '..', 'src', 'i18n'),
+      ],
+      use: 'raw-loader',
     });
 
   return config;

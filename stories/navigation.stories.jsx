@@ -3,9 +3,10 @@ import { storiesOf } from '@storybook/react';
 import Header from '../src/components/navigation/Header';
 import Footer from '../src/components/navigation/Footer';
 import css from './navigation.stories.scss';
-import { withReduxStore } from '../.storybook/decorators';
+import { withI18N, withReduxStore } from '../.storybook/decorators';
 
 storiesOf('Navigation', module)
+  .addDecorator(withI18N)
   .addDecorator(withReduxStore)
   .add('Page Header with Logo', () => (
     <div className={css.headerPane}>
