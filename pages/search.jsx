@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { NextAuth } from 'next-auth/client';
 import { connect } from 'react-redux';
+import { parse } from 'query-string';
 import SearchLayout from '../src/layouts/SearchLayout';
 import ResultList from '../src/components/result/ResultList';
 import { setSession } from '../src/reducers/sessionReducer';
+import { runSearch } from '../src/reducers/searchReducer';
 
 class Search extends React.Component {
   // noinspection JSUnusedGlobalSymbols
@@ -17,6 +19,7 @@ class Search extends React.Component {
 
   componentDidMount() {
     this.props.onSetSession(this.props.session);
+    this.props.onExecuteSearch(this.props.query);
   }
 
   render() {
@@ -29,12 +32,15 @@ class Search extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  query: state.search.query,
+  query: parse(state.router.location.search).query,
 });
 
 const mapDispatchToProps = dispatch => ({
   onSetSession: (session) => {
     dispatch(setSession(session));
+  },
+  onExecuteSearch: (query) => {
+    dispatch(runSearch(query));
   },
 });
 
