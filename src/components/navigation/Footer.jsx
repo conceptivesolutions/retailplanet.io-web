@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { push } from 'connected-next-router';
 import { Nav, Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import Link from 'next/link';
 import css from './Footer.scss';
 
 /**
@@ -13,14 +13,14 @@ import css from './Footer.scss';
 const Footer = props => (
   <Navbar fixed={props.fixedBottom ? 'bottom' : ''} variant="dark" expand="lg" className={`${css.pageFooter} border-0`}>
     <Nav>
-      <Nav.Link className="text-white ml-3 mr-4" onClick={() => props.onLinkClicked('/imprint')}>
-        Impressum
-      </Nav.Link>
+      <Link href="/imprint">
+        <a className="nav-link text-white mr-4">Impressum</a>
+      </Link>
     </Nav>
     <Nav>
-      <Nav.Link className="text-white mr-4" onClick={() => props.onLinkClicked('/privacy')}>
-        Datenschutz
-      </Nav.Link>
+      <Link href="/privacy">
+        <a className="nav-link text-white mr-4">Datenschutz</a>
+      </Link>
     </Nav>
     <Nav className="mr-auto" />
     <Nav>
@@ -29,10 +29,4 @@ const Footer = props => (
   </Navbar>
 );
 
-const mapDispatchToProps = dispatch => ({
-  onLinkClicked: (page) => {
-    dispatch(push(page));
-  },
-});
-
-export default connect(null, mapDispatchToProps)(Footer);
+export default connect()(Footer);

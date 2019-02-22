@@ -1,9 +1,7 @@
 @import "../styles/variables";
 
-$real-navbar-height: 50.6px;
-
 .container {
-  padding-top: $real-navbar-height;
+  padding-top: $header-height;
   padding-left: $filter-menu-width-xl;
   padding-bottom: 53.6px;
   margin-bottom: -53.6px;
@@ -13,7 +11,7 @@ $real-navbar-height: 50.6px;
 
 .filterContainer {
   position: fixed;
-  padding-top: $real-navbar-height;
+  padding-top: $header-height;
   left: 0;
   width: $filter-menu-width-xl;
   height: 100vh;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Router from 'next/router';
+import Link from 'next/link';
 import { NextAuth } from 'next-auth/client';
 import css from './callback.scss';
 
@@ -27,12 +28,14 @@ export default class extends React.Component {
 
   render() {
     return (
-      <a href="/" className={css.circleLoader}>
-        <svg className={css.circle} width="60" height="60" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="30" cy="30" r="15" />
-        </svg>
-        <noscript>Click here to continue</noscript>
-      </a>
+      <Link href="/">
+        <a className={css.circleLoader}>
+          <svg className={css.circle} width="60" height="60" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="15" />
+          </svg>
+          <noscript>Click here to continue</noscript>
+        </a>
+      </Link>
     );
   }
 }

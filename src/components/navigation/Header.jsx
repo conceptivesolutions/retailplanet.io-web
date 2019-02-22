@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { push } from 'connected-next-router';
 import { Image, Nav, Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import Link from 'next/link';
 import ProfileSmall from './profile/ProfileSmall';
 import css from './Header.scss';
 import ANavDropdown from './dropdown/ANavDropdown';
@@ -18,9 +18,11 @@ class Header extends React.Component {
   renderLogo() {
     if (this.props.withLogo) {
       return (
-        <Navbar.Brand className="link" onClick={() => this.props.onHomeClick()}>
-          <Image src="/static/retailplanet-logo.svg" />
-        </Navbar.Brand>
+        <Link href="/">
+          <a>
+            <Image className={`${css.logo}`} src="/static/retailplanet-logo.svg" />
+          </a>
+        </Link>
       );
     }
     return null;
@@ -76,10 +78,4 @@ const mapStateToProps = state => ({
   isSearch: state.router.location.pathname !== '/',
 });
 
-const mapDispatchToProps = dispatch => ({
-  onHomeClick: () => {
-    dispatch(push('/'));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);

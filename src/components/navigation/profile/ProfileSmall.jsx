@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { NextAuth } from 'next-auth/client';
 import getConfig from 'next/config';
-import { Nav, NavDropdown } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { push } from 'connected-next-router';
+import Link from 'next/link';
 import css from './ProfileSmall.scss';
 import ANavDropdown from '../dropdown/ANavDropdown';
 
@@ -30,7 +31,11 @@ class ProfileSmall extends React.Component {
         </ANavDropdown>
       );
     }
-    return <Nav.Link href="/auth/oauth/keycloak">Login</Nav.Link>;
+    return (
+      <Link href="/auth/oauth/keycloak">
+        <a className="nav-link">Login</a>
+      </Link>
+    );
   }
 }
 
