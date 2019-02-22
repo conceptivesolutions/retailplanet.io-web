@@ -75,7 +75,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isSearch: state.router.location.pathname !== '/',
+  isSearch: state.router.location.pathname === '/search',
 });
 
 export default connect(mapStateToProps)(Header);
