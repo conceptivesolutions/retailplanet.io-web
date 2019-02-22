@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { createRouterMiddleware, initialRouterState, routerReducer } from 'connected-next-router';
 import { i18nState } from 'redux-i18n';
 import thunkMiddleware from 'redux-thunk';
+import promise from 'redux-promise-middleware';
 import searchReducer from './reducers/searchReducer';
 import sessionReducer from './reducers/sessionReducer';
 
@@ -20,6 +21,6 @@ export function makeStore(initialState = {}, options) {
       i18nState,
     }),
     initialState,
-    composeWithDevTools(applyMiddleware(routerMiddleware, thunkMiddleware)),
+    composeWithDevTools(applyMiddleware(routerMiddleware, thunkMiddleware, promise)),
   );
 }

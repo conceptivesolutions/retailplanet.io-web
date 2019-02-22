@@ -3,8 +3,9 @@ import { push } from 'connected-next-router';
 import { connect } from 'react-redux';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+import { parse } from 'query-string';
 import css from './Searchbar.scss';
-import { runSearch, setQuery } from '../../reducers/searchReducer';
+import { runSearch } from '../../reducers/searchReducer';
 
 /**
  * @author w.glanzer, 14.01.2019
@@ -14,7 +15,7 @@ class Searchbar extends React.Component {
     return (
       <Form onSubmit={(e) => {
         e.preventDefault();
-        this.props.onExecute(this.props.query);
+        this.props.onExecute(e.target.query.value);
       }}
       >
         <InputGroup className={this.props.className}>
@@ -23,8 +24,7 @@ class Searchbar extends React.Component {
             placeholder="Durchsuchen Sie über 6.000.000 Produkte"
             name="query"
             className={`${css.searchField}`}
-            onChange={e => this.props.onSetQuery(e.target.value)}
-            defaultValue={this.props.query ? this.props.query : ''}
+            defaultValue={this.props.query}
           />
           <InputGroup.Append>
             <Button variant="primary" type="submit" className={`${css.searchButton} px-4 border-0`}>
@@ -39,16 +39,18 @@ class Searchbar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  query: state.search.query,
+  query: parse(state.router.location.search).query,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSetQuery: (userinput) => {
-    dispatch(setQuery(userinput));
-  },
-  onExecute: (query) => {
-    dispatch(push(`/search?query=${encodeURIComponent(query)}`));
-    dispatch(runSearch(query));
+  onExecute: (userinput) => {
+    dispatch(push({
+      pathname: '/search',
+      query: {
+        query: userinput,
+      },
+    }));
+    dispatch(runSearch(userinput));
   },
 });
 
