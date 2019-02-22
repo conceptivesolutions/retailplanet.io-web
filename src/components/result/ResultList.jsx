@@ -6,6 +6,7 @@ import ResultItem from './ResultItem';
  * @author w.glanzer, 10.02.2019
  */
 const ResultList = (props) => {
+  // Should not happen!
   if (!props.results || props.results.length === 0) return <span>No data</span>;
 
   return (
