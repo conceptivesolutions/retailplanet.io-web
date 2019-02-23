@@ -1,5 +1,6 @@
 import { createUserManager } from 'redux-oidc';
-import { InMemoryWebStorage, WebStorageStateStore } from 'oidc-client';
+import { WebStorageStateStore } from 'oidc-client';
+import LocalStorage from './LocalStorage';
 
 const userManagerConfig = {
   authority: 'https://auth.retailplanet.io/auth/realms/retailplanet.io',
@@ -8,12 +9,11 @@ const userManagerConfig = {
   redirect_uri: 'http://localhost:3000/auth/callback',
   response_type: 'code',
   scope: 'openid profile email',
-  silent_redirect_uri: 'http://localhost:3000/silent_renew',
-  automaticSilentRenew: true,
+  automaticSilentRenew: false,
   filterProtocolClaims: true,
   loadUserInfo: true,
   userStore: new WebStorageStateStore({
-    store: new InMemoryWebStorage(),
+    store: new LocalStorage(),
   }),
 };
 
