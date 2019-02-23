@@ -41,6 +41,13 @@ class MyApp extends App {
           <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
           <meta name="google-site-verification" content="YD3PhwzJ76avDVPzv0ds-WCowoldAqNC9XQ_ztkEkbI" />
           <link rel="stylesheet" href="/static/styles/global.css" />
+          <script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="8a22d95b-e3ee-47c5-8255-fab4e49ac9c2"
+            type="text/javascript"
+            async
+          />
         </Head>
         <Container>
           <Provider store={store}>
