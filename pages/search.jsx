@@ -19,7 +19,10 @@ class Search extends React.Component {
 
   componentDidMount() {
     this.props.onSetSession(this.props.session);
-    this.props.onExecuteSearch(this.props.query);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.query !== this.props.query) this.props.onExecuteSearch(this.props.query);
   }
 
   render() {

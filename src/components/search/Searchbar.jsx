@@ -5,7 +5,6 @@ import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { parse } from 'query-string';
 import css from './Searchbar.scss';
-import { runSearch } from '../../reducers/searchReducer';
 
 /**
  * @author w.glanzer, 14.01.2019
@@ -46,7 +45,6 @@ const mapDispatchToProps = dispatch => ({
         query: userinput,
       },
     }));
-    dispatch(runSearch(userinput));
   },
 });
 
