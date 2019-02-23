@@ -1,9 +1,7 @@
 const compression = require('compression');
 const express = require('express');
 const next = require('next');
-const nextAuth = require('next-auth');
 const proxy = require('http-proxy-middleware');
-const nextAuthConfig = require('./next-auth.config');
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -16,16 +14,8 @@ const nextApp = next({
 // Add next-auth to next app
 nextApp
   .prepare()
-  .then(() => nextAuthConfig())
-  .then((nextAuthOptions) => {
-    // Don't pass a port to NextAuth!
-    // eslint-disable-next-line no-param-reassign
-    if (nextAuthOptions.port) delete nextAuthOptions.port;
-    return nextAuth(nextApp, nextAuthOptions);
-  })
-  .then((nextAuthApp) => {
-    // Get instance of Express from NextAuth instance
-    const { expressApp } = nextAuthApp;
+  .then(() => {
+    const expressApp = express();
 
     // Set specific properties only in production
     if (!dev) {

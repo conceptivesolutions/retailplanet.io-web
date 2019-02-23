@@ -1,43 +1,21 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { NextAuth } from 'next-auth/client';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import TextOnlyLayout from '../src/layouts/TextOnlyLayout';
-import { setSession } from '../src/reducers/sessionReducer';
 
-class Imprint extends React.Component {
-  static async getInitialProps({ req }) {
-    return {
-      session: await NextAuth.init({
-        req,
-      }),
-    };
-  }
+const Imprint = (props, context) => (
+  <TextOnlyLayout>
+    {/* eslint-disable-next-line react/no-danger */}
+    <div dangerouslySetInnerHTML={{
+      __html: context.t('imprint'),
+    }}
+    />
+  </TextOnlyLayout>
+);
 
-  static contextTypes = {
-    t: PropTypes.func.isRequired,
-  };
+Imprint.contextTypes = {
+  t: PropTypes.func.isRequired,
+};
 
-  componentDidMount() {
-    this.props.onSetSession(this.props.session);
-  }
-
-  render() {
-    return (
-      <TextOnlyLayout>
-        <div dangerouslySetInnerHTML={{
-          __html: this.context.t('imprint'),
-        }}
-        />
-      </TextOnlyLayout>
-    );
-  }
-}
-
-const mapDispatchToProps = dispatch => ({
-  onSetSession: (session) => {
-    dispatch(setSession(session));
-  },
-});
-
-export default connect(null, mapDispatchToProps)(Imprint);
+// noinspection JSUnusedGlobalSymbols
+export default connect()(Imprint);

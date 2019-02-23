@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { NextAuth } from 'next-auth/client';
-import getConfig from 'next/config';
 import { NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { push } from 'connected-next-router';
-import Link from 'next/link';
 import css from './ProfileSmall.scss';
 import ANavDropdown from '../dropdown/ANavDropdown';
+import userManager from '../../../helpers/auth/userManager';
 
 /**
  * props.session = Die aktuelle Session (optional)
@@ -14,6 +11,15 @@ import ANavDropdown from '../dropdown/ANavDropdown';
  * @author w.glanzer, 27.01.2019
  */
 class ProfileSmall extends React.Component {
+  static logout(e) {
+    e.preventDefault();
+  }
+
+  static login(e) {
+    e.preventDefault();
+    userManager.signinRedirect();
+  }
+
   createUserComp() {
     return (
       <React.Fragment>
@@ -27,34 +33,17 @@ class ProfileSmall extends React.Component {
     if (this.props.user) {
       return (
         <ANavDropdown title={this.createUserComp()} alignRight>
-          <NavDropdown.Item onClick={e => this.props.logout(e)}>Logout</NavDropdown.Item>
+          <NavDropdown.Item onClick={e => ProfileSmall.logout(e)}>Logout</NavDropdown.Item>
         </ANavDropdown>
       );
     }
     return (
-      <Link href="/auth/oauth/keycloak">
-        <a className="nav-link">Login</a>
-      </Link>
+      // eslint-disable-next-line
+      <div className={`nav-link ${css.login}`} onClick={e => ProfileSmall.login(e)}>
+        Login
+      </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.session.user,
-});
-
-const mapDispatchToProps = dispatch => ({
-  logout: (event) => {
-    event.preventDefault();
-    NextAuth.signout()
-      .then(() => {
-        const { publicRuntimeConfig } = getConfig();
-        dispatch(push(
-          `${publicRuntimeConfig.keycloak_url}/auth/realms/${publicRuntimeConfig.keycloak_realm}`
-          + `/protocol/openid-connect/logout?redirect_uri=${publicRuntimeConfig.logout_redirect_url}`,
-        ));
-      });
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileSmall);
+export default connect()(ProfileSmall);

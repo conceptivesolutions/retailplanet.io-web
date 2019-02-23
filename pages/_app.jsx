@@ -3,9 +3,11 @@ import App, { Container } from 'next/app';
 import Head from 'next/head';
 import I18n from 'redux-i18n';
 import { Provider } from 'react-redux';
+import { OidcProvider } from 'redux-oidc';
 import { ConnectedRouter } from 'connected-next-router';
 import withRedux from 'next-redux-wrapper';
 import translations from '../src/i18n/translations';
+import userManager from '../src/helpers/auth/userManager';
 import { makeStore } from '../src/store';
 
 class MyApp extends App {
@@ -52,9 +54,11 @@ class MyApp extends App {
         <Container>
           <Provider store={store}>
             <ConnectedRouter>
-              <I18n translations={translations} initialLang="en" fallbackLang="de">
-                <Component {...pageProps} />
-              </I18n>
+              <OidcProvider store={store} userManager={userManager}>
+                <I18n translations={translations} initialLang="en" fallbackLang="de">
+                  <Component {...pageProps} />
+                </I18n>
+              </OidcProvider>
             </ConnectedRouter>
           </Provider>
         </Container>
