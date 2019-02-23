@@ -1,12 +1,16 @@
 import { createUserManager } from 'redux-oidc';
 import { WebStorageStateStore } from 'oidc-client';
+import getConfig from 'next/config';
 import LocalStorage from './LocalStorage';
 
+const { publicRuntimeConfig: pcr } = getConfig();
+
 const userManagerConfig = {
-  authority: 'https://auth.retailplanet.io/auth/realms/retailplanet.io',
-  client_id: 'sybaKpfJa5ZCNgl5bRqD.frontend',
-  client_secret: 'b90dbaee-25e4-4470-94b9-f60dd3c3b14d',
-  redirect_uri: 'http://localhost:3000/auth/callback',
+  authority: `${pcr.auth_url}/auth/realms/${pcr.auth_realm}`,
+  client_id: pcr.auth_clientid,
+  client_secret: pcr.auth_secret,
+  redirect_uri: `${pcr.auth_logout_redirect_url}/auth/callback`,
+  post_logout_redirect_uri: `${pcr.auth_logout_redirect_url}`,
   response_type: 'code',
   scope: 'openid profile email',
   automaticSilentRenew: false,

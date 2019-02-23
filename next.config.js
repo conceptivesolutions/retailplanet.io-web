@@ -8,9 +8,11 @@ module.exports = withSass({
     localIdentName: '[local]___[hash:base64:5]',
   },
   publicRuntimeConfig: {
-    keycloak_realm: process.env.OAUTH_REALM,
-    keycloak_url: process.env.OAUTH_URL,
-    logout_redirect_url: process.env.LOGOUT_REDIRECT_URL,
+    auth_realm: process.env.OAUTH_REALM,
+    auth_url: process.env.OAUTH_URL,
+    auth_clientid: process.env.OAUTH_CLIENTID,
+    auth_secret: process.env.OAUTH_SECRET,
+    auth_logout_redirect_url: process.env.LOGOUT_REDIRECT_URL,
   },
   webpack: (config) => {
     // Server .html-Files in i18n folder via raw-loader, to include it in translations.js

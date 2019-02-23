@@ -13,6 +13,7 @@ import userManager from '../../../helpers/auth/userManager';
 class ProfileSmall extends React.Component {
   static logout(e) {
     e.preventDefault();
+    userManager.signoutRedirect();
   }
 
   static login(e) {
@@ -46,4 +47,8 @@ class ProfileSmall extends React.Component {
   }
 }
 
-export default connect()(ProfileSmall);
+const mapStateToProps = state => ({
+  user: state.oidc.user ? state.oidc.user.profile : null,
+});
+
+export default connect(mapStateToProps)(ProfileSmall);
