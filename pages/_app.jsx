@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { OidcProvider } from 'redux-oidc';
 import { ConnectedRouter } from 'connected-next-router';
 import withRedux from 'next-redux-wrapper';
+import withNProgress from 'next-nprogress';
 import translations from '../src/i18n/translations';
 import userManager from '../src/helpers/auth/userManager';
 import { makeStore } from '../src/store';
@@ -67,5 +68,8 @@ class MyApp extends App {
   }
 }
 
+// Add HOC for Progress-Indication
+const compWithProgress = withNProgress(300)(MyApp);
+
 // noinspection JSUnusedGlobalSymbols
-export default withRedux(makeStore)(MyApp);
+export default withRedux(makeStore)(compWithProgress);
