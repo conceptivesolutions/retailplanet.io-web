@@ -52,7 +52,6 @@ class Header extends React.Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
-            <Nav.Item className="mx-2 border-left" />
             <Nav.Item>
               <ANavDropdown title="Elektronik" />
             </Nav.Item>
@@ -63,7 +62,6 @@ class Header extends React.Component {
             <Nav.Item>
               <Language />
             </Nav.Item>
-            <Nav.Item className="mx-2 border-left" />
             <Nav.Item>
               <ProfileSmall />
             </Nav.Item>

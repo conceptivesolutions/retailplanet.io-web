@@ -11,6 +11,10 @@
     align-items: center;
   }
 
+  :global(.nav-item) * {
+    color: white !important;
+  }
+
   .logo {
     padding: 0.25rem;
     height: $header-height - 0.25rem;
