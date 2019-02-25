@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Image, Nav, Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Link from 'next/link';
 import css from './Footer.scss';
@@ -24,7 +24,9 @@ const Footer = props => (
     </Nav>
     <Nav className="mr-auto" />
     <Nav>
-      <Nav.Item className="text-light">Copyright (C) 2019 by con.ceptive solutions e.K.</Nav.Item>
+      <Nav.Item className="text-light">
+        <Image className={css.logo} src="https://www.conceptive.io/static/logo/symbol_text/300_dark.png" />
+      </Nav.Item>
     </Nav>
   </Navbar>
 );
