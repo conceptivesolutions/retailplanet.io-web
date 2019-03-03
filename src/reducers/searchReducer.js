@@ -1,5 +1,4 @@
 import buildSearchQuery from '../helpers/rest/buildSearchQuery';
-import userManager from '../helpers/auth/userManager';
 
 const initSearchState = {
   countries: [],
@@ -15,8 +14,7 @@ export const searchActions = {
 export function runSearch(query) {
   return {
     type: searchActions.SEARCH,
-    payload: userManager.getUser()
-      .then(user => fetch(buildSearchQuery(query, null, user ? user.access_token : '')))
+    payload: fetch(buildSearchQuery(query, null, ''))
       .then(response => response.json())
       .then(json => json.elements.map(pElement => ({
         name: pElement.name,

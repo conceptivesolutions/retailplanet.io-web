@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { NavDropdown } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import {NavDropdown} from 'react-bootstrap';
+import {connect} from 'react-redux';
 import css from './ProfileSmall.scss';
 import ANavDropdown from '../dropdown/ANavDropdown';
-import userManager from '../../../helpers/auth/userManager';
 
 /**
  * props.session = Die aktuelle Session (optional)
@@ -11,16 +10,6 @@ import userManager from '../../../helpers/auth/userManager';
  * @author w.glanzer, 27.01.2019
  */
 class ProfileSmall extends React.Component {
-  static logout(e) {
-    e.preventDefault();
-    userManager.signoutRedirect();
-  }
-
-  static login(e) {
-    e.preventDefault();
-    userManager.signinRedirect();
-  }
-
   createUserComp() {
     return (
       <React.Fragment>
@@ -34,21 +23,16 @@ class ProfileSmall extends React.Component {
     if (this.props.user) {
       return (
         <ANavDropdown title={this.createUserComp()} alignRight>
-          <NavDropdown.Item onClick={e => ProfileSmall.logout(e)}>Logout</NavDropdown.Item>
+          <NavDropdown.Item>Logout</NavDropdown.Item>
         </ANavDropdown>
       );
     }
     return (
       // eslint-disable-next-line
-      <div className={`nav-link ${css.login}`} onClick={e => ProfileSmall.login(e)}>
+      <div className={`nav-link ${css.login}`}>
         Login
       </div>
     );
   }
 }
-
-const mapStateToProps = state => ({
-  user: state.oidc.user ? state.oidc.user.profile : null,
-});
-
-export default connect(mapStateToProps)(ProfileSmall);
+export default connect()(ProfileSmall);

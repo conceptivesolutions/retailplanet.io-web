@@ -11,7 +11,6 @@ const nextApp = next({
   dev,
 });
 
-// Add next-auth to next app
 nextApp
   .prepare()
   .then(() => {

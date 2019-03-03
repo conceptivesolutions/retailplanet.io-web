@@ -1,15 +1,13 @@
 import * as React from 'react';
-import App, { Container } from 'next/app';
+import App, {Container} from 'next/app';
 import Head from 'next/head';
 import I18n from 'redux-i18n';
-import { Provider } from 'react-redux';
-import { OidcProvider } from 'redux-oidc';
-import { ConnectedRouter } from 'connected-next-router';
+import {Provider} from 'react-redux';
+import {ConnectedRouter} from 'connected-next-router';
 import withRedux from 'next-redux-wrapper';
 import withNProgress from 'next-nprogress';
 import translations from '../src/i18n/translations';
-import userManager from '../src/helpers/auth/userManager';
-import { makeStore } from '../src/store';
+import {makeStore} from '../src/store';
 
 class MyApp extends App {
   // noinspection JSUnusedGlobalSymbols
@@ -55,11 +53,9 @@ class MyApp extends App {
         <Container>
           <Provider store={store}>
             <ConnectedRouter>
-              <OidcProvider store={store} userManager={userManager}>
-                <I18n translations={translations} initialLang="en" fallbackLang="de">
-                  <Component {...pageProps} />
-                </I18n>
-              </OidcProvider>
+              <I18n translations={translations} initialLang="en" fallbackLang="de">
+                <Component {...pageProps} />
+              </I18n>
             </ConnectedRouter>
           </Provider>
         </Container>

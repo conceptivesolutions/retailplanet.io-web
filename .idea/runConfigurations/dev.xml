@@ -8,10 +8,10 @@
     <node-interpreter value="project" />
     <envs>
       <env name="SESSION_SECRET" value="UxWpnQQ87CYeJa8nGC24jNrIvtsTxz2mRLZXm4B6" />
-      <env name="OAUTH_REALM" value="retailplanet.io" />
+      <env name="OAUTH_REALM" value="retailplanet" />
       <env name="OAUTH_CLIENTID" value="sybaKpfJa5ZCNgl5bRqD.frontend" />
       <env name="OAUTH_SECRET" value="b90dbaee-25e4-4470-94b9-f60dd3c3b14d" />
-      <env name="OAUTH_URL" value="https://auth.retailplanet.io" />
+      <env name="OAUTH_URL" value="https://auth2.conceptive.io" />
       <env name="BACKEND_URL" value="http://localhost:8080" />
       <env name="LOGOUT_REDIRECT_URL" value="http://localhost:3000" />
     </envs>
