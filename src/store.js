@@ -23,6 +23,7 @@ export function makeStore(initialState = {}, options) {
     combineReducers({
       search: searchReducer,
       router: routerReducer,
+      user: userReducer,
       i18nState,
     }),
     initialState,

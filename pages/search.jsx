@@ -4,6 +4,7 @@ import { parse } from 'query-string';
 import SearchLayout from '../src/layouts/SearchLayout';
 import ResultList from '../src/components/result/ResultList';
 import { runSearch } from '../src/reducers/searchReducer';
+import withAuth from '../src/auth/withAuth';
 
 class Search extends React.Component {
   componentDidUpdate(prevProps) {
@@ -29,4 +30,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default withAuth(connect(mapStateToProps, mapDispatchToProps)(Search));

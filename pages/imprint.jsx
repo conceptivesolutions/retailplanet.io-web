@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TextOnlyLayout from '../src/layouts/TextOnlyLayout';
+import withAuth from '../src/auth/withAuth';
 
 const Imprint = (props, context) => (
   <TextOnlyLayout>
@@ -18,4 +19,4 @@ Imprint.contextTypes = {
 };
 
 // noinspection JSUnusedGlobalSymbols
-export default connect()(Imprint);
+export default withAuth(connect()(Imprint));
