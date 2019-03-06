@@ -29,6 +29,8 @@
     "next-nprogress": "^1.4.0",
     "next-redux-wrapper": "3.0.0-alpha.1",
     "node-sass": "4.11.0",
+    "passport": "^0.4.0",
+    "passport-oauth2": "^1.4.0",
     "prop-types": "15.7.2",
     "query-string": "6.2.0",
     "raw-loader": "^1.0.0",
