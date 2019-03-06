@@ -11,10 +11,10 @@ export const searchActions = {
   SEARCH: 'SEARCH',
 };
 
-export function runSearch(query) {
+export function runSearch(query, token) {
   return {
     type: searchActions.SEARCH,
-    payload: fetch(buildSearchQuery(query, null, ''))
+    payload: fetch(buildSearchQuery(query, null, token))
       .then(response => response.json())
       .then(json => json.elements.map(pElement => ({
         name: pElement.name,

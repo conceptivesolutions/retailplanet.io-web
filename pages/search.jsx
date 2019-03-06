@@ -8,7 +8,7 @@ import withAuth from '../src/auth/withAuth';
 
 class Search extends React.Component {
   componentDidUpdate(prevProps) {
-    if (prevProps.query !== this.props.query) this.props.onExecuteSearch(this.props.query);
+    if (prevProps.query !== this.props.query) this.props.onExecuteSearch(this.props.query, this.props.token);
   }
 
   render() {
@@ -22,11 +22,12 @@ class Search extends React.Component {
 
 const mapStateToProps = state => ({
   query: parse(state.router.location.search).query,
+  token: state.user.user && state.user.user.tokens ? state.user.user.tokens.accessToken : null,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onExecuteSearch: (query) => {
-    dispatch(runSearch(query));
+  onExecuteSearch: (query, token) => {
+    dispatch(runSearch(query, token));
   },
 });
 
