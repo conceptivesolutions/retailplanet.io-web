@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {NavDropdown} from 'react-bootstrap';
-import {connect} from 'react-redux';
+import { NavDropdown } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { push } from 'connected-next-router';
 import css from './ProfileSmall.scss';
 import ANavDropdown from '../dropdown/ANavDropdown';
 
@@ -23,16 +24,30 @@ class ProfileSmall extends React.Component {
     if (this.props.user) {
       return (
         <ANavDropdown title={this.createUserComp()} alignRight>
-          <NavDropdown.Item>Logout</NavDropdown.Item>
+          <NavDropdown.Item onClick={() => this.props.logout()}>Logout</NavDropdown.Item>
         </ANavDropdown>
       );
     }
     return (
       // eslint-disable-next-line
-      <div className={`nav-link ${css.login}`}>
+      <div className={`nav-link ${css.login}`} onClick={() => this.props.login()}>
         Login
       </div>
     );
   }
 }
-export default connect()(ProfileSmall);
+
+const mapStateToProps = state => ({
+  user: state.user.user,
+});
+
+const mapDispatchToProps = dispatch => ({
+  login: () => {
+    dispatch(push('/login'));
+  },
+  logout: () => {
+    dispatch(push('/logout'));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileSmall);
