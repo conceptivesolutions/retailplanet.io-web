@@ -1,7 +1,9 @@
 const compression = require('compression');
 const express = require('express');
+const session = require('express-session');
 const next = require('next');
 const proxy = require('http-proxy-middleware');
+const serverAuth = require('./server_auth');
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -26,6 +28,14 @@ nextApp
         maxAge: '365d',
       }));
     }
+
+    // Enable Session-Support for Express-Server
+    expressApp.use(session({
+      secret: '87asd9f87-abv9v78098ui--2sdg2fb&=!2e2zn124',
+    }));
+
+    // Enable authentication
+    serverAuth(expressApp);
 
     // /api -> backend
     expressApp.use(

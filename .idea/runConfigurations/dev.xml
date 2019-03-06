@@ -13,7 +13,7 @@
       <env name="OAUTH_SECRET" value="b90dbaee-25e4-4470-94b9-f60dd3c3b14d" />
       <env name="OAUTH_URL" value="https://auth2.conceptive.io" />
       <env name="BACKEND_URL" value="http://localhost:8080" />
-      <env name="LOGOUT_REDIRECT_URL" value="http://localhost:3000" />
+      <env name="BASEURL" value="http://localhost:3000" />
     </envs>
     <method v="2">
       <option name="NpmBeforeRunTask" enabled="true">
