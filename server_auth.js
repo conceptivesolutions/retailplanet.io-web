@@ -46,7 +46,8 @@ function auth(pExpressApp) {
   }));
 
   pExpressApp.get('/logout', (req, res) => {
-    req.session.destroy(() => res.redirect('/'));
+    req.logout();
+    res.redirect('/');
   });
 
   passport.serializeUser((user, done) => {
