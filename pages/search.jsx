@@ -22,7 +22,7 @@ class Search extends React.Component {
 
 const mapStateToProps = state => ({
   query: parse(state.router.location.search).query,
-  token: state.user.user && state.user.user.tokens ? state.user.user.tokens.accessToken : null,
+  token: state.user.tokens ? state.user.tokens.accessToken : null,
 });
 
 const mapDispatchToProps = dispatch => ({
