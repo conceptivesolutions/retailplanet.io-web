@@ -42,7 +42,7 @@ function auth(pExpressApp) {
   pExpressApp.get('/login', passport.authenticate('oidc', {
     session: true,
     successReturnToOrRedirect: '/',
-    failureRedirect: '/error',
+    failureRedirect: '/',
   }));
 
   pExpressApp.get('/logout', (req, res) => {
