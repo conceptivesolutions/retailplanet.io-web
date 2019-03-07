@@ -21,7 +21,7 @@ class ProfileSmall extends React.Component {
   }
 
   render() {
-    if (this.props.user) {
+    if (this.props.user.profile) {
       return (
         <ANavDropdown title={this.createUserComp()} alignRight>
           <NavDropdown.Item onClick={() => this.props.logout()}>Logout</NavDropdown.Item>

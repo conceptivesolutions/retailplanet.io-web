@@ -1,34 +1,32 @@
 const passport = require('passport');
-const OAuth2Strategy = require('passport-oauth2');
+const { Strategy } = require('passport-openidconnect');
 
 /**
  * Convert Tokens to a User-Profile
  */
-const tokenToProfile = async (req, accessToken, refreshToken, params, profile, done) => {
+const tokenToProfile = async (issuer, sub, profile, accessToken, refreshToken, done) => {
   const user = {
-    id: 9999,
-    name: '__DUMMY__',
+    profile,
     tokens: {
       accessToken,
       refreshToken,
-      expiresIn: params ? params.expires_in : null,
-      profile,
     },
   };
   done(null, user);
 };
-
 /**
  * Strategy which connects to our OAuth-Provider
  */
-const authStrategy = new OAuth2Strategy({
+const authStrategy = new Strategy({
   state: true,
+  issuer: 'http://gravitee.am',
   authorizationURL: `${process.env.OAUTH_URL}/${process.env.OAUTH_REALM}/oauth/authorize/`,
   tokenURL: `${process.env.OAUTH_URL}/${process.env.OAUTH_REALM}/oauth/token/`,
+  userInfoURL: `${process.env.OAUTH_URL}/${process.env.OAUTH_REALM}/oidc/userinfo`,
   clientID: process.env.OAUTH_CLIENTID,
   clientSecret: process.env.OAUTH_SECRET,
   callbackURL: `${process.env.BASEURL}/login`,
-  passReqToCallback: true,
+  scope: 'openid profile email',
 }, tokenToProfile);
 
 /**
@@ -37,11 +35,11 @@ const authStrategy = new OAuth2Strategy({
  * @param pExpressApp App
  */
 function auth(pExpressApp) {
-  passport.use(authStrategy);
+  passport.use('oidc', authStrategy);
   pExpressApp.use(passport.initialize());
   pExpressApp.use(passport.session());
 
-  pExpressApp.get('/login', passport.authenticate('oauth2', {
+  pExpressApp.get('/login', passport.authenticate('oidc', {
     session: true,
     successReturnToOrRedirect: '/',
     failureRedirect: '/error',
