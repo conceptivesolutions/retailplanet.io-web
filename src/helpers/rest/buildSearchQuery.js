@@ -3,6 +3,6 @@ export default (pQuery, pSort, pAccessToken) => {
   const token = encodeURIComponent(pAccessToken);
   let url = `/api/search?query=${query}`;
   if (pSort) url = `${url}&sort=${pSort}`;
-  url = `${url}&token=${token}`;
+  if (pAccessToken) url = `${url}&token=${token}`;
   return url;
 };
