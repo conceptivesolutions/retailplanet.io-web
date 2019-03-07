@@ -32,6 +32,8 @@ nextApp
     // Enable Session-Support for Express-Server
     expressApp.use(session({
       secret: '87asd9f87-abv9v78098ui--2sdg2fb&=!2e2zn124',
+      resave: true,
+      saveUninitialized: false,
     }));
 
     // Enable authentication
