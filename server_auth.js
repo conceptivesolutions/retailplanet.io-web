@@ -44,11 +44,11 @@ function auth(pExpressApp) {
   pExpressApp.get('/login', passport.authenticate('oauth2', {
     session: true,
     successReturnToOrRedirect: '/',
+    failureRedirect: '/error',
   }));
 
   pExpressApp.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+    req.session.destroy(() => res.redirect('/'));
   });
 
   passport.serializeUser((user, done) => {
