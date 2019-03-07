@@ -15,7 +15,7 @@ class ProfileSmall extends React.Component {
     return (
       <React.Fragment>
         <i className={`fa fa-dragon ${css.profilepic} mr-2 rounded-circle`} />
-        {this.props.user.name}
+        {this.props.user.profile.displayName}
       </React.Fragment>
     );
   }
@@ -38,7 +38,7 @@ class ProfileSmall extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user.user,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
