@@ -1,7 +1,11 @@
 @import "../styles/variables";
 
-.rootContainer :global(.container) {
-  background: white;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+.rootContainer {
+
+  :global(.container) {
+    background: white;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
 }
