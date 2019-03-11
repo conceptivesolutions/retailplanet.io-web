@@ -47,7 +47,7 @@ function auth(pExpressApp) {
 
   pExpressApp.get('/logout', (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect(`${process.env.OAUTH_URL}/${process.env.OAUTH_REALM}/logout?target_url=${process.env.BASEURL}`);
   });
 
   passport.serializeUser((user, done) => {
