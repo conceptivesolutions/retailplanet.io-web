@@ -54,6 +54,19 @@
     "react/no-array-index-key": [
       "off"
     ],
+    "react/jsx-first-prop-new-line": [
+      "off"
+    ],
+    "react/jsx-closing-bracket-location": [
+      1,
+      "after-props"
+    ],
+    "react/jsx-max-props-per-line": [
+      1,
+      {
+        "maximum": 3
+      }
+    ],
     "jsx-a11y/anchor-is-valid": [
       "off"
     ],
