@@ -35,7 +35,7 @@ export default (state = initSearchState, action) => {
       };
     case `${searchActions.SEARCH}_FULFILLED`:
       return {
-        ...state, loading: true, results: action.payload,
+        ...state, loading: false, results: action.payload,
       };
     default:
       return state;
