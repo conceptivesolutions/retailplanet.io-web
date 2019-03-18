@@ -13,6 +13,7 @@ module.exports = withSass({
     auth_clientid: process.env.OAUTH_CLIENTID,
     auth_secret: process.env.OAUTH_SECRET,
     auth_logout_redirect_url: process.env.LOGOUT_REDIRECT_URL,
+    dev: process.env.NODE_ENV !== 'production',
   },
   webpack: (config) => {
     // Server .html-Files in i18n folder via raw-loader, to include it in translations.js
