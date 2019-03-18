@@ -44,7 +44,7 @@ export default class ResultItem extends React.Component {
   render() {
     const { image, name, price, source } = this.props.data;
     return (
-      <div className={`${css.container} d-inline-flex flex-column border rounded shadow ${this.props.className || ''}`}>
+      <div className={`${css.container} d-inline-flex flex-column border ${this.props.className || ''}`}>
         <div className={css.imageWrapper}>
           <Image className={css.image} src={image} />
         </div>
