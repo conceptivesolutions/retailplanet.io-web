@@ -3,15 +3,16 @@
 .container {
   padding-top: $header-height;
   padding-left: $filter-menu-width-xl;
-  padding-bottom: 53.6px;
-  margin-bottom: -53.6px;
+  padding-bottom: $header-height;
+  margin-bottom: -$header-height;
   max-width: 100% !important;
   min-height: 100vh;
 }
 
 .filterContainer {
   position: fixed;
-  padding-top: $header-height;
+  margin-top: $header-height;
+  margin-bottom: $header-height;
   left: 0;
   width: $filter-menu-width-xl;
   height: 100vh;
