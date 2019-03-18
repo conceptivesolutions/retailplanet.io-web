@@ -15,7 +15,7 @@ class ProfileSmall extends React.Component {
     return (
       <React.Fragment>
         <i className={`fa fa-dragon ${css.profilepic} mr-2 rounded-circle`} />
-        {this.props.user.profile.displayName}
+        {this.props.user.profile.username}
       </React.Fragment>
     );
   }
