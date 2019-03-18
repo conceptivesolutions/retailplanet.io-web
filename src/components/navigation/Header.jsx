@@ -47,7 +47,8 @@ class Header extends React.Component {
 
   render() {
     return (
-      <Navbar fixed={this.props.fixedTop ? 'top' : ''} bg="light" expand="lg" className={`${css.pageHeader} border-0`}>
+      <Navbar fixed={this.props.fixedTop ? 'top' : ''} bg="light" expand="lg"
+        className={`${css.pageHeader} border-0 ${this.props.isSearch ? css.bgPageHeader : 'bg-transparent'}`}>
         {this.renderLogo()}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
