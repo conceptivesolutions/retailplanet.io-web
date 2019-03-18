@@ -2,8 +2,9 @@
 
 .profilepic {
   font-size: $header-height - 1rem;
-  padding: 1rem 0;
   margin: 0;
+  width: $header-height - 1rem;
+  height: $header-height - 1rem;
 }
 
 .login {
