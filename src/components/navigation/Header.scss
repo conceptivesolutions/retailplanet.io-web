@@ -2,7 +2,7 @@
 
 .pageHeader {
   padding: 0.25rem 0.25rem;
-  background-color: $header-background !important;
+  background-color: transparent !important;
   height: $header-height;
 
   :global(.nav-item) {
