@@ -33,12 +33,13 @@ class Language extends React.Component {
   }
 
   render() {
+    const { lang, dispatch } = this.props;
     return (
-      <ANavDropdown title={this.createFragmentForLang(this.props.lang)}>
+      <ANavDropdown title={this.createFragmentForLang(lang)}>
         {Object.entries(this.context.t('langs'))
-          .filter(([key]) => key !== this.props.lang)
+          .filter(([key]) => key !== lang)
           .map(([key]) => (
-            <NavDropdown.Item key={key} onClick={() => this.props.dispatch(setLanguage(key))}>
+            <NavDropdown.Item key={key} onClick={() => dispatch(setLanguage(key))}>
               {this.createFragmentForLang(key)}
             </NavDropdown.Item>
           ))}

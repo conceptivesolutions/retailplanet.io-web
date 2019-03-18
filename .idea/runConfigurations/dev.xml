@@ -12,7 +12,7 @@
       <env name="OAUTH_CLIENTID" value="f84ea32f-7c00-42db-b427-8047528012cf" />
       <env name="OAUTH_SECRET" value="28935fa2-0ed3-465f-aa04-556cc119e01b" />
       <env name="OAUTH_URL" value="https://auth.conceptive.io" />
-      <env name="BACKEND_URL" value="http://localhost:8080" />
+      <env name="BACKEND_URL" value="http://localhost:8080/api" />
       <env name="BASEURL" value="http://localhost:3000" />
     </envs>
     <method v="2">

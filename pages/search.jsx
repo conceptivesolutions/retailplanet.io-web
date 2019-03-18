@@ -8,7 +8,8 @@ import withAuth from '../src/auth/withAuth';
 
 class Search extends React.Component {
   componentDidUpdate(prevProps) {
-    if (prevProps.query !== this.props.query) this.props.onExecuteSearch(this.props.query, this.props.token);
+    const { query, token, onExecuteSearch } = this.props;
+    if (prevProps.query !== query) onExecuteSearch(query, token);
   }
 
   render() {

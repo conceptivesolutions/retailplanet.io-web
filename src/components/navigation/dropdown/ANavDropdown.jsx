@@ -7,8 +7,7 @@ import css from './ANavDropdown.scss';
  *
  * props.title = Komponente zum Rendern der aktuellen Selektion
  */
-export default (props) => {
-  const { title, children, className, ...other } = props;
+export default ({ title, children, className, ...other }) => {
   const disabled = !children || children.length === 0;
   return (
     <NavDropdown
@@ -23,7 +22,7 @@ export default (props) => {
       id="basic-nav-dropdown"
       {...other}
     >
-      {props.children}
+      {children}
     </NavDropdown>
   );
 };

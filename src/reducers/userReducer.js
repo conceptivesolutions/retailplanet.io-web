@@ -1,5 +1,4 @@
-const initSearchState = {
-};
+const initSearchState = {};
 
 const userActions = {
   UPDATE_USER: 'UPDATE_USER',
@@ -18,9 +17,9 @@ export function updateUser(pUser) {
 export default (state = initSearchState, action) => {
   switch (action.type) {
     case userActions.UPDATE_USER:
-      return Object.assign({}, state, {
-        ...action.payload,
-      });
+      return {
+        ...state, ...action.payload,
+      };
     default:
       return state;
   }

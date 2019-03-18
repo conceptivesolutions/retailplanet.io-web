@@ -42,23 +42,24 @@ export default class ResultItem extends React.Component {
   }
 
   render() {
+    const { image, name, price, source } = this.props.data;
     return (
       <div className={`${css.container} d-inline-flex flex-column border rounded shadow ${this.props.className || ''}`}>
         <div className={css.imageWrapper}>
-          <Image className={css.image} src={this.props.data.image} />
+          <Image className={css.image} src={image} />
         </div>
         <span className={css.title}>
-          <h5>{this.props.data.name}</h5>
+          <h5>{name}</h5>
         </span>
         <div className={css.market}>
           <span className={css.price}>
-            {this.props.data.price}
+            {price}
             {' '}
             €
           </span>
           {' '}
           bei
-          {this.props.data.source}
+          {source}
         </div>
         {this.renderRating()}
       </div>

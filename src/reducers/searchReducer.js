@@ -30,15 +30,13 @@ export function runSearch(query, token) {
 export default (state = initSearchState, action) => {
   switch (action.type) {
     case `${searchActions.SEARCH}_PENDING`:
-      return Object.assign({}, state, {
-        loading: true,
-        results: [],
-      });
+      return {
+        ...state, loading: true, results: [],
+      };
     case `${searchActions.SEARCH}_FULFILLED`:
-      return Object.assign({}, state, {
-        loading: false,
-        results: action.payload,
-      });
+      return {
+        ...state, loading: true, results: action.payload,
+      };
     default:
       return state;
   }

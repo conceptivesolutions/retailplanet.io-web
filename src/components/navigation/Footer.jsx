@@ -10,8 +10,8 @@ import css from './Footer.scss';
  *
  * @author w.glanzer, 14.01.2019
  */
-const Footer = props => (
-  <Navbar fixed={props.fixedBottom ? 'bottom' : ''} variant="dark" expand="lg" className={`${css.pageFooter} border-0`}>
+const Footer = ({ fixedBottom }) => (
+  <Navbar fixed={fixedBottom ? 'bottom' : ''} variant="dark" expand="lg" className={`${css.pageFooter} border-0`}>
     <Nav>
       <Link href="/imprint">
         <a className="nav-link text-white mr-4">Impressum</a>

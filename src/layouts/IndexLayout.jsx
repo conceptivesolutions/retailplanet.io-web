@@ -9,10 +9,10 @@ import css from './IndexLayout.scss';
  *
  * @author w.glanzer, 14.01.2019
  */
-export default props => (
+export default ({ children }) => (
   <div className={css.rootContainer}>
     <Header fixedTop withLogo />
-    <Container className="h-100">{props.children}</Container>
+    <Container className="h-100">{children}</Container>
     <Footer fixedBottom />
   </div>
 );
