@@ -3,15 +3,27 @@ import buildSearchQuery from '../helpers/rest/buildSearchQuery';
 const initSearchState = {
   countries: [],
   loading: false,
-  results: [],
+  results: {
+    query: null,
+    items: [],
+  },
   error: null,
 };
 
 export const searchActions = {
+  CLEAR: 'CLEAR',
   SEARCH: 'SEARCH',
+  SET_QUERY: 'SET_QUERY',
 };
 
-export function runSearch(query, token) {
+function setQuery(query) {
+  return {
+    type: searchActions.SET_QUERY,
+    payload: query,
+  };
+}
+
+function executeSearch(query, token) {
   return {
     type: searchActions.SEARCH,
     payload: fetch(buildSearchQuery(query, null, token))
@@ -27,15 +39,48 @@ export function runSearch(query, token) {
   };
 }
 
+function clearSearch() {
+  return {
+    type: searchActions.CLEAR,
+  };
+}
+
+export function runSearch(query, token) {
+  return (dispatch) => {
+    dispatch(setQuery(query));
+    if (query)
+      dispatch(executeSearch(query, token));
+    else
+      dispatch(clearSearch());
+  };
+}
+
 export default (state = initSearchState, action) => {
   switch (action.type) {
+    case searchActions.SET_QUERY:
+      return {
+        ...state,
+        results: {
+          ...state.results, query: action.payload,
+        },
+      };
     case `${searchActions.SEARCH}_PENDING`:
       return {
-        ...state, loading: true, results: [],
+        ...state,
+        loading: true,
+        results: {
+          ...state.results,
+          items: [],
+        },
       };
     case `${searchActions.SEARCH}_FULFILLED`:
       return {
-        ...state, loading: false, results: action.payload,
+        ...state,
+        loading: false,
+        results: {
+          ...state.results,
+          items: action.payload,
+        },
       };
     default:
       return state;

@@ -20,7 +20,7 @@ const ResultList = (props) => {
 };
 
 const mapStateToProps = state => ({
-  results: state.search.results,
+  results: state.search.results.items,
 });
 
 export default connect(mapStateToProps)(ResultList);

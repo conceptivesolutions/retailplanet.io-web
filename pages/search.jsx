@@ -7,9 +7,18 @@ import { runSearch } from '../src/reducers/searchReducer';
 import withAuth from '../src/auth/withAuth';
 
 class Search extends React.Component {
+  componentDidMount() {
+    const { queryInURL, token, onExecuteSearch } = this.props;
+    onExecuteSearch(queryInURL, token);
+  }
+
   componentDidUpdate(prevProps) {
-    const { query, token, onExecuteSearch } = this.props;
-    if (prevProps.query !== query) onExecuteSearch(query, token);
+    const { queryInURL, queryForCurrentResults, isLoading, token, onExecuteSearch } = this.props;
+
+    /* Only execute search if the results are not loading atm and only,
+    if the query in the URL changed or the results were loaded for another query previously */
+    if (!isLoading && (prevProps.queryInURL !== queryInURL || queryInURL !== queryForCurrentResults))
+      onExecuteSearch(queryInURL, token);
   }
 
   render() {
@@ -22,7 +31,9 @@ class Search extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  query: parse(state.router.location.search).query,
+  queryInURL: parse(state.router.location.search).query,
+  queryForCurrentResults: state.search.results.query,
+  isLoading: state.search.isLoading,
   token: state.user.tokens ? state.user.tokens.accessToken : null,
 });
 
