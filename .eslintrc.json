@@ -67,6 +67,12 @@
         "maximum": 3
       }
     ],
+    "nonblock-statement-body-position": [
+      "error", "below"
+    ],
+    "curly": [
+      "error", "multi"
+    ],
     "jsx-a11y/anchor-is-valid": [
       "off"
     ],

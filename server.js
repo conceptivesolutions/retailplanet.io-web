@@ -59,7 +59,8 @@ nextApp
     });
 
     expressApp.listen(3000, (err) => {
-      if (err) throw err;
+      if (err)
+        throw err;
 
       // eslint-disable-next-line no-console
       console.log('> Ready on http://localhost:3000');

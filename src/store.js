@@ -17,7 +17,8 @@ const composeEnhancers = composeWithDevTools({
 });
 
 export function makeStore(initialState = {}, options) {
-  if (options && options.asPath) initialState.router = initialRouterState(options.asPath);
+  if (options && options.asPath)
+    initialState.router = initialRouterState(options.asPath);
 
   return createStore(
     combineReducers({

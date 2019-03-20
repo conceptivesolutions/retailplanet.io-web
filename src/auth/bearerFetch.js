@@ -13,11 +13,12 @@ export default function (pURL, { profile, tokens }, pObjects = {}) {
   const { dev } = getConfig().publicRuntimeConfig;
   let url = pURL;
 
-  if (profile && profile.id && dev) {
+  if (profile && profile.id && dev)
     url = `${pURL + (pURL.indexOf('?') > -1 ? '&' : '?')}userid=${profile.id}`;
-  }
 
-  if (tokens && tokens.accessToken) headers.Authorization = `Bearer ${tokens.accessToken}`;
+  if (tokens && tokens.accessToken)
+    headers.Authorization = `Bearer ${tokens.accessToken}`;
+
   return fetch(url, {
     headers,
     ...objects,
