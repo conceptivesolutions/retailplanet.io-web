@@ -11,7 +11,7 @@ import css from './IndexLayout.scss';
  */
 export default ({ children }) => (
   <div className={css.rootContainer}>
-    <Header fixedTop withLogo />
+    <Header fixedTop withLogo transparent />
     <Container className="h-100">{children}</Container>
     <Footer fixedBottom />
   </div>

@@ -3,13 +3,14 @@ import { Image, Nav, Navbar } from 'react-bootstrap';
 import Link from 'next/link';
 import ProfileSmall from './profile/ProfileSmall';
 import css from './Header.scss';
-import ANavDropdown from './dropdown/ANavDropdown';
-import Searchbar from '../search/Searchbar';
 import Language from './Language';
+import HeaderSearchbar from '../search/HeaderSearchbar';
 
 /**
- * props.withLogo = Wenn vorhanden dann wird ein Logo links oben reingerendert
- * props.fixedTop = Wenn vorhanden dann wird der Header mit einer absoluten top-position dargestellt
+ * props.withLogo = If set, the retailplanet logo will be rendered at the left upper corner
+ * props.withSearch = If set, a searchbar will be presented
+ * props.fixedTop = If set, the header will be fixed at top (css)
+ * props.transparent = If set, the header will be transparent (css)
  *
  * @author w.glanzer, 14.01.2019
  */
@@ -27,15 +28,12 @@ export default class Header extends React.Component {
     return null;
   }
 
-  /**
-   * Rendert Custom Components
-   */
   renderCustomComponents() {
     if (this.props.withSearch)
       return (
         <React.Fragment>
           <Nav.Item className="d-flex align-items-center mx-2">
-            <Searchbar className={`${css.searchBar}`} />
+            <HeaderSearchbar className={`${css.searchBar}`} />
           </Nav.Item>
           <Nav className="mr-auto" />
         </React.Fragment>
@@ -47,15 +45,12 @@ export default class Header extends React.Component {
   render() {
     return (
       <Navbar fixed={this.props.fixedTop ? 'top' : ''} bg="light" expand="lg"
-        className={`${css.pageHeader} border-0 ${this.props.withSearch ? css.bgPageHeader : 'bg-transparent'}`}>
+        className={`${css.pageHeader} border-0 ${this.props.transparent ? 'bg-transparent' : css.bgPageHeader}`}>
         {this.renderLogo()}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
             <Nav.Item className="mx-2 border-left" />
-            <Nav.Item>
-              <ANavDropdown title="Elektronik" />
-            </Nav.Item>
           </Nav>
           <Nav className="mr-auto" />
           {this.renderCustomComponents()}
