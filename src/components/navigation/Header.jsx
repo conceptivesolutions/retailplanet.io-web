@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Image, Nav, Navbar } from 'react-bootstrap';
-import { connect } from 'react-redux';
 import Link from 'next/link';
 import ProfileSmall from './profile/ProfileSmall';
 import css from './Header.scss';
@@ -14,7 +13,7 @@ import Language from './Language';
  *
  * @author w.glanzer, 14.01.2019
  */
-class Header extends React.Component {
+export default class Header extends React.Component {
   renderLogo() {
     if (this.props.withLogo)
       return (
@@ -32,7 +31,7 @@ class Header extends React.Component {
    * Rendert Custom Components
    */
   renderCustomComponents() {
-    if (this.props.isSearch)
+    if (this.props.withSearch)
       return (
         <React.Fragment>
           <Nav.Item className="d-flex align-items-center mx-2">
@@ -48,7 +47,7 @@ class Header extends React.Component {
   render() {
     return (
       <Navbar fixed={this.props.fixedTop ? 'top' : ''} bg="light" expand="lg"
-        className={`${css.pageHeader} border-0 ${this.props.isSearch ? css.bgPageHeader : 'bg-transparent'}`}>
+        className={`${css.pageHeader} border-0 ${this.props.withSearch ? css.bgPageHeader : 'bg-transparent'}`}>
         {this.renderLogo()}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -74,9 +73,3 @@ class Header extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => ({
-  isSearch: state.router.location.pathname === '/search',
-});
-
-export default connect(mapStateToProps)(Header);

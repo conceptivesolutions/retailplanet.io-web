@@ -20,7 +20,7 @@ storiesOf('Navigation', module)
   ))
   .add('Page Header with Searchbar', () => (
     <div className={css.headerPane}>
-      <Header withLogo query="Encoded%20Value" />
+      <Header withLogo withSearch query="Encoded%20Value" />
     </div>
   ))
   .add('Page Footer', () => <Footer />);

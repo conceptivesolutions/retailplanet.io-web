@@ -33,7 +33,7 @@ class Layout extends React.Component {
   render() {
     return (
       <div>
-        <Header withLogo fixedTop />
+        <Header withLogo withSearch fixedTop />
         {this.renderContentIfFinished()}
         <Footer />
       </div>
