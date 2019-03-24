@@ -16,8 +16,10 @@ export default class ResultItem extends React.Component {
   renderRating() {
     const rating = this.props.data.rating || 0;
     const resultRatingArr = [];
-    for (let i = 0; i < rating; i++) resultRatingArr.push(i + 1 <= rating ? 100 : 50);
-    for (let i = resultRatingArr.length; i < 5; i++) resultRatingArr.push(0);
+    for (let i = 0; i < rating; i++)
+      resultRatingArr.push(i + 1 <= rating ? 100 : 50);
+    for (let i = resultRatingArr.length; i < 5; i++)
+      resultRatingArr.push(0);
 
     return (
       <div className="mt-auto mb-auto">

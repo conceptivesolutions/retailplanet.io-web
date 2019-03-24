@@ -16,7 +16,7 @@ import Language from './Language';
  */
 class Header extends React.Component {
   renderLogo() {
-    if (this.props.withLogo) {
+    if (this.props.withLogo)
       return (
         <Link href="/">
           <a>
@@ -24,7 +24,7 @@ class Header extends React.Component {
           </a>
         </Link>
       );
-    }
+
     return null;
   }
 
@@ -32,7 +32,7 @@ class Header extends React.Component {
    * Rendert Custom Components
    */
   renderCustomComponents() {
-    if (this.props.isSearch) {
+    if (this.props.isSearch)
       return (
         <React.Fragment>
           <Nav.Item className="d-flex align-items-center mx-2">
@@ -41,7 +41,7 @@ class Header extends React.Component {
           <Nav className="mr-auto" />
         </React.Fragment>
       );
-    }
+
     return null;
   }
 

@@ -7,8 +7,8 @@ import ResultItem from './ResultItem';
  */
 const ResultList = (props) => {
   // Should not happen!
-  if (!props.results || props.results.length === 0) return <span>No data</span>;
-
+  if (!props.results || props.results.length === 0)
+    return <span>No data</span>;
   return (
     <div className="d-flex flex-wrap mb-3 mr-3">
       {/* eslint-disable-next-line react/no-array-index-key */}

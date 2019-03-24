@@ -13,16 +13,10 @@ const Searchbar = props => (
   <Form onSubmit={(e) => {
     e.preventDefault();
     props.onExecute(e.target.query.value);
-  }}
-  >
+  }}>
     <InputGroup className={props.className}>
-      <FormControl
-        type="Query"
-        placeholder="Durchsuchen Sie über 6.000.000 Produkte"
-        name="query"
-        className={`${css.searchField}`}
-        defaultValue={props.query}
-      />
+      <FormControl type="Query" placeholder="Durchsuchen Sie über 6.000.000 Produkte" name="query" className={`${css.searchField}`}
+        defaultValue={props.query} />
       <InputGroup.Append>
         <Button variant="primary" type="submit" className={`${css.searchButton} px-4 border-0`}>
           Suchen

@@ -34,19 +34,18 @@ class ProfileSmall extends React.Component {
    */
   updateUserProfileInfos() {
     const { user } = this.props;
-    if (user && !this.state.filled) {
+    if (user && !this.state.filled)
       bearerFetch('/api/profile', user)
         .then(pResult => pResult.json())
         .then(json => this.setState({
           avatar: json.avatar,
           filled: true,
         }));
-    } else if (!user && this.state.filled) {
+    else if (!user && this.state.filled)
       this.setState({
         filled: false,
         avatar: null,
       });
-    }
   }
 
   createUserComp() {
@@ -62,20 +61,19 @@ class ProfileSmall extends React.Component {
    * Renders the current users avatar
    */
   renderAvatar() {
-    if (this.state.avatar) {
+    if (this.state.avatar)
       return <img src={`data:image/png;base64, ${this.state.avatar}`} alt="avatar" className={`${css.profilepic} mr-2 rounded-circle`} />;
-    }
     return <React.Fragment />;
   }
 
   render() {
-    if (this.props.user.profile) {
+    if (this.props.user.profile)
       return (
         <ANavDropdown title={this.createUserComp()} alignRight>
           <NavDropdown.Item onClick={() => this.props.logout()}>Logout</NavDropdown.Item>
         </ANavDropdown>
       );
-    }
+
     return (
       // eslint-disable-next-line
       <div className={`nav-link ${css.login}`} onClick={() => this.props.login()}>

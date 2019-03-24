@@ -12,7 +12,7 @@ class Layout extends React.Component {
   }
 
   renderContentIfFinished() {
-    if (this.props.loading) {
+    if (this.props.loading)
       return (
         <div className={`${css.container} d-flex flex-column`}>
           <div className={`${css.filterContainer} d-flex flex-column`} />
@@ -21,7 +21,6 @@ class Layout extends React.Component {
           </div>
         </div>
       );
-    }
 
     return (
       <React.Fragment>

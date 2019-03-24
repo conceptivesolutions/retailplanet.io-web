@@ -16,9 +16,8 @@ const withAuth = (Page, { loginRequired = false, logoutRequired = false } = {}) 
   componentDidMount() {
     const { user, isFromServer } = this.props;
 
-    if (isFromServer) {
+    if (isFromServer)
       globalUser = user;
-    }
 
     if (loginRequired && !logoutRequired && !user) {
       Router.push('/login');
@@ -43,9 +42,8 @@ const withAuth = (Page, { loginRequired = false, logoutRequired = false } = {}) 
       isFromServer,
     };
 
-    if (Page.getInitialProps) {
+    if (Page.getInitialProps)
       Object.assign(props, (await Page.getInitialProps(ctx)) || {});
-    }
 
     return props;
   }
@@ -54,13 +52,11 @@ const withAuth = (Page, { loginRequired = false, logoutRequired = false } = {}) 
     // eslint-disable-next-line
     const { user, dispatch, updateUser, ...rest } = this.props;
 
-    if (loginRequired && !logoutRequired && !user) {
+    if (loginRequired && !logoutRequired && !user)
       return null;
-    }
 
-    if (logoutRequired && user) {
+    if (logoutRequired && user)
       return null;
-    }
 
     return <Page {...rest} />;
   }

@@ -9,6 +9,8 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "storybook": "start-storybook -s ./static -p 3009",
+    "eslint-check": "eslint ./\"{pages,src,stories}/**/*.{js,jsx}\"",
+    "eslint-fix": "eslint ./\"{pages,src,stories}/**/*.{js,jsx}\" --fix",
     "fix-styles": "prettier-stylelint --write"
   },
   "prettier": {},

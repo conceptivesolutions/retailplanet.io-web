@@ -20,8 +20,7 @@ export default ({ title, children, className, ...other }) => {
       )}
       disabled={disabled}
       id="basic-nav-dropdown"
-      {...other}
-    >
+      {...other}>
       {children}
     </NavDropdown>
   );

@@ -1,19 +1,20 @@
 import * as React from 'react';
-import App, {Container} from 'next/app';
+import App, { Container } from 'next/app';
 import Head from 'next/head';
 import I18n from 'redux-i18n';
-import {Provider} from 'react-redux';
-import {ConnectedRouter} from 'connected-next-router';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-next-router';
 import withRedux from 'next-redux-wrapper';
 import withNProgress from 'next-nprogress';
 import translations from '../src/i18n/translations';
-import {makeStore} from '../src/store';
+import { makeStore } from '../src/store';
 
 class MyApp extends App {
   // noinspection JSUnusedGlobalSymbols
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
-    if (Component.getInitialProps) pageProps = await Component.getInitialProps(ctx);
+    if (Component.getInitialProps)
+      pageProps = await Component.getInitialProps(ctx);
     return {
       pageProps,
     };
@@ -47,8 +48,7 @@ class MyApp extends App {
             src="https://consent.cookiebot.com/uc.js"
             data-cbid="8a22d95b-e3ee-47c5-8255-fab4e49ac9c2"
             type="text/javascript"
-            async
-          />
+            async />
         </Head>
         <Container>
           <Provider store={store}>
