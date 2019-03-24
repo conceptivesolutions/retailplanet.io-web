@@ -4,13 +4,13 @@ import { Provider } from 'react-redux';
 import I18n from 'redux-i18n';
 import translations from '../src/i18n/translations';
 
-const store = makeStore();
+export const store = makeStore();
 
 /**
  * Decorator for Storybook-Stories to use a new default store instance
  */
-export const withReduxStore = story => (
-  <Provider store={store}>
+export const withReduxStore = (myStore) => (story) => (
+  <Provider store={myStore ? myStore : store}>
     {story()}
   </Provider>
 );

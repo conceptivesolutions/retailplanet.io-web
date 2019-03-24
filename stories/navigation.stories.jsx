@@ -7,7 +7,7 @@ import { withI18N, withReduxStore } from '../.storybook/decorators';
 
 storiesOf('Navigation', module)
   .addDecorator(withI18N)
-  .addDecorator(withReduxStore)
+  .addDecorator(withReduxStore())
   .add('Page Header with Logo', () => (
     <div className={css.headerPane}>
       <Header withLogo />

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
+import configureStore from 'redux-mock-store';
 import ResultItem from '../src/components/result/ResultItem';
-import ResultList from '../src/components/result/ResultList';
 import { withI18N, withReduxStore } from '../.storybook/decorators';
+import ResultPagination from '../src/components/result/ResultPagination';
+import ResultList from '../src/components/result/ResultList';
 
 function mockItemData() {
   return {
@@ -16,35 +18,36 @@ function mockItemData() {
   };
 }
 
-function mockItemDataArray() {
-  return {
-    items: [
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-      mockItemData(),
-    ],
-  };
+function mockResultItemsArray(size) {
+  const items = [];
+  for (let i = 0; i < size; i++)
+    items.push(mockItemData());
+  return items;
 }
 
-storiesOf('Search/Result', module)
+const mockedStore = configureStore()({
+  search: {
+    results: {
+      page: {
+        current: 1,
+        count: 5,
+      },
+      items: mockResultItemsArray(10),
+    },
+  },
+  i18nState: {
+    lang: 'de',
+  },
+});
+
+storiesOf('Result', module)
   .addDecorator(withI18N)
-  .addDecorator(withReduxStore)
-  .add('Result Item', () => <ResultItem data={mockItemData()} />)
-  .add('Result List', () => <ResultList data={mockItemDataArray()} />);
+  .addDecorator(withReduxStore(mockedStore))
+  .add('Page', () => (
+    <React.Fragment>
+      <ResultList />
+      <ResultPagination />
+    </React.Fragment>
+  ))
+  .add('Item', () => <ResultItem data={mockItemData()} />)
+  .add('Pagination', () => <ResultPagination />);

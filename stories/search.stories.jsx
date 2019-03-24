@@ -6,6 +6,6 @@ import { withI18N, withReduxStore } from '../.storybook/decorators';
 
 storiesOf('Search', module)
   .addDecorator(withI18N)
-  .addDecorator(withReduxStore)
+  .addDecorator(withReduxStore())
   .add('Searchbar', () => <Searchbar />)
   .add('Country Selection', () => <CountrySelection />);
