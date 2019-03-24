@@ -8,17 +8,17 @@ import withAuth from '../src/auth/withAuth';
 
 class Search extends React.Component {
   componentDidMount() {
-    const { queryInURL, token, onExecuteSearch } = this.props;
-    onExecuteSearch(queryInURL, token);
+    const { queryInURL, onExecuteSearch } = this.props;
+    onExecuteSearch(queryInURL);
   }
 
   componentDidUpdate(prevProps) {
-    const { queryInURL, queryForCurrentResults, isLoading, token, onExecuteSearch } = this.props;
+    const { queryInURL, queryForCurrentResults, isLoading, onExecuteSearch } = this.props;
 
     /* Only execute search if the results are not loading atm and only,
     if the query in the URL changed or the results were loaded for another query previously */
     if (!isLoading && (prevProps.queryInURL !== queryInURL || queryInURL !== queryForCurrentResults))
-      onExecuteSearch(queryInURL, token);
+      onExecuteSearch(queryInURL);
   }
 
   render() {
@@ -34,12 +34,11 @@ const mapStateToProps = state => ({
   queryInURL: parse(state.router.location.search).query,
   queryForCurrentResults: state.search.results.query,
   isLoading: state.search.isLoading,
-  token: state.user.tokens ? state.user.tokens.accessToken : null,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onExecuteSearch: (query, token) => {
-    dispatch(runSearch(query, token));
+  onExecuteSearch: (query) => {
+    dispatch(runSearch(query));
   },
 });
 

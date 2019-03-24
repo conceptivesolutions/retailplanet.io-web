@@ -45,9 +45,12 @@ function clearSearch() {
   };
 }
 
-export function runSearch(query, token) {
-  return (dispatch) => {
+export function runSearch(query) {
+  return (dispatch, getState) => {
     dispatch(setQuery(query));
+    const { user } = getState();
+    const token = user && user.tokens ? user.tokens.accessToken : null;
+
     if (query)
       dispatch(executeSearch(query, token));
     else

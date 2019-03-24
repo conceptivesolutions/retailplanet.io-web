@@ -13,7 +13,7 @@ let globalUser = null;
  * @param logoutRequired true, if the user must not be logged in to view the given page
  */
 const withAuth = (Page, { loginRequired = false, logoutRequired = false } = {}) => class BaseComponent extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     const { user, isFromServer } = this.props;
 
     if (isFromServer)
