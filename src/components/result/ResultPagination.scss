@@ -1,0 +1,9 @@
+.pagination {
+  padding: 1rem;
+
+  :global(.page-item) :global(.page-link) {
+    padding: 0.25rem 0.5rem;
+    width: 1.75rem;
+    text-align: center;
+  }
+}

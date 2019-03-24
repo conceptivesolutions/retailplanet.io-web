@@ -5,6 +5,10 @@ const initSearchState = {
   loading: false,
   results: {
     query: null,
+    page: {
+      current: -1,
+      count: -1,
+    },
     items: [],
   },
   error: null,
