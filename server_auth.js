@@ -5,7 +5,7 @@ const { Strategy } = require('passport-openidconnect');
  * Convert Tokens to a User-Profile
  */
 // eslint-disable-next-line
-const tokenToProfile = async (issuer, sub, { id, name, _json: { preferred_username, email, avatar }, _raw }, accessToken, refreshToken, done) => {
+const tokenToProfile = async (issuer, sub, { id, name, _json: { preferred_username, email }, _raw }, accessToken, refreshToken, done) => {
   const user = {
     profile: {
       id,
