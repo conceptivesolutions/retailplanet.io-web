@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { push } from 'connected-next-router';
 import { connect } from 'react-redux';
 import { FormControl, InputGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { parse } from 'query-string';
 import css from './HeaderSearchbar.scss';
+import { runSearch } from '../../reducers/searchReducer';
 
 /**
  * @author w.glanzer, 24.03.2019
@@ -12,8 +12,7 @@ import css from './HeaderSearchbar.scss';
 class HeaderSearchbar extends React.Component {
   onSearchSumit(e) {
     e.preventDefault();
-    const { onExecute, query } = this.props;
-    onExecute(query);
+    this.props.onExecute(e.target.query.value);
   }
 
   render() {
@@ -34,12 +33,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onExecute: (userinput) => {
-    dispatch(push({
-      pathname: '/search',
-      query: {
-        query: userinput,
-      },
-    }));
+    dispatch(runSearch(userinput, 0));
   },
 });
 
