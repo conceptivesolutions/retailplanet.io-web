@@ -1,3 +1,4 @@
+import { push } from 'connected-next-router';
 import buildSearchQuery from '../helpers/rest/buildSearchQuery';
 
 const initSearchState = {
@@ -27,19 +28,26 @@ function setQuery(query) {
   };
 }
 
-function executeSearch(query, token) {
+function executeSearch(query, page, token) {
   return {
     type: searchActions.SEARCH,
-    payload: fetch(buildSearchQuery(query, null, token))
+    payload: fetch(buildSearchQuery(query, null, token, page * 20, 20))
       .then(response => response.json())
-      .then(json => json.elements.map(pElement => ({
-        name: pElement.name,
-        price: pElement.price,
-        image: pElement.previews ? pElement.previews[0] : '',
-        source: 'TESTMARKET',
-        rating: 3.5,
-        ratingCount: 42,
-      }))),
+      .then((json) => {
+        const result = {};
+        result.items = json.elements.map(pElement => ({
+          name: pElement.name,
+          price: pElement.price,
+          image: pElement.previews ? pElement.previews[0] : '',
+          source: 'TESTMARKET',
+          rating: 3.5,
+          ratingCount: 42,
+        }));
+        result.page = {
+          count: Math.ceil(json.maxSize / json.length),
+        };
+        return result;
+      }),
   };
 }
 
@@ -49,16 +57,41 @@ function clearSearch() {
   };
 }
 
-export function runSearch(query) {
+/**
+ * RunSearch:
+ * - Set Query to requested
+ * - Retrieve User AccessToken
+ * - Start Search (-> Loading-Flag will be set)
+ * - Change URL in Browser to match new query / page
+ *
+ * @param query
+ * @param page
+ * @returns {Function}
+ */
+export function runSearch(query, page) {
   return (dispatch, getState) => {
-    dispatch(setQuery(query));
+    dispatch(setQuery({
+      query,
+      page,
+    }));
     const { user } = getState();
     const token = user && user.tokens ? user.tokens.accessToken : null;
 
-    if (query)
-      dispatch(executeSearch(query, token));
-    else
+    if (query) {
+      dispatch(executeSearch(query, page, token));
+      dispatch(push({
+        pathname: '/search',
+        query: {
+          query,
+          page,
+        },
+      }));
+    } else {
       dispatch(clearSearch());
+      dispatch(push({
+        pathname: '/',
+      }));
+    }
   };
 }
 
@@ -68,7 +101,11 @@ export default (state = initSearchState, action) => {
       return {
         ...state,
         results: {
-          ...state.results, query: action.payload,
+          ...state.results,
+          query: action.payload.query,
+          page: {
+            current: action.payload.page,
+          },
         },
       };
     case `${searchActions.SEARCH}_PENDING`:
@@ -86,7 +123,11 @@ export default (state = initSearchState, action) => {
         loading: false,
         results: {
           ...state.results,
-          items: action.payload,
+          items: action.payload.items,
+          page: {
+            current: state.results.page.current,
+            count: action.payload.page.count,
+          },
         },
       };
     default:
