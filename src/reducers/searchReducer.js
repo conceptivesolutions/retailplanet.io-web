@@ -1,4 +1,3 @@
-import { push } from 'connected-next-router';
 import buildSearchQuery from '../helpers/rest/buildSearchQuery';
 
 const initSearchState = {
@@ -77,21 +76,10 @@ export function runSearch(query, page) {
     const { user } = getState();
     const token = user && user.tokens ? user.tokens.accessToken : null;
 
-    if (query) {
+    if (query)
       dispatch(executeSearch(query, page, token));
-      dispatch(push({
-        pathname: '/search',
-        query: {
-          query,
-          page,
-        },
-      }));
-    } else {
+    else
       dispatch(clearSearch());
-      dispatch(push({
-        pathname: '/',
-      }));
-    }
   };
 }
 

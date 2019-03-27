@@ -1,45 +1,38 @@
 import * as React from 'react';
-import { push } from 'connected-next-router';
 import { connect } from 'react-redux';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import { parse } from 'query-string';
+import { withRouter } from 'next/router';
 import css from './Searchbar.scss';
 
 /**
  * @author w.glanzer, 14.01.2019
  */
-const Searchbar = props => (
+const Searchbar = ({ router, className, query, children }) => (
   <Form onSubmit={(e) => {
     e.preventDefault();
-    props.onExecute(e.target.query.value);
+    router.push({
+      pathname: '/search',
+      query: {
+        query: e.target.query.value,
+      },
+    });
   }}>
-    <InputGroup className={props.className}>
+    <InputGroup className={className}>
       <FormControl type="Query" placeholder="Durchsuchen Sie über 6.000.000 Produkte" name="query" className={`${css.searchField}`}
-        defaultValue={props.query} />
+        defaultValue={query || ''} />
       <InputGroup.Append>
         <Button variant="primary" type="submit" className={`${css.searchButton} px-4 border-0`}>
           Suchen
         </Button>
       </InputGroup.Append>
     </InputGroup>
-    {props.children}
+    {children}
   </Form>
 );
 
 const mapStateToProps = state => ({
-  query: parse(state.router.location.search).query,
+  query: state.search.results.query,
 });
 
-const mapDispatchToProps = dispatch => ({
-  onExecute: (userinput) => {
-    dispatch(push({
-      pathname: '/search',
-      query: {
-        query: userinput,
-      },
-    }));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Searchbar);
+export default withRouter(connect(mapStateToProps)(Searchbar));

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Pagination } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { withRouter } from 'next/router';
 import css from './ResultPagination.scss';
 import { runSearch } from '../../reducers/searchReducer';
 
@@ -15,6 +16,13 @@ class ResultPagination extends React.Component {
 
   switchPage(pPage) {
     this.props.onSwitchPage(this.props.query, pPage);
+    this.props.router.push({
+      pathname: '/search',
+      query: {
+        query: this.props.query,
+        page: pPage,
+      },
+    });
   }
 
   /**
@@ -61,4 +69,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultPagination);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ResultPagination));

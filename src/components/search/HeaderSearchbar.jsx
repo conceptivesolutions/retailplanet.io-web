@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormControl, InputGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import { parse } from 'query-string';
+import { withRouter } from 'next/router';
 import css from './HeaderSearchbar.scss';
 import { runSearch } from '../../reducers/searchReducer';
 
@@ -13,6 +13,12 @@ class HeaderSearchbar extends React.Component {
   onSearchSumit(e) {
     e.preventDefault();
     this.props.onExecute(e.target.query.value);
+    this.props.router.push({
+      pathname: '/search',
+      query: {
+        query: e.target.query.value,
+      },
+    });
   }
 
   render() {
@@ -20,7 +26,7 @@ class HeaderSearchbar extends React.Component {
     return (
       <Form onSubmit={e => this.onSearchSumit(e)}>
         <InputGroup className={className}>
-          <FormControl type="Query" name="query" className={`${css.searchField}`} defaultValue={query} />
+          <FormControl type="Query" name="query" className={`${css.searchField}`} defaultValue={query || ''} />
         </InputGroup>
       </Form>
     );
@@ -28,7 +34,7 @@ class HeaderSearchbar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  query: parse(state.router.location.search).query,
+  query: state.search.results.query,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -37,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderSearchbar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderSearchbar));

@@ -3,7 +3,6 @@ import App, { Container } from 'next/app';
 import Head from 'next/head';
 import I18n from 'redux-i18n';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-next-router';
 import withRedux from 'next-redux-wrapper';
 import withNProgress from 'next-nprogress';
 import translations from '../src/i18n/translations';
@@ -52,11 +51,9 @@ class MyApp extends App {
         </Head>
         <Container>
           <Provider store={store}>
-            <ConnectedRouter>
-              <I18n translations={translations} initialLang="en" fallbackLang="de">
-                <Component {...pageProps} />
-              </I18n>
-            </ConnectedRouter>
+            <I18n translations={translations} initialLang="en" fallbackLang="de">
+              <Component {...pageProps} />
+            </I18n>
           </Provider>
         </Container>
       </React.Fragment>
