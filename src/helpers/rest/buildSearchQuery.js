@@ -1,10 +1,9 @@
-export default (pQuery, pSort, pAccessToken, pOffset, pLength) => {
+export default (pQuery, pSort, pUser, pOffset, pLength) => {
   const query = encodeURIComponent(pQuery);
-  let url = `/api/search?query=${query}`;
+  const baseURL = pUser && pUser.tokens && pUser.tokens.accessToken ? '/api/search/user' : '/api/search';
+  let url = `${baseURL}?query=${query}`;
   if (pSort)
     url = `${url}&sort=${pSort}`;
-  if (pAccessToken)
-    url = `${url}&dummy=false`;
   if (pOffset)
     url = `${url}&offset=${pOffset}`;
   if (pLength)

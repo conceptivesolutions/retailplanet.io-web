@@ -1,4 +1,5 @@
 import buildSearchQuery from '../helpers/rest/buildSearchQuery';
+import bearerFetch from '../auth/bearerFetch';
 
 const initSearchState = {
   countries: [],
@@ -27,10 +28,10 @@ function setQuery(query) {
   };
 }
 
-function executeSearch(query, page, token) {
+function executeSearch(query, page, user) {
   return {
     type: searchActions.SEARCH,
-    payload: fetch(buildSearchQuery(query, null, token, page * 20, 20))
+    payload: bearerFetch(buildSearchQuery(query, null, user, page * 20, 20), user)
       .then(response => response.json())
       .then((json) => {
         const result = {};
@@ -74,10 +75,9 @@ export function runSearch(query, page) {
       page,
     }));
     const { user } = getState();
-    const token = user && user.tokens ? user.tokens.accessToken : null;
 
     if (query)
-      dispatch(executeSearch(query, page, token));
+      dispatch(executeSearch(query, page, user));
     else
       dispatch(clearSearch());
   };
