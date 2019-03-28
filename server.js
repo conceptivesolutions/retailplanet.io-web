@@ -49,6 +49,14 @@ nextApp
         pathRewrite: {
           '^/api': '/',
         },
+
+        // We have to "ignore" 401-Errors, so that Safari does not open a login screen, wtf.
+        // eslint-disable-next-line
+        onProxyRes(proxyRes, req, res) {
+          if (proxyRes.statusCode === 401)
+            // eslint-disable-next-line no-param-reassign
+            proxyRes.statusCode = 404;
+        },
       }),
     );
 
