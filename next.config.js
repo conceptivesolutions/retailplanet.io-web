@@ -1,7 +1,8 @@
 const withSass = require('@zeit/next-sass');
+const withTypeScript = require('@zeit/next-typescript');
 const path = require('path');
 
-module.exports = withSass({
+module.exports = withTypeScript(withSass({
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
@@ -29,4 +30,4 @@ module.exports = withSass({
 
     return config;
   },
-});
+}));
