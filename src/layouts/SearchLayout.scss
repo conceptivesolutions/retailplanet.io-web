@@ -1,20 +1,35 @@
 @import "../styles/variables";
 
-.container {
-  padding-top: $header-height;
-  padding-left: $filter-menu-width-xl;
-  padding-bottom: $header-height;
-  margin-bottom: -$header-height;
-  max-width: 100% !important;
-  min-height: 100vh;
+.page {
+  height: 100%;
 }
 
-.filterContainer {
-  position: fixed;
-  margin-top: $header-height;
-  margin-bottom: $header-height;
-  left: 0;
+.content {
+  // Exclude Top and Bottom NavBars
+  padding-top: $header-height;
+  padding-bottom: $header-height;
+
+  // Exclude Bottom NavBar, because it is not fixed bottom
+  margin-bottom: -$header-height;
+
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.filter {
   width: $filter-menu-width-xl;
-  height: 100vh;
+  height: 100%;
   background: $header-background;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow: scroll;
+  overflow-x: hidden;
 }

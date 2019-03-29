@@ -5,36 +5,40 @@ import Footer from '../components/navigation/Footer';
 import LoadingIndicator from '../components/loading/LoadingIndicator';
 import css from './SearchLayout.scss';
 
-class Layout extends React.Component {
+class SearchLayout extends React.Component {
   constructor(props) {
     super(props);
-    this.renderContentIfFinished = this.renderContentIfFinished.bind(this);
+    this.renderContent = this.renderContent.bind(this);
   }
 
-  renderContentIfFinished() {
-    if (this.props.loading)
-      return (
-        <div className={`${css.container} d-flex flex-column`}>
-          <div className={`${css.filterContainer} d-flex flex-column`} />
-          <div className="d-flex flex-column align-items-center">
-            <LoadingIndicator />
-          </div>
+  renderContent() {
+    const { loading, children } = this.props;
+    let container = null;
+
+    if (loading)
+      container = (
+        <div className="d-flex flex-column align-items-center justify-content-center h-100">
+          <LoadingIndicator />
         </div>
       );
+    else
+      container = children;
 
     return (
-      <React.Fragment>
-        <div className={`${css.filterContainer} d-flex flex-column`} />
-        <div className={`${css.container} d-flex flex-column`}>{this.props.children}</div>
-      </React.Fragment>
+      <div className={css.content}>
+        <div className={css.filter} />
+        <div className={css.container}>
+          {container}
+        </div>
+      </div>
     );
   }
 
   render() {
     return (
-      <div>
+      <div className={css.page}>
         <Header withLogo withSearch fixedTop />
-        {this.renderContentIfFinished()}
+        {this.renderContent()}
         <Footer />
       </div>
     );
@@ -45,4 +49,4 @@ const mapStateToProps = state => ({
   loading: state.search.loading,
 });
 
-export default connect(mapStateToProps)(Layout);
+export default connect(mapStateToProps)(SearchLayout);
