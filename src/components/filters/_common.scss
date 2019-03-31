@@ -2,11 +2,19 @@
 
 $spacing: 10px;
 
+.edit {
+  padding-top: 0;
+  padding-bottom: 0;
+  border: 0;
+}
+
 .filterContainer {
   border: 0;
-  border-bottom: $border-width solid $border-color;
+  border: $border-width solid $border-color;
+  background: $white;
+  padding: 1rem;
 
-  :global(.form-label) {
+  :global(.form-label) b {
     margin-bottom: 0.25rem;
   }
 
@@ -23,5 +31,5 @@ $spacing: 10px;
 .submitCol {
   display: flex;
   flex-direction: row-reverse;
-  margin: $spacing 0 $spacing $spacing;
+  margin-top: $spacing;
 }
