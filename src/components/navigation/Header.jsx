@@ -45,7 +45,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <Navbar fixed={this.props.fixedTop ? 'top' : ''} bg="light" expand="lg"
-        className={`${css.pageHeader} border-0 ${this.props.transparent ? 'bg-transparent' : css.bgPageHeader}`}>
+        className={`${css.pageHeader} ${this.props.transparent ? 'bg-transparent' : css.bgPageHeader} header`}>
         {this.renderLogo()}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
