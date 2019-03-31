@@ -38,7 +38,7 @@ class SearchLayout extends React.Component {
   render() {
     return (
       <div className={css.page}>
-        <Header withLogo withSearch fixedTop />
+        <Header withLogo withSearch />
         {this.renderContent()}
         <Footer />
       </div>
