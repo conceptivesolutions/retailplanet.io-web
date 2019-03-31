@@ -4,6 +4,10 @@ import bearerFetch from '../auth/bearerFetch';
 const initSearchState = {
   countries: [],
   loading: false,
+  filters: {
+    pos: [],
+    neg: [],
+  },
   results: {
     query: null,
     page: {
@@ -19,6 +23,7 @@ export const searchActions = {
   CLEAR: 'CLEAR',
   SEARCH: 'SEARCH',
   SET_QUERY: 'SET_QUERY',
+  SET_FILTER: 'SET_FILTER',
 };
 
 function setQuery(query) {
@@ -28,10 +33,10 @@ function setQuery(query) {
   };
 }
 
-function executeSearch(query, page, user) {
+function executeSearch(query, page, user, filters) {
   return {
     type: searchActions.SEARCH,
-    payload: bearerFetch(buildSearchQuery(query, null, user, page * 20, 20), user)
+    payload: bearerFetch(buildSearchQuery(query, null, user, page * 20, 20, filters), user)
       .then(response => response.json())
       .then((json) => {
         const result = {};
@@ -60,9 +65,8 @@ function clearSearch() {
 /**
  * RunSearch:
  * - Set Query to requested
- * - Retrieve User AccessToken
+ * - Retrieve User
  * - Start Search (-> Loading-Flag will be set)
- * - Change URL in Browser to match new query / page
  *
  * @param query
  * @param page
@@ -74,12 +78,42 @@ export function runSearch(query, page) {
       query,
       page,
     }));
-    const { user } = getState();
+    const { user, search: { filters } } = getState();
 
     if (query)
-      dispatch(executeSearch(query, page, user));
+      dispatch(executeSearch(query, page, user, filters));
     else
       dispatch(clearSearch());
+  };
+}
+
+/**
+ * ReRuns the current search with the current query and filter
+ *
+ * @returns {Function}
+ */
+export function rerunSearch() {
+  return (dispatch, getState) => {
+    const { search: { results: { query } } } = getState();
+    if (query)
+      dispatch(runSearch(query, 0));
+  };
+}
+
+/**
+ * Adds the given filter to states filters
+ *
+ * @param positive true, if the filter should be added to positive list
+ * @param filter filter-obj
+ * @returns {{payload: *, type: string}}
+ */
+export function setFilter(positive, filter) {
+  return {
+    type: searchActions.SET_FILTER,
+    payload: {
+      isPositive: positive,
+      filter,
+    },
   };
 }
 
@@ -96,6 +130,7 @@ export default (state = initSearchState, action) => {
           },
         },
       };
+
     case `${searchActions.SEARCH}_PENDING`:
       return {
         ...state,
@@ -105,6 +140,7 @@ export default (state = initSearchState, action) => {
           items: [],
         },
       };
+
     case `${searchActions.SEARCH}_FULFILLED`:
       return {
         ...state,
@@ -118,6 +154,26 @@ export default (state = initSearchState, action) => {
           },
         },
       };
+
+    case searchActions.SET_FILTER: {
+      const { isPositive, filter: { type, values } } = action.payload;
+      const returnState = {
+        ...state,
+        filters: {
+          pos: state.filters.pos.filter(pValue => pValue.type !== type),
+          neg: state.filters.neg.filter(pValue => pValue.type !== type),
+        },
+      };
+
+      // Add filter to new target array
+      const target = isPositive ? returnState.filters.pos : returnState.filters.neg;
+      target.push({
+        type,
+        values,
+      });
+      return returnState;
+    }
+
     default:
       return state;
   }
