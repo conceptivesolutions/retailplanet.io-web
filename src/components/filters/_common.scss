@@ -1,0 +1,18 @@
+@import "../../styles/variables";
+
+$spacing: 1rem;
+
+.filterContainer {
+  border: 0;
+  border-bottom: $border-width solid $border-color;
+  padding: $spacing $spacing 0;
+}
+
+.submit {
+  padding: 0.15rem 0 0 0.1rem;
+}
+
+.submitCol {
+  display: flex;
+  flex-direction: row-reverse;
+}

@@ -4,6 +4,7 @@ import Header from '../components/navigation/Header';
 import Footer from '../components/navigation/Footer';
 import LoadingIndicator from '../components/loading/LoadingIndicator';
 import css from './SearchLayout.scss';
+import ResultFilters from '../components/filters/ResultFilters';
 
 class SearchLayout extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class SearchLayout extends React.Component {
 
     return (
       <div className={css.content}>
-        <div className={css.filter} />
+        <ResultFilters className={css.filter} />
         <div className={css.container}>
           {container}
         </div>
