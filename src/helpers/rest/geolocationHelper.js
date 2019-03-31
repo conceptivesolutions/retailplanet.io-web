@@ -1,5 +1,6 @@
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import getConfig from 'next/config';
+import fetch from 'isomorphic-unfetch';
 
 const { publicRuntimeConfig } = getConfig();
 const countryFilter = 'country=de';
