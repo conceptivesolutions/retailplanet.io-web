@@ -5,6 +5,7 @@ const initSearchState = {
   countries: [],
   loading: false,
   filters: {
+    editing: null,
     pos: [],
     neg: [],
   },
@@ -24,6 +25,7 @@ export const searchActions = {
   SEARCH: 'SEARCH',
   SET_QUERY: 'SET_QUERY',
   SET_FILTER: 'SET_FILTER',
+  SET_EDITING: 'SET_EDITING',
 };
 
 function setQuery(query) {
@@ -78,10 +80,12 @@ export function runSearch(query, page) {
       query,
       page,
     }));
-    const { user, search: { filters } } = getState();
+    const { user, search: { filters: { pos, neg } } } = getState();
 
     if (query)
-      dispatch(executeSearch(query, page, user, filters));
+      dispatch(executeSearch(query, page, user, {
+        pos, neg,
+      }));
     else
       dispatch(clearSearch());
   };
@@ -114,6 +118,19 @@ export function setFilter(positive, filter) {
       isPositive: positive,
       filter,
     },
+  };
+}
+
+/**
+ * Sets the edit-attribute of a filter, to mark them as "currently editing by user"
+ *
+ * @param filterName Name of the filter
+ * @returns {{payload: *, type: string}}
+ */
+export function edit(filterName) {
+  return {
+    type: searchActions.SET_EDITING,
+    payload: filterName,
   };
 }
 
@@ -160,6 +177,7 @@ export default (state = initSearchState, action) => {
       const returnState = {
         ...state,
         filters: {
+          editing: null,
           pos: state.filters.pos.filter(pValue => pValue.type !== type),
           neg: state.filters.neg.filter(pValue => pValue.type !== type),
         },
@@ -173,6 +191,15 @@ export default (state = initSearchState, action) => {
       });
       return returnState;
     }
+
+    case searchActions.SET_EDITING:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          editing: action.payload,
+        },
+      };
 
     default:
       return state;
