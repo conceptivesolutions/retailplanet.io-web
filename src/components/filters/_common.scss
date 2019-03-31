@@ -1,18 +1,27 @@
 @import "../../styles/variables";
 
-$spacing: 1rem;
+$spacing: 10px;
 
 .filterContainer {
   border: 0;
   border-bottom: $border-width solid $border-color;
-  padding: $spacing $spacing 0;
+
+  :global(.form-label) {
+    margin-bottom: 0.25rem;
+  }
+
 }
 
 .submit {
-  padding: 0.15rem 0 0 0.1rem;
+  //
+}
+
+.cancel {
+  margin-right: $spacing;
 }
 
 .submitCol {
   display: flex;
   flex-direction: row-reverse;
+  margin: $spacing 0 $spacing $spacing;
 }
