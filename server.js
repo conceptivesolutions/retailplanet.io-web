@@ -60,6 +60,19 @@ nextApp
       }),
     );
 
+    // MapBox-Proxy
+    expressApp.use(
+      '/mapbox',
+      proxy({
+        target: 'https://api.mapbox.com',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/mapbox': '/',
+        },
+      }),
+    );
+
     // Default catch-all handler to allow Next.js to handle all other routes
     expressApp.all('*', (req, res) => {
       const nextRequestHandler = nextApp.getRequestHandler();

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import AsyncSelect from 'react-select/lib/Async';
 import css from './GeoFilter.scss';
 import { edit, rerunSearch, setFilter } from '../../../reducers/searchReducer';
+import { search, searchRev } from '../../../helpers/rest/geolocationHelper';
 
 /**
  * Filters the results with a geolocation search
@@ -11,43 +13,86 @@ class GeoFilter extends React.Component {
   static name = 'geo';
 
   state = {
-    lat: 48.491361,
-    lng: 12.04127777,
+    lat: 48.491472,
+    lng: 12.041074,
+    name: '',
     dist: 30,
+    input: {
+      lat: 0,
+      lng: 0,
+      name: '',
+    },
   };
 
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onEdit = this.onEdit.bind(this);
+    this.onGeoLocationChange = this.onGeoLocationChange.bind(this);
     this.renderEditState = this.renderEditState.bind(this);
     this.renderShowState = this.renderShowState.bind(this);
   }
 
   componentWillMount() {
-    this.props.onFilterChange(48.491361, 12.04127777, 30);
+    this.props.onFilterChange(48.491472, 12.041074, 30);
+    searchRev(48.491472, 12.041074)
+      .then((result) => {
+        if (result && result.length > 0)
+          this.setState({
+            name: result[0].label,
+          });
+      });
   }
 
   onSubmit(e) {
     e.preventDefault();
-    const { Lat, Lng, Dist } = e.target;
+    const { Dist } = e.target;
+    const { lat, lng, name } = this.state.input;
     this.setState({
-      lat: Lat.value,
-      lng: Lng.value,
+      lat,
+      lng,
       dist: Dist.value,
+      name,
     });
-    this.props.onFilterChange(Lat.value, Lng.value, Dist.value);
+    this.props.onFilterChange(lat, lng, Dist.value);
+  }
+
+  onEdit() {
+    this.props.onEdit(true);
+  }
+
+  onGeoLocationChange(e) {
+    if (e) {
+      const { location } = e;
+      if (location && location.length === 2) {
+        this.setState({
+          input: {
+            lat: Number.parseFloat(location[1]),
+            lng: Number.parseFloat(location[0]),
+            name: e.label,
+          },
+        });
+        return;
+      }
+    }
+
+    this.setState({
+      input: {
+        lat: 0,
+        lng: 0,
+        name: '',
+      },
+    });
   }
 
   renderEditState() {
-    const { lat, lng, dist } = this.state;
+    const { dist } = this.state;
     return (
       <React.Fragment>
         <Form.Row>
           <Col>
-            <Form.Control type="text" name="Lat" placeholder="Latitude" defaultValue={lat} />
-          </Col>
-          <Col>
-            <Form.Control type="text" name="Lng" placeholder="Longitude" defaultValue={lng} />
+            {/* todo GeoLocation Initial State */}
+            <AsyncSelect className={css.editAddress} defaultOptions loadOptions={search} onChange={this.onGeoLocationChange} />
           </Col>
         </Form.Row>
         <Form.Row>
@@ -58,7 +103,7 @@ class GeoFilter extends React.Component {
         <Form.Row>
           <Col className={css.submitCol}>
             <Button variant="primary" type="submit" className={css.submit}>Accept</Button>
-            <Button variant="secondary" onClick={() => this.props.onSwitchToEdit(false)} className={css.cancel}>Cancel</Button>
+            <Button variant="secondary" onClick={() => this.props.onEdit(false)} className={css.cancel}>Cancel</Button>
           </Col>
         </Form.Row>
       </React.Fragment>
@@ -66,12 +111,13 @@ class GeoFilter extends React.Component {
   }
 
   renderShowState() {
-    const { lat, lng, dist } = this.state;
+    const { lat, lng, dist, name } = this.state;
+    const display = !name ? `${lat}, ${lng}, ${dist}km` : `${name} (${dist}km)`;
     return (
       <Form.Row>
         <Col>
           {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-          <Form.Label className={css.editLabel}>{lat}, {lng}, {dist}km</Form.Label>
+          <Form.Label className={css.editLabel}>{display}</Form.Label>
         </Col>
       </Form.Row>
     );
@@ -85,7 +131,7 @@ class GeoFilter extends React.Component {
             <Form.Label>
               <b>Märkte in der Nähe</b>
               {!this.props.isEditing
-                ? (<Button className={css.edit} variant="link" onClick={() => this.props.onSwitchToEdit(true)}>change</Button>)
+                ? (<Button className={css.edit} variant="link" onClick={this.onEdit}>change</Button>)
                 : null}
             </Form.Label>
           </Col>
@@ -108,7 +154,7 @@ const mapDispatchToProps = dispatch => ({
     }));
     dispatch(rerunSearch());
   },
-  onSwitchToEdit: (pEdit) => {
+  onEdit: (pEdit) => {
     dispatch(edit(pEdit ? GeoFilter.name : null));
   },
 });
