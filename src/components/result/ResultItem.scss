@@ -7,7 +7,7 @@ $image-height-xl: 255px;
 .container {
   height: 363px;
   padding: 0.5rem;
-  transition: box-shadow .3s;
+  transition: box-shadow;
 }
 
 .container:hover {
