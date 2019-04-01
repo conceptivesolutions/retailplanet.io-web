@@ -41,6 +41,8 @@ class ResultPagination extends React.Component {
 
   render() {
     const { currentPage, pageCount } = this.props;
+    if (pageCount <= 1)
+      return <React.Fragment />;
 
     return (
       <Pagination className={css.pagination}>
