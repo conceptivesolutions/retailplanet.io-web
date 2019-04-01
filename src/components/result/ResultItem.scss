@@ -23,8 +23,9 @@ $image-height-xl: 255px;
 }
 
 .image {
-  max-width: $image-width-xl;
-  max-height: $image-height-xl;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .title {
