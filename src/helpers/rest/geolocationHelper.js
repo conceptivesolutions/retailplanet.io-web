@@ -3,8 +3,9 @@ import getConfig from 'next/config';
 import fetch from 'isomorphic-unfetch';
 
 const { publicRuntimeConfig } = getConfig();
+const { geolocationToken, baseurl } = publicRuntimeConfig;
 const countryFilter = 'country=de';
-const postURL = `access_token=${publicRuntimeConfig.geolocation_token}&autocomplete=true&${countryFilter}`;
+const postURL = `access_token=${geolocationToken}&autocomplete=true&${countryFilter}`;
 
 /**
  * Constructs an geolocation-Search-Result-Element from a REST-Result-Element
@@ -39,7 +40,7 @@ const execSearch = (text) => {
     return Promise.resolve([]);
 
   // Execute
-  return fetch(`/mapbox/geocoding/v5/mapbox.places/${encodeURIComponent(text)}.json?${postURL}`)
+  return fetch(`${baseurl}/mapbox/geocoding/v5/mapbox.places/${encodeURIComponent(text)}.json?${postURL}`)
     .then(result => result.json())
     .then(elementToResult);
 };
@@ -50,7 +51,7 @@ const execSearch = (text) => {
 const debouncer = AwesomeDebouncePromise(execSearch, 500);
 export const search = input => debouncer(input);
 
-const execReverse = (lat, lng) => fetch(`/mapbox/geocoding/v5/mapbox.places/${encodeURIComponent(`${lng},${lat}`)}.json?${postURL}`)
+const execReverse = (lat, lng) => fetch(`${baseurl}/mapbox/geocoding/v5/mapbox.places/${encodeURIComponent(`${lng},${lat}`)}.json?${postURL}`)
   .then(result => result.json())
   .then(elementToResult);
 

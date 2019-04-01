@@ -14,7 +14,8 @@ module.exports = withSass({
     auth_secret: process.env.OAUTH_SECRET,
     auth_logout_redirect_url: process.env.LOGOUT_REDIRECT_URL,
     dev: process.env.NODE_ENV !== 'production',
-    geolocation_token: process.env.MAPBOX_TOKEN,
+    geolocationToken: process.env.MAPBOX_TOKEN,
+    baseurl: process.env.BASEURL,
   },
   webpack: (config) => {
     // Server .html-Files in i18n folder via raw-loader, to include it in translations.js
