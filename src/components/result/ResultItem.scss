@@ -20,12 +20,14 @@ $image-height-xl: 255px;
   min-height: $image-height-xl;
   max-height: $image-height-xl;
   margin-bottom: 0.5rem;
+  display: flex;
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  align-self: center;
 }
 
 .title {
