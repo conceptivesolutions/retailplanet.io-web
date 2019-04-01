@@ -5,7 +5,8 @@ import { withRouter } from 'next/router';
 import css from './ResultPagination.scss';
 import { runSearch } from '../../reducers/searchReducer';
 
-const maxPagesCount = 3;
+const maxPagesPerSide = 3;
+const maxPagesComplete = maxPagesPerSide * 2 + 1;
 
 class ResultPagination extends React.Component {
   constructor(props) {
@@ -31,14 +32,10 @@ class ResultPagination extends React.Component {
   createPages() {
     const { currentPage, pageCount } = this.props;
     const result = [];
-    const start = Math.max(currentPage - maxPagesCount, 0);
-    const end = Math.min(currentPage + maxPagesCount + 1, pageCount);
-    if (currentPage > maxPagesCount)
-      result.push(<Pagination.Ellipsis key="before" disabled />);
-    for (let i = start; i < Math.max(end, maxPagesCount * 2 + 1); i++)
+    const start = Math.max(currentPage - maxPagesPerSide, 0);
+    const end = Math.min(Math.max(currentPage + maxPagesPerSide + 1, maxPagesComplete), pageCount);
+    for (let i = start; i < end; i++)
       result.push(<Pagination.Item key={i} active={currentPage === i} onClick={() => this.switchPage(i)}>{i + 1}</Pagination.Item>);
-    if (pageCount >= currentPage + maxPagesCount)
-      result.push(<Pagination.Ellipsis key="after" disabled />);
     return result;
   }
 
