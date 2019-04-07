@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: Build application Docker image
+          command: |
+            docker build -t images.conceptive.io/retailplanet.frontend:latest .
+      - deploy:
+          name: Push application Docker image
+          command: |
+            if [[ "$CIRCLE_BRANCH" == "master" ]]
+            then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS ${DOCKER_REGISTRY}
+              docker push "${DOCKER_REGISTRY}/retailplanet.frontend:latest"
+            fi
