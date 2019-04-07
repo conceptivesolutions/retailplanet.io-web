@@ -18,7 +18,7 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            if [[ "$CIRCLE_BRANCH" == "master" ]]
+            if [[ "$CIRCLE_BRANCH" == "production" ]]
             then
               docker login -u $DOCKER_USER -p $DOCKER_PASS ${DOCKER_REGISTRY}
               docker push "${DOCKER_REGISTRY}/retailplanet.frontend:latest"
