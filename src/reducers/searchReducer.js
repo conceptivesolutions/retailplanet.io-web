@@ -46,9 +46,9 @@ function executeSearch(query, page, user, filters) {
           name: pElement.name,
           price: pElement.price,
           image: pElement.previews ? pElement.previews[0] : '',
-          source: 'TESTMARKET',
-          rating: 3.5,
-          ratingCount: 42,
+          source: pElement.source.name,
+          rating: 0,
+          ratingCount: 0,
         }));
         result.page = {
           count: Math.ceil(json.maxSize / json.length),
