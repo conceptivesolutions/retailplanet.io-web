@@ -54,14 +54,8 @@ export default class ResultItem extends React.Component {
           <h5>{name}</h5>
         </span>
         <div className={css.market}>
-          <span className={css.price}>
-            {price}
-            {' '}
-            €
-          </span>
-          {' '}
-          bei
-          {source}
+          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+          <span className={css.price}>{price} €</span> bei <a href="#">{source}</a>
         </div>
         {this.renderRating()}
       </div>
