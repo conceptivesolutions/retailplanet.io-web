@@ -1,7 +1,6 @@
 export default (pQuery, pSort, pUser, pOffset, pLength, pFilters) => {
   const query = encodeURIComponent(pQuery);
-  const baseURL = pUser && pUser.tokens && pUser.tokens.accessToken ? '/api/search/user' : '/api/search';
-  let url = `${baseURL}?query=${query}`;
+  let url = `/api/search?query=${query}`;
   if (pSort)
     url = `${url}&sort=${pSort}`;
   if (pOffset)
