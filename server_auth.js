@@ -1,16 +1,17 @@
 const passport = require('passport');
-const { Strategy } = require('passport-openidconnect');
+const Auth0Strategy = require('passport-auth0');
 
 /**
  * Convert Tokens to a User-Profile
  */
 // eslint-disable-next-line
-const tokenToProfile = async (issuer, sub, { id, name, _json: { preferred_username, email }, _raw }, accessToken, refreshToken, done) => {
+const tokenToProfile = async (accessToken, refreshToken, extraParams, profile, done) => {
+  const { id, name, nickname, _json: { email } } = profile;
   const user = {
     profile: {
       id,
       name,
-      username: preferred_username,
+      username: nickname,
       email,
     },
     tokens: {
@@ -23,16 +24,13 @@ const tokenToProfile = async (issuer, sub, { id, name, _json: { preferred_userna
 /**
  * Strategy which connects to our OAuth-Provider
  */
-const authStrategy = new Strategy({
+const authStrategy = new Auth0Strategy({
   state: true,
-  issuer: 'http://gravitee.am',
-  authorizationURL: `${process.env.OAUTH_URL}/${process.env.OAUTH_REALM}/oauth/authorize/`,
-  tokenURL: `${process.env.OAUTH_URL}/${process.env.OAUTH_REALM}/oauth/token/`,
-  userInfoURL: `${process.env.OAUTH_URL}/${process.env.OAUTH_REALM}/oidc/userinfo`,
+  domain: process.env.OAUTH_URL,
   clientID: process.env.OAUTH_CLIENTID,
   clientSecret: process.env.OAUTH_SECRET,
   callbackURL: `${process.env.BASEURL}/login`,
-  scope: 'openid profile email',
+  scope: 'openid profile',
 }, tokenToProfile);
 
 /**
@@ -41,11 +39,12 @@ const authStrategy = new Strategy({
  * @param pExpressApp App
  */
 function auth(pExpressApp) {
-  passport.use('oidc', authStrategy);
+  passport.use('auth0', authStrategy);
   pExpressApp.use(passport.initialize());
   pExpressApp.use(passport.session());
 
-  pExpressApp.get('/login', passport.authenticate('oidc', {
+  pExpressApp.get('/login', passport.authenticate('auth0', {
+    audience: 'api.retailplanet.io',
     session: true,
     successReturnToOrRedirect: '/',
     failureRedirect: '/',
@@ -53,7 +52,7 @@ function auth(pExpressApp) {
 
   pExpressApp.get('/logout', (req, res) => {
     req.logout();
-    res.redirect(`${process.env.OAUTH_URL}/${process.env.OAUTH_REALM}/logout?target_url=${process.env.BASEURL}`);
+    res.redirect(`https://${process.env.OAUTH_URL}/v2/logout?client_id=${process.env.OAUTH_CLIENTID}&returnTo=${process.env.BASEURL}`);
   });
 
   passport.serializeUser((user, done) => {

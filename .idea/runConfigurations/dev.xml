@@ -8,10 +8,9 @@
     <node-interpreter value="project" />
     <envs>
       <env name="SESSION_SECRET" value="UxWpnQQ87CYeJa8nGC24jNrIvtsTxz2mRLZXm4B6" />
-      <env name="OAUTH_REALM" value="retailplanet" />
-      <env name="OAUTH_CLIENTID" value="f84ea32f-7c00-42db-b427-8047528012cf" />
-      <env name="OAUTH_SECRET" value="28935fa2-0ed3-465f-aa04-556cc119e01b" />
-      <env name="OAUTH_URL" value="https://auth.conceptive.io" />
+      <env name="OAUTH_CLIENTID" value="b0PIVi3Hfpn9v97U9xIdHhHWorzSRAlw" />
+      <env name="OAUTH_SECRET" value="S9_hlUx68vWeVzyaVv9APN0iDeTpJdhiXFHWT4XO3aeFFkt0kF9f49xtfAB8NaOf" />
+      <env name="OAUTH_URL" value="retailplanet.eu.auth0.com" />
       <env name="BACKEND_URL" value="http://localhost:8080/api" />
       <env name="BASEURL" value="http://localhost:3000" />
       <env name="MAPBOX_TOKEN" value="pk.eyJ1IjoiY3licm9rZW4iLCJhIjoiY2p0eDRmbDRkMTV5cjQzbHo0ZDl4ZzEwMyJ9.1VaAIGlJLJ-X8Xlk3FSZPQ" />
