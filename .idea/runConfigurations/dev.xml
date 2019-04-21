@@ -11,7 +11,7 @@
       <env name="OAUTH_CLIENTID" value="b0PIVi3Hfpn9v97U9xIdHhHWorzSRAlw" />
       <env name="OAUTH_SECRET" value="S9_hlUx68vWeVzyaVv9APN0iDeTpJdhiXFHWT4XO3aeFFkt0kF9f49xtfAB8NaOf" />
       <env name="OAUTH_URL" value="retailplanet.eu.auth0.com" />
-      <env name="BACKEND_URL" value="http://localhost:8080/api" />
+      <env name="BACKEND_URL" value="http://localhost:8080" />
       <env name="BASEURL" value="http://localhost:3000" />
       <env name="MAPBOX_TOKEN" value="pk.eyJ1IjoiY3licm9rZW4iLCJhIjoiY2p0eDRmbDRkMTV5cjQzbHo0ZDl4ZzEwMyJ9.1VaAIGlJLJ-X8Xlk3FSZPQ" />
     </envs>
