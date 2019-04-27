@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import Header from '../components/navigation/Header';
-import Footer from '../components/navigation/Footer';
+import Header from '../components/header/Header';
+import Footer from '../components/footer/Footer';
 import css from './IndexLayout.scss';
 
 /**
- * Layout für die Index-Seite mit der Haupt-Suche
+ * Layout for the index page
  *
  * @author w.glanzer, 14.01.2019
  */
