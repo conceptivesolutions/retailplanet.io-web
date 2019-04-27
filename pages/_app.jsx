@@ -5,6 +5,7 @@ import I18n from 'redux-i18n';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withNProgress from 'next-nprogress';
+import getConfig from 'next/config';
 import translations from '../src/i18n/translations';
 import { makeStore } from '../src/store';
 
@@ -21,6 +22,7 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, store } = this.props;
+    const { dev } = getConfig().publicRuntimeConfig;
 
     // noinspection HtmlUnknownTarget
     return (
@@ -40,18 +42,13 @@ class MyApp extends App {
           <meta name="msapplication-config" content="/static/favicons/browserconfig.xml" />
           <meta name="theme-color" content="#ffffff" />
           <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-          <meta name="google-site-verification" content="YD3PhwzJ76avDVPzv0ds-WCowoldAqNC9XQ_ztkEkbI" />
           <link rel="stylesheet" href="/static/styles/global.css" />
-          <script
-            id="Cookiebot"
-            src="https://consent.cookiebot.com/uc.js"
-            data-cbid="8a22d95b-e3ee-47c5-8255-fab4e49ac9c2"
-            type="text/javascript"
-            async />
+          {dev ? '' : <meta name="google-site-verification" content="YD3PhwzJ76avDVPzv0ds-WCowoldAqNC9XQ_ztkEkbI" />}
+          {dev ? '' : <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8a22d95b-e3ee-47c5-8255-fab4e49ac9c2" type="text/javascript" async />}
         </Head>
         <Container>
           <Provider store={store}>
-            <I18n translations={translations} initialLang="en" fallbackLang="de">
+            <I18n translations={translations} initialLang="en" fallbackLang="en">
               <Component {...pageProps} />
             </I18n>
           </Provider>
