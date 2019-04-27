@@ -1,31 +1,27 @@
 const path = require('path');
 
-module.exports = ({config}) => {
+// Export a function. Accept the base config as the only param.
+module.exports = async ({ config, mode }) => {
+  // Remove the existing css rule
+  config.module.rules = config.module.rules.filter(
+    f => f.test.toString() !== '/\\.scss$/'
+  );
 
-  config.module.rules.push(
-    {
-      test: /\.scss$/,
-      loaders: [
-        require.resolve('style-loader'),
-        {
-          loader: require.resolve('css-loader'),
-          options: {
-            importLoaders: 1,
-            modules: true,
-            localIdentName: '[local]___[hash:base64:5]',
-          }
-        },
-        require.resolve('sass-loader')
-      ]
-    },
-    {
-      test: /\.html$/,
-      include: [
-        path.resolve(__dirname, '..', 'src', 'i18n'),
-      ],
-      use: 'raw-loader',
-    });
+  // Make whatever fine-grained changes you need
+  config.module.rules.push({
+    test: /\.scss$/,
+    loaders: ['style-loader', 'css-loader', 'sass-loader'],
+    include: path.resolve(__dirname, '../'),
+  });
 
+  config.module.rules.push({
+    test: /\.html$/,
+    include: [
+      path.resolve(__dirname, '..', 'src', 'i18n'),
+    ],
+    use: 'raw-loader',
+  });
+
+  // Return the altered config
   return config;
-
 };
