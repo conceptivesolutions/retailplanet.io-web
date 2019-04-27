@@ -1,26 +1,21 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import Header from '../src/components/navigation/Header';
-import Footer from '../src/components/navigation/Footer';
+import Header from '../src/components/header/Header';
+import Footer from '../src/components/footer/Footer';
 import css from './navigation.stories.scss';
 import { withI18N, withReduxStore } from '../.storybook/decorators';
 
 storiesOf('Navigation', module)
   .addDecorator(withI18N)
   .addDecorator(withReduxStore())
-  .add('Page Header with Logo', () => (
+  .add('Page Header (Index)', () => (
     <div className={css.headerPane}>
       <Header withLogo />
     </div>
   ))
-  .add('Page Header with Logo (fixed top)', () => (
+  .add('Page Header (Results)', () => (
     <div className={css.headerPane}>
-      <Header withLogo fixedTop />
-    </div>
-  ))
-  .add('Page Header with Searchbar', () => (
-    <div className={css.headerPane}>
-      <Header withLogo withSearch query="Encoded%20Value" />
+      <Header withSearch />
     </div>
   ))
   .add('Page Footer', () => <Footer />);
