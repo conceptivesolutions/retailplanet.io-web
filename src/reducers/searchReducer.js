@@ -1,4 +1,4 @@
-import buildSearchQuery from '../helpers/rest/buildSearchQuery';
+import buildSearchQuery from '../helpers/rest/searchQueryHelper';
 import bearerFetch from '../auth/bearerFetch';
 
 const initSearchState = {
@@ -35,10 +35,18 @@ function setQuery(query) {
   };
 }
 
+/**
+ * Executes a given search and sets the result items in this store
+ *
+ * @param query Query as string
+ * @param page page index
+ * @param user current user
+ * @param filters filter-object
+ */
 function executeSearch(query, page, user, filters) {
   return {
     type: searchActions.SEARCH,
-    payload: bearerFetch(buildSearchQuery(query, null, user, page * 20, 20, filters), user)
+    payload: bearerFetch(buildSearchQuery(query, null, page * 20, 20, filters), user)
       .then(response => response.json())
       .then((json) => {
         const result = {};
@@ -58,6 +66,9 @@ function executeSearch(query, page, user, filters) {
   };
 }
 
+/**
+ * Clears the current search results
+ */
 function clearSearch() {
   return {
     type: searchActions.CLEAR,
