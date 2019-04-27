@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import AsyncSelect from 'react-select/lib/Async';
 import css from './GeoFilter.scss';
 import { edit, rerunSearch, setFilter } from '../../../reducers/searchReducer';
-import { search, searchRev } from '../../../helpers/rest/geolocationHelper';
+import { search, searchRev } from '../../../helpers/rest/geoLocationHelper';
 
 /**
  * Filters the results with a geolocation search
