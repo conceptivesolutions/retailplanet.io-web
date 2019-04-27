@@ -4,7 +4,7 @@ import { FormControl, InputGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { withRouter } from 'next/router';
 import css from './HeaderSearchbar.scss';
-import { runSearch } from '../../reducers/searchReducer';
+import { runSearch } from '../../../reducers/searchReducer';
 
 /**
  * @author w.glanzer, 24.03.2019

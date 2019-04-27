@@ -19,6 +19,13 @@
   color: $primary;
 }
 
-.dropdownDisabled {
-  color: rgba(0, 0, 0, 0.3);
+.profilepic {
+  font-size: $header-height - 1rem;
+  margin: 0;
+  width: $header-height - 1rem;
+  height: $header-height - 1rem;
+}
+
+.login {
+  cursor: pointer;
 }

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Image, Nav, Navbar } from 'react-bootstrap';
 import Link from 'next/link';
-import ProfileSmall from './profile/ProfileSmall';
+import ProfileSmall from './profile/HeaderProfile';
 import css from './Header.scss';
-import Language from './Language';
-import HeaderSearchbar from '../search/HeaderSearchbar';
+import Language from './lang/Language';
+import HeaderSearchbar from './search/HeaderSearchbar';
 
 /**
  * props.withLogo = If set, the retailplanet logo will be rendered at the left upper corner
