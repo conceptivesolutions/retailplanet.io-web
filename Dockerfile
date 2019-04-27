@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:11.14.0-alpine
 
 # Install gulp
 RUN npm install --global gulp gulp-cli
