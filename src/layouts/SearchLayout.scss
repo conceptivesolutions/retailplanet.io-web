@@ -5,13 +5,13 @@
 
   :global(.header) {
     border-bottom: $border-width solid $border-color;
+    margin-left: $filter-menu-width-xl;
   }
 
 }
 
 .content {
   // Exclude Top and Bottom NavBars
-  padding-top: $header-height;
   padding-bottom: $header-height;
 
   // Exclude Bottom NavBar, because it is not fixed bottom
@@ -23,7 +23,12 @@
   height: 100%;
 }
 
-.filter {
+.logo {
+  height: $header-height - 0.25rem;
+  padding: 0.25rem;
+}
+
+.filterContainer {
   width: $filter-menu-width-xl;
   height: 100%;
   background: $header-background;
@@ -31,10 +36,15 @@
   display: flex;
   flex-direction: column;
   flex: 0 0 auto;
-  padding: 1rem;
+
+  .filter {
+    padding: 1rem;
+  }
+
 }
 
 .container {
+  padding-top: $header-height;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;

@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import Link from 'next/link';
+import { Image } from 'react-bootstrap';
 import Header from '../components/navigation/Header';
 import Footer from '../components/navigation/Footer';
 import LoadingIndicator from '../components/loading/LoadingIndicator';
@@ -27,7 +29,14 @@ class SearchLayout extends React.Component {
 
     return (
       <div className={css.content}>
-        <ResultFilters className={css.filter} />
+        <div className={css.filterContainer}>
+          <Link href="/">
+            <a>
+              <Image className={`${css.logo}`} src="/static/retailplanet-logo.svg" />
+            </a>
+          </Link>
+          <ResultFilters className={css.filter} />
+        </div>
         <div className={css.container}>
           {container}
         </div>
@@ -38,7 +47,7 @@ class SearchLayout extends React.Component {
   render() {
     return (
       <div className={css.page}>
-        <Header withLogo withSearch />
+        <Header withSearch />
         {this.renderContent()}
         <Footer />
       </div>

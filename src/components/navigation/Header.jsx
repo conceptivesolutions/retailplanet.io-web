@@ -18,11 +18,16 @@ export default class Header extends React.Component {
   renderLogo() {
     if (this.props.withLogo)
       return (
-        <Link href="/">
-          <a>
-            <Image className={`${css.logo}`} src="/static/retailplanet-logo.svg" />
-          </a>
-        </Link>
+        <React.Fragment>
+          <Link href="/">
+            <a>
+              <Image className={`${css.logo}`} src="/static/retailplanet-logo.svg" />
+            </a>
+          </Link>
+          <Nav>
+            <Nav.Item className="mx-2 border-left" />
+          </Nav>
+        </React.Fragment>
       );
 
     return null;
@@ -49,9 +54,6 @@ export default class Header extends React.Component {
         {this.renderLogo()}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav>
-            <Nav.Item className="mx-2 border-left" />
-          </Nav>
           <Nav className="mr-auto" />
           {this.renderCustomComponents()}
           <Nav>
