@@ -1,39 +1,20 @@
 @import "../../styles/variables";
 
-$rating-color: #fee502;
-$image-width-xl: 255px;
-$image-height-xl: 255px;
+$available: #13A801;
+$orderable: #eac300;
+$unavailable: #bb0000;
 
 .container {
-  height: 363px;
+  width: 225px;
+  height: 240px;
   padding: 0.5rem;
+  border: 1px solid $border-color;
+  background-color: #F3F3F3;
   transition: box-shadow;
-}
 
-.container:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,.2);
-}
-
-.imageWrapper {
-  min-width: $image-width-xl;
-  max-width: $image-width-xl;
-  min-height: $image-height-xl;
-  max-height: $image-height-xl;
-  margin-bottom: 0.5rem;
-  display: flex;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  align-self: center;
-}
-
-.title {
-  * {
-    margin-bottom: 0.2rem;
-    max-width: $image-width-xl;
+  h5,
+  span {
+    max-width: 100%;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -41,43 +22,102 @@ $image-height-xl: 255px;
   }
 }
 
-.price {
-  color: $body-color;
-  font-size: 120%;
+.container:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 50%;
+  flex-shrink: 0;
+  flex-grow: 0;
+  overflow: hidden;
+  background: $white;
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.title {
+  flex-shrink: 0;
+  flex-grow: 0;
   font-weight: bold;
-  margin-right: 0.15rem;
+  margin-top: 0.5rem;
+  padding-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  border-top: 1px solid var(--primary);
 }
 
 .market {
-  color: #777;
-  max-width: $image-width-xl;
-  -ms-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  flex-grow: 1;
+  line-height: 1em;
+  margin-bottom: 0.5rem;
+  font-size: 90%;
 }
 
-.ratingCount {
-  color: #777;
+.status {
+  display: flex;
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  .dot {
+    background-color: $gray-400;
+    height: 1.25rem;
+    width: 1.25rem;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.25rem;
+  }
+
+  .availability {
+    color: $gray-400;
+    flex-grow: 1;
+    padding-top: 0.2rem;
+    line-height: 1rem;
+    font-weight: bold;
+  }
+
+  .price {
+    flex-grow: 0;
+    flex-shrink: 1;
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    color: var(--primary);
+    padding: 0;
+    margin: 0;
+  }
 }
 
-.ratingFull {
-  width: 1rem;
-  text-align: center;
-  font-weight: bold !important;
-  color: $rating-color;
+:global(.available) {
+  .availability {
+    color: $available;
+  }
+
+  .dot {
+    background-color: $available;
+  }
 }
 
-.ratingHalf {
-  width: 1rem;
-  text-align: center;
-  font-weight: bold !important;
-  color: $rating-color;
+:global(.orderable) {
+  .availability {
+    color: $orderable;
+  }
+
+  .dot {
+    background-color: $orderable;
+  }
 }
 
-.ratingEmpty {
-  width: 1rem;
-  text-align: center;
-  font-weight: 400 !important;
-  color: $rating-color;
+:global(.unavailable) {
+  .availability {
+    color: $unavailable;
+  }
+
+  .dot {
+    background-color: $unavailable;
+  }
 }

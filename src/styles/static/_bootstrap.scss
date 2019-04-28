@@ -5,10 +5,13 @@ $font-family-sans-serif: "Hind", sans-serif;
 $font-size-base: 0.9rem;
 
 // Overwritten colors in bootstrap
-$primary: #3399db;
+$primary: #2E6BA1;
+$body-color: #333;
 
 // Disable rounded components
 $enable-rounded: false;
 
 // Import whole bootstrap
 @import "../../../node_modules/bootstrap/scss/bootstrap";
+
+$text-muted: red;

@@ -1,64 +1,70 @@
 import * as React from 'react';
-import { Image } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import css from './ResultItem.scss';
 
 /**
- * props.data = Daten-Objekt
- *
  * @author w.glanzer, 10.02.2019
  */
-export default class ResultItem extends React.Component {
+class ResultItem extends React.Component {
   constructor(props) {
     super(props);
-    this.renderRating = this.renderRating.bind(this);
+    this.getI18NAvailability = this.getI18NAvailability.bind(this);
+    this.getFormattedPrice = this.getFormattedPrice.bind(this);
   }
 
-  renderRating() {
-    const rating = this.props.data.rating || 0;
-    const resultRatingArr = [];
-    for (let i = 0; i < rating; i++)
-      resultRatingArr.push(i + 1 <= rating ? 100 : 50);
-    for (let i = resultRatingArr.length; i < 5; i++)
-      resultRatingArr.push(0);
+  getI18NAvailability() {
+    return this.context.t('availability')[this.props.data.availability];
+  }
 
-    return (
-      <div className="mt-auto mb-auto">
-        {resultRatingArr.map((pValue, pIndex) => {
-          switch (pValue) {
-            case 100:
-              return <span key={pIndex} className={`${css.ratingFull} fa fa-star`} />;
-            case 50:
-              return <span key={pIndex} className={`${css.ratingHalf} fa fa-star-half-alt`} />;
-            default:
-              return <span key={pIndex} className={`${css.ratingEmpty} fa fa-star`} />;
-          }
-        })}
-        <span className={css.ratingCount}>
-          {' '}
-          (
-          {this.props.data.ratingCount}
-          )
-        </span>
-      </div>
-    );
+  getFormattedPrice() {
+    const { lang, data: { availability, price } } = this.props;
+    if (availability === 'unavailable')
+      return '';
+
+    const formatter = new Intl.NumberFormat(lang, {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 2,
+    });
+
+    return formatter.format(price || 0);
   }
 
   render() {
-    const { image, name, price, source } = this.props.data;
+    const { image, name, source, address, availability } = this.props.data;
     return (
-      <div className={`${css.container} d-inline-flex flex-column border ${this.props.className || ''}`}>
+      <div className={`${css.container} d-inline-flex flex-column ${this.props.className || ''}`}>
         <div className={css.imageWrapper}>
-          <Image className={css.image} src={image} />
+          <img className={css.image} src={image} alt="Product image" />
         </div>
-        <span className={css.title}>
-          <h5>{name}</h5>
+        <h5 className={css.title}>{name}</h5>
+        <span className={css.market}>
+          <b>{source}</b>
+          <br />
+          {address ? address.split('\n').map((item, key) => (
+            <React.Fragment key={key}>
+              {item}
+              <br />
+            </React.Fragment>
+          )) : ''}
         </span>
-        <div className={css.market}>
-          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-          <span className={css.price}>{price} €</span> bei <a href="#">{source}</a>
+        <div className={`${css.status} ${availability}`}>
+          <span className={css.dot} />
+          <span className={css.availability}>{this.getI18NAvailability()}</span>
+          <span className={css.price}>{this.getFormattedPrice()}</span>
         </div>
-        {this.renderRating()}
       </div>
     );
   }
 }
+
+ResultItem.contextTypes = {
+  t: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  lang: state.i18nState.lang,
+});
+
+export default connect(mapStateToProps)(ResultItem);
