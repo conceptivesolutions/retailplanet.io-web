@@ -12,7 +12,6 @@ function mockItemData() {
     image: 'https://chronexttime.imgix.net/M/0/M02357/M02357_1_det1.png?w=800&auto=format&fm=jpg&q=75&usm=30&usmrad=1&h=800&fit=clamp',
     price: 7760.95,
     source: 'Media Markt',
-    location: 'Landshut',
     availability: 'available',
     address: 'Ludwig Erhard Strasse 9\n84034 Landshut',
     rating: 4.99,

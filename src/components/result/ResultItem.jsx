@@ -14,7 +14,10 @@ class ResultItem extends React.Component {
   }
 
   getI18NAvailability() {
-    return this.context.t('availability')[this.props.data.availability];
+    let { availability } = this.props.data;
+    if (!availability)
+      availability = 'NOTSET';
+    return this.context.t('availability')[availability];
   }
 
   getFormattedPrice() {

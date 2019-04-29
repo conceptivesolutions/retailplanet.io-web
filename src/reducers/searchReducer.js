@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import buildSearchQuery from '../helpers/rest/searchQueryHelper';
 import bearerFetch from '../auth/bearerFetch';
 
@@ -50,14 +51,25 @@ function executeSearch(query, page, user, filters) {
       .then(response => response.json())
       .then((json) => {
         const result = {};
-        result.items = json.elements.map(pElement => ({
-          name: pElement.name,
-          price: pElement.price,
-          image: pElement.previews ? pElement.previews[0] : '',
-          source: pElement.source.name,
-          rating: 0,
-          ratingCount: 0,
-        }));
+        result.items = _.flatMap(json.elements, (pElement) => {
+          const { markets } = pElement;
+          if (!markets)
+            return [];
+
+          return markets.map(pMarket => ({
+            name: pElement.name,
+            price: pElement.price,
+            image: pElement.previews ? pElement.previews[0] : '',
+            source: pMarket._type,
+            availability: pMarket.availability,
+            address: pMarket.address,
+            location: pMarket.location,
+            rating: 0,
+            ratingCount: 0,
+          }));
+        });
+
+
         result.page = {
           count: Math.ceil(json.maxSize / json.length),
         };

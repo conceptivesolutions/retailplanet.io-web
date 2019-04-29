@@ -29,6 +29,7 @@
     "fsevents": "2.0.6",
     "http-proxy-middleware": "0.19.1",
     "isomorphic-unfetch": "3.0.0",
+    "lodash": "^4.17.11",
     "nedb": "1.8.0",
     "next": "v8.1.1-canary.16",
     "next-nprogress": "1.4.0",

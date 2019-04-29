@@ -3,9 +3,10 @@ export default {
   en: {
     privacy: require('./_privacy_en.html'),
     availability: {
-      available: 'Available',
-      orderable: 'Orderable',
-      unavailable: 'Not Available',
+      AVAILABLE: 'Available',
+      ORDERABLE: 'Orderable',
+      UNAVAILABLE: 'Not Available',
+      NOTSET: 'No Info',
     },
     langs: {
       en: 'English',
@@ -16,9 +17,10 @@ export default {
     imprint: require('./_imprint_de.html'),
     privacy: require('./_privacy_de.html'),
     availability: {
-      available: 'Auf Lager',
-      orderable: 'Bestellbar',
-      unavailable: 'Nicht Verfügbar',
+      AVAILABLE: 'Auf Lager',
+      ORDERABLE: 'Bestellbar',
+      UNAVAILABLE: 'Nicht Verfügbar',
+      NOTSET: 'Keine Info',
     },
     langs: {
       en: 'Englisch',

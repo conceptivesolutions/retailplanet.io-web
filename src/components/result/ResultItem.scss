@@ -92,7 +92,7 @@ $unavailable: #bb0000;
   }
 }
 
-:global(.available) {
+:global(.AVAILABLE) {
   .availability {
     color: $available;
   }
@@ -102,7 +102,7 @@ $unavailable: #bb0000;
   }
 }
 
-:global(.orderable) {
+:global(.ORDERABLE) {
   .availability {
     color: $orderable;
   }
@@ -112,7 +112,7 @@ $unavailable: #bb0000;
   }
 }
 
-:global(.unavailable) {
+:global(.UNAVAILABLE) {
   .availability {
     color: $unavailable;
   }
