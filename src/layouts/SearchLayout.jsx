@@ -3,31 +3,25 @@ import { connect } from 'react-redux';
 import Link from 'next/link';
 import { Image } from 'react-bootstrap';
 import Header from '../components/header/Header';
-import Footer from '../components/footer/Footer';
 import LoadingIndicator from '../components/loading/LoadingIndicator';
 import css from './SearchLayout.scss';
 import ResultFilters from '../components/filters/ResultFilters';
+import Footer from '../components/footer/Footer';
 
-class SearchLayout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.renderContent = this.renderContent.bind(this);
-  }
+const SearchLayout = ({ loading, children }) => {
+  let container = null;
 
-  renderContent() {
-    const { loading, children } = this.props;
-    let container = null;
+  if (loading)
+    container = (
+      <div className="d-flex flex-column align-items-center justify-content-center h-100">
+        <LoadingIndicator />
+      </div>
+    );
+  else
+    container = children;
 
-    if (loading)
-      container = (
-        <div className="d-flex flex-column align-items-center justify-content-center h-100">
-          <LoadingIndicator />
-        </div>
-      );
-    else
-      container = children;
-
-    return (
+  return (
+    <div className={css.page}>
       <div className={css.content}>
         <div className={css.filterContainer}>
           <Link href="/">
@@ -36,24 +30,18 @@ class SearchLayout extends React.Component {
             </a>
           </Link>
           <ResultFilters className={css.filter} />
+          <Footer className={css.footer} />
         </div>
         <div className={css.container}>
-          {container}
+          <Header withSearch />
+          <div className={css.subcontent}>
+            {container}
+          </div>
         </div>
       </div>
-    );
-  }
-
-  render() {
-    return (
-      <div className={css.page}>
-        <Header withSearch />
-        {this.renderContent()}
-        <Footer />
-      </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   loading: state.search.loading,
