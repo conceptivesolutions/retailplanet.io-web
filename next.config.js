@@ -17,6 +17,9 @@ module.exports = withSass({
     geolocationToken: process.env.MAPBOX_TOKEN,
     baseurl: process.env.BASEURL,
   },
+  onDemandEntries: {
+    maxInactiveAge: 24 * 60 * 60 * 1000,
+  },
   webpack: (config) => {
     // Server .html-Files in i18n folder via raw-loader, to include it in translations.js
     config.module.rules.push(
