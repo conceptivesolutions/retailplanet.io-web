@@ -10,17 +10,21 @@ import css from './HeaderProfile.scss';
 class HeaderProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.createUserComp = this.createUserComp.bind(this);
+    this.getUserDisplayName = this.getUserDisplayName.bind(this);
   }
 
-  createUserComp() {
-    return (
-      <React.Fragment>
-        <img src={`/api/profile/avatar/${encodeURIComponent(this.props.user.profile.id)}.png`}
-          alt="avatar" className={`${css.profilepic} mr-2 rounded-circle`} />
-        {this.props.user.profile.username}
-      </React.Fragment>
-    );
+  /**
+   * @returns {string} Returns the current users displayname
+   */
+  getUserDisplayName() {
+    const { username, name } = this.props.user.profile;
+    if (name) {
+      const { givenName, familyName } = name;
+      if (givenName && familyName)
+        return `${givenName} ${familyName}`;
+    }
+
+    return username;
   }
 
   render() {
@@ -31,7 +35,7 @@ class HeaderProfile extends React.Component {
             <React.Fragment>
               <img src={`/api/profile/avatar/${encodeURIComponent(this.props.user.profile.id)}.png`}
                 alt="avatar" className={`${css.profilepic} mr-2 rounded-circle`} />
-              {this.props.user.profile.username}
+              {this.getUserDisplayName()}
               <i className={`${css.dropdownToggleCustom} fa fa-angle-down`} />
             </React.Fragment>
           )} id="basic-nav-dropdown" alignRight>
