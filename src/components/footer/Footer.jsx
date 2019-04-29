@@ -3,6 +3,7 @@ import { Image, Nav, Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Link from 'next/link';
 import css from './Footer.scss';
+import Language from '../header/lang/Language';
 
 /**
  * props.fixedBottom = If set, the footer will be fixed bottom
@@ -24,8 +25,21 @@ class Footer extends React.Component {
     );
   }
 
+  static renderLang() {
+    return (
+      <React.Fragment>
+        <Nav className="mr-auto" />
+        <Nav>
+          <Nav.Link>
+            <Language />
+          </Nav.Link>
+        </Nav>
+      </React.Fragment>
+    );
+  }
+
   render() {
-    const { fixedBottom, withLogo, className } = this.props;
+    const { fixedBottom, withLogo, withLang, className } = this.props;
 
     return (
       <Navbar fixed={fixedBottom ? 'bottom' : ''} variant="dark" expand="lg" className={`${css.pageFooter} border-0 ${className || ''}`}>
@@ -39,6 +53,7 @@ class Footer extends React.Component {
             <a className="nav-link text-white mr-4">Datenschutz</a>
           </Link>
         </Nav>
+        {withLang ? Footer.renderLang() : ''}
         {withLogo ? Footer.renderLogo() : ''}
       </Navbar>
     );

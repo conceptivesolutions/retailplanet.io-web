@@ -3,7 +3,6 @@ import { Image, Nav, Navbar } from 'react-bootstrap';
 import Link from 'next/link';
 import ProfileSmall from './profile/HeaderProfile';
 import css from './Header.scss';
-import Language from './lang/Language';
 import HeaderSearchbar from './search/HeaderSearchbar';
 
 /**
@@ -57,10 +56,6 @@ export default class Header extends React.Component {
           <Nav className="mr-auto" />
           {this.renderCustomComponents()}
           <Nav>
-            <Nav.Item>
-              <Language />
-            </Nav.Item>
-            <Nav.Item className="mx-2 border-left" />
             <Nav.Item>
               <ProfileSmall />
             </Nav.Item>

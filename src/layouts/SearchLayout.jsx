@@ -31,11 +31,11 @@ const SearchLayout = ({ loading, children }) => {
             </a>
           </Link>
           <ResultFilters className={css.filter} />
-          <Footer className={css.footer} />
+          <Footer className={css.footer} withLang />
         </div>
         <div className={css.container}>
           <Header withSearch />
-          <Navigation className={css.navigation}/>
+          <Navigation className={css.navigation} />
           <div className={css.subcontent}>
             {container}
           </div>

@@ -11,10 +11,9 @@ flags.en = 'https://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_Unit
 /**
  * Component which can change the language of the whole application
  */
-const Language = (props, context) => (
+const Language = (props) => (
   <React.Fragment>
     <Image className={`${css.langFlag} mr-2`} src={flags[props.lang]} />
-    {context.t('langs')[props.lang]}
   </React.Fragment>
 );
 
