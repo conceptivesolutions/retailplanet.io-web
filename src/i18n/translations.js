@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 export default {
   en: {
+    imprint: require('./_imprint_de.html'),
     privacy: require('./_privacy_en.html'),
     availability: {
       AVAILABLE: 'Available',

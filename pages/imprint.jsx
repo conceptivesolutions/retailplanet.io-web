@@ -8,7 +8,7 @@ const Imprint = (props, context) => (
   <TextOnlyLayout>
     {/* eslint-disable-next-line react/no-danger */}
     <div dangerouslySetInnerHTML={{
-      __html: context.t('imprint'),
+      __html: context.t('imprint').default,
     }} />
   </TextOnlyLayout>
 );

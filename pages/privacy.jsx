@@ -8,7 +8,7 @@ const Privacy = (props, context) => (
   <TextOnlyLayout>
     {/* eslint-disable-next-line react/no-danger */}
     <div dangerouslySetInnerHTML={{
-      __html: context.t('privacy'),
+      __html: context.t('privacy').default,
     }} />
   </TextOnlyLayout>
 );
