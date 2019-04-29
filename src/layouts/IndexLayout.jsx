@@ -13,6 +13,6 @@ export default ({ children }) => (
   <div className={css.rootContainer}>
     <Header fixedTop withLogo transparent />
     <Container className="h-100">{children}</Container>
-    <Footer fixedBottom />
+    <Footer fixedBottom withLogo />
   </div>
 );

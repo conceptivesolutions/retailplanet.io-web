@@ -18,4 +18,4 @@ storiesOf('Navigation', module)
       <Header withSearch />
     </div>
   ))
-  .add('Page Footer', () => <Footer />);
+  .add('Page Footer', () => <Footer withLogo />);

@@ -11,6 +11,6 @@ export default ({ children }) => (
   <div className={css.rootContainer}>
     <Header fixedTop withLogo />
     <Container>{children}</Container>
-    <Footer fixedBottom />
+    <Footer fixedBottom withLogo />
   </div>
 );
