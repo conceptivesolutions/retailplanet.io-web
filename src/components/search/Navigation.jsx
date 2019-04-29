@@ -17,8 +17,8 @@ const Navigation = (props, context) => (
     <span className={css.orderLabel}>{context.t('orderby')}</span>
     <select defaultValue={props.sorting} onChange={e => props.switchOrder(e.target.value)}>
       <option value={searchSort.RELEVANCE_DESC}>{context.t('sort').relevance}</option>
-      <option value={searchSort.PRICE_DESC}>{context.t('sort').price_asc}</option>
-      <option value={searchSort.PRICE_ASC}>{context.t('sort').price_desc}</option>
+      <option value={searchSort.PRICE_ASC}>{context.t('sort').price_asc}</option>
+      <option value={searchSort.PRICE_DESC}>{context.t('sort').price_desc}</option>
     </select>
   </div>
 );
