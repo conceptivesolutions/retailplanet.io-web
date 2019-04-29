@@ -2,6 +2,12 @@ import _ from 'lodash';
 import buildSearchQuery from '../helpers/rest/searchQueryHelper';
 import bearerFetch from '../auth/bearerFetch';
 
+export const searchSort = {
+  PRICE_ASC: 'PRICE_ASC',
+  PRICE_DESC: 'PRICE_DESC',
+  RELEVANCE_DESC: 'RELEVANCE_DESC',
+};
+
 const initSearchState = {
   countries: [],
   loading: false,
@@ -10,8 +16,10 @@ const initSearchState = {
     pos: [],
     neg: [],
   },
+  sorting: searchSort.RELEVANCE_DESC,
   results: {
     query: null,
+    total: -1,
     page: {
       current: -1,
       count: -1,
@@ -27,6 +35,7 @@ export const searchActions = {
   SET_QUERY: 'SET_QUERY',
   SET_FILTER: 'SET_FILTER',
   SET_EDITING: 'SET_EDITING',
+  SET_SORTING: 'SET_SORTING',
 };
 
 function setQuery(query) {
@@ -43,11 +52,12 @@ function setQuery(query) {
  * @param page page index
  * @param user current user
  * @param filters filter-object
+ * @param sort sorting
  */
-function executeSearch(query, page, user, filters) {
+function executeSearch(query, page, user, filters, sort) {
   return {
     type: searchActions.SEARCH,
-    payload: bearerFetch(buildSearchQuery(query, null, page * 20, 20, filters), user)
+    payload: bearerFetch(buildSearchQuery(query, sort, page * 20, 20, filters), user)
       .then(response => response.json())
       .then((json) => {
         const result = {};
@@ -69,7 +79,7 @@ function executeSearch(query, page, user, filters) {
           }));
         });
 
-
+        result.total = json.maxSize;
         result.page = {
           count: Math.ceil(json.maxSize / json.length),
         };
@@ -103,12 +113,11 @@ export function runSearch(query, page) {
       query,
       page,
     }));
-    const { user, search: { filters: { pos, neg } } } = getState();
-
+    const { user, search: { filters: { pos, neg }, sorting } } = getState();
     if (query)
       dispatch(executeSearch(query, page, user, {
         pos, neg,
-      }));
+      }, sorting));
     else
       dispatch(clearSearch());
   };
@@ -124,6 +133,18 @@ export function rerunSearch() {
     const { search: { results: { query } } } = getState();
     if (query)
       dispatch(runSearch(query, 0));
+  };
+}
+
+/**
+ * Sets the current sorting attribute
+ *
+ * @param sorting attribute
+ */
+export function setSorting(sorting) {
+  return {
+    type: searchActions.SET_SORTING,
+    payload: sorting,
   };
 }
 
@@ -188,11 +209,18 @@ export default (state = initSearchState, action) => {
         results: {
           ...state.results,
           items: action.payload.items,
+          total: action.payload.total,
           page: {
             current: state.results.page.current,
             count: action.payload.page.count,
           },
         },
+      };
+
+    case searchActions.SET_SORTING:
+      return {
+        ...state,
+        sorting: action.payload,
       };
 
     case searchActions.SET_FILTER: {
