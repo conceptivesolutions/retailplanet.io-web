@@ -5,6 +5,7 @@ import ResultItem from '../src/components/result/ResultItem';
 import { withI18N, withReduxStore } from '../.storybook/decorators';
 import ResultPagination from '../src/components/result/ResultPagination';
 import ResultList from '../src/components/result/ResultList';
+import Navigation from '../src/components/search/Navigation';
 
 function mockItemData() {
   return {
@@ -29,6 +30,8 @@ function mockResultItemsArray(size) {
 const mockedStore = configureStore()({
   search: {
     results: {
+      query: 'My Dummy Query',
+      total: 9876,
       page: {
         current: 1,
         count: 5,
@@ -44,6 +47,7 @@ const mockedStore = configureStore()({
 storiesOf('Result', module)
   .addDecorator(withI18N)
   .addDecorator(withReduxStore(mockedStore))
+  .add('Navigation', () => <Navigation />)
   .add('Page', () => (
     <React.Fragment>
       <ResultList />

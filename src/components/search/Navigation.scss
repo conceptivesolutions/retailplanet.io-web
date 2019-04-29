@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+
+.navigation {
+  height: $header-height;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 0;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+
+  .searchLabel {
+    flex-grow: 1;
+  }
+
+  .orderLabel {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+}

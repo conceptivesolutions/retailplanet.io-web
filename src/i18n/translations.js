@@ -8,6 +8,13 @@ export default {
       UNAVAILABLE: 'Not Available',
       NOTSET: 'No Info',
     },
+    results: 'Displaying results for "{query}" ({total})',
+    orderby: 'Order by',
+    sort: {
+      relevance: 'Relevance',
+      price_asc: 'Price (ascending)',
+      price_desc: 'Price (descending)',
+    },
     langs: {
       en: 'English',
       de: 'German',
@@ -21,6 +28,13 @@ export default {
       ORDERABLE: 'Bestellbar',
       UNAVAILABLE: 'Nicht Verfügbar',
       NOTSET: 'Keine Info',
+    },
+    results: 'Suchergebnisse für "{query}" ({total})',
+    orderby: 'Sortieren nach',
+    sort: {
+      relevance: 'Relevanz',
+      price_asc: 'Preis (aufsteigend)',
+      price_desc: 'Preis (absteigend)',
     },
     langs: {
       en: 'Englisch',

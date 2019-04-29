@@ -7,6 +7,7 @@ import LoadingIndicator from '../components/loading/LoadingIndicator';
 import css from './SearchLayout.scss';
 import ResultFilters from '../components/filters/ResultFilters';
 import Footer from '../components/footer/Footer';
+import Navigation from '../components/search/Navigation';
 
 const SearchLayout = ({ loading, children }) => {
   let container = null;
@@ -34,6 +35,7 @@ const SearchLayout = ({ loading, children }) => {
         </div>
         <div className={css.container}>
           <Header withSearch />
+          <Navigation className={css.navigation}/>
           <div className={css.subcontent}>
             {container}
           </div>
