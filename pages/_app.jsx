@@ -22,7 +22,8 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, store } = this.props;
-    const { dev } = getConfig().publicRuntimeConfig;
+    const { publicRuntimeConfig = {} } = getConfig() || {};
+    const { dev = true } = publicRuntimeConfig;
 
     // noinspection HtmlUnknownTarget
     return (

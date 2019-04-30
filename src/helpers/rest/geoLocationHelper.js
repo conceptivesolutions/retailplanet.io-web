@@ -2,7 +2,7 @@ import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import getConfig from 'next/config';
 import fetch from 'isomorphic-unfetch';
 
-const { publicRuntimeConfig } = getConfig();
+const { publicRuntimeConfig = {} } = getConfig() || {};
 const { geolocationToken, baseurl } = publicRuntimeConfig;
 const countryFilter = 'country=de';
 const postURL = `access_token=${geolocationToken}&autocomplete=true&${countryFilter}`;
