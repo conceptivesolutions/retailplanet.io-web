@@ -1,0 +1,11 @@
+:global(html),
+:global(body),
+:global(#root) {
+  height: 100%;
+}
+
+:global(#root) {
+  width: 20rem;
+  background: #F8F8F8;
+  padding: 0.5rem;
+}
