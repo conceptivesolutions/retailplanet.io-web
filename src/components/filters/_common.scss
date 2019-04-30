@@ -13,11 +13,16 @@ $spacing: 10px;
   border: $border-width solid $border-color;
   background: $white;
   padding: 1rem;
+  margin-top: $spacing;
 
   :global(.form-label) b {
     margin-bottom: 0.25rem;
   }
 
+}
+
+.filterContainer:first-child {
+  margin-top: 0;
 }
 
 .submit {
