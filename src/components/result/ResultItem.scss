@@ -1,4 +1,5 @@
 @import "../../styles/variables";
+@import "../../styles/static/common";
 
 $available: #13A801;
 $orderable: #eac300;
@@ -48,7 +49,7 @@ $unavailable: #bb0000;
   margin-top: 0.5rem;
   padding-top: 0.25rem;
   margin-bottom: 0.25rem;
-  border-top: 1px solid var(--primary);
+  border-top: 1px solid $primary;
 }
 
 .market {
@@ -86,7 +87,7 @@ $unavailable: #bb0000;
     font-weight: bold;
     font-size: 1.25rem;
     line-height: 1.25rem;
-    color: var(--primary);
+    color: $primary;
     padding: 0;
     margin: 0;
   }

@@ -1,12 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Hind:400,700");
-
-// Overwritten Font
-$font-family-sans-serif: "Hind", sans-serif;
-$font-size-base: 0.9rem;
-
-// Overwritten colors in bootstrap
-$primary: #2E6BA1;
-$body-color: #333;
+@import "common";
 
 // Disable rounded components
 $enable-rounded: false;
