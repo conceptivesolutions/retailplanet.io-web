@@ -20,6 +20,7 @@ const initSearchState = {
   results: {
     query: null,
     total: -1,
+    filters: {},
     page: {
       current: -1,
       count: -1,
@@ -79,6 +80,7 @@ function executeSearch(query, page, user, filters, sort) {
           }));
         });
 
+        result.filters = json.filters;
         result.total = json.maxSize;
         result.page = {
           count: Math.ceil(json.maxSize / json.length),
@@ -198,6 +200,7 @@ export default (state = initSearchState, action) => {
         loading: true,
         results: {
           ...state.results,
+          filters: {},
           items: [],
         },
       };
@@ -210,6 +213,7 @@ export default (state = initSearchState, action) => {
           ...state.results,
           items: action.payload.items,
           total: action.payload.total,
+          filters: action.payload.filters,
           page: {
             current: state.results.page.current,
             count: action.payload.page.count,

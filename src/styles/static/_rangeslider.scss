@@ -1,0 +1,26 @@
+@import "common";
+
+$input-range-slider-transition: none;
+$input-range-slider-container-transition: none;
+$input-range-track-transition: none;
+
+$input-range-primary-color: $primary;
+$input-range-font-family: $font-family-sans-serif;
+$input-range-neutral-color: $body-color;
+
+@import '../../../node_modules/react-input-range/src/scss/input-range/input-range-variables';
+@import '../../../node_modules/react-input-range/src/scss/input-range/input-range-slider';
+@import '../../../node_modules/react-input-range/src/scss/input-range/input-range-label';
+@import '../../../node_modules/react-input-range/src/scss/input-range/input-range-label-container';
+@import '../../../node_modules/react-input-range/src/scss/input-range/input-range-track';
+
+.input-range {
+  height: $input-range-slider-height;
+  position: relative;
+  width: 100%;
+
+  .input-range__slider:hover {
+    transform: $input-range-slider-active-transform;
+  }
+
+}

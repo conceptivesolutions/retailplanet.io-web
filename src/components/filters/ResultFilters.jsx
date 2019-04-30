@@ -1,4 +1,5 @@
 import React from 'react';
+import PriceFilter from './price/PriceFilter';
 import GeoFilter from './geo/GeoFilter';
 
 /**
@@ -10,5 +11,6 @@ import GeoFilter from './geo/GeoFilter';
 export default props => (
   <div className={props.className}>
     <GeoFilter />
+    <PriceFilter />
   </div>
 );
