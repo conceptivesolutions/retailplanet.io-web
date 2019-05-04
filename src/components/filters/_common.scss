@@ -10,10 +10,10 @@ $spacing: 10px;
 
 .filterContainer {
   border: 0;
-  border: $border-width solid $border-color;
-  background: $white;
+  background: #40444A;
+  color: #DDDDDD;
   padding: 1rem;
-  margin-top: $spacing;
+  margin: $spacing $border-width $border-width;
 
   :global(.form-label) b {
     margin-bottom: 0.25rem;
