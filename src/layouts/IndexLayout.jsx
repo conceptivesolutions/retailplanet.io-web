@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container } from 'semantic-ui-react';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import css from './IndexLayout.scss';
@@ -12,7 +12,7 @@ import css from './IndexLayout.scss';
 export default ({ children }) => (
   <div className={css.rootContainer}>
     <Header fixedTop withLogo transparent />
-    <Container className="h-100">{children}</Container>
+    <Container className={css.container}>{children}</Container>
     <Footer fixedBottom withLogo />
   </div>
 );
