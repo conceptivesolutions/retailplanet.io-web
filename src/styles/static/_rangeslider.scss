@@ -5,7 +5,7 @@ $input-range-slider-container-transition: none;
 $input-range-track-transition: none;
 
 $input-range-primary-color: $primary;
-$input-range-font-family: $font-family-sans-serif;
+//$input-range-font-family: $font-family-sans-serif; todo
 $input-range-neutral-color: $body-color;
 
 @import '../../../node_modules/react-input-range/src/scss/input-range/input-range-variables';
