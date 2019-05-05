@@ -12,7 +12,9 @@
     "eslint-check": "eslint ./\"{pages,src,stories}/**/*.{js,jsx}\"",
     "eslint-fix": "eslint ./\"{pages,src,stories}/**/*.{js,jsx}\" --fix",
     "fix-styles": "prettier-stylelint --write",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "semantic:build": "cd .semantic && gulp build-css build-assets",
+    "semantic:watch": "cd .semantic && npm run build-semantic && gulp watch"
   },
   "prettier": {},
   "author": "Werner Glanzer",
@@ -21,7 +23,6 @@
     "@fortawesome/fontawesome-free": "5.8.1",
     "@zeit/next-sass": "1.0.1",
     "awesome-debounce-promise": "2.1.0",
-    "bootstrap": "4.3.1",
     "compression": "1.7.4",
     "express": "4.16.4",
     "express-session": "1.16.1",
@@ -40,7 +41,6 @@
     "prop-types": "15.7.2",
     "raw-loader": "2.0.0",
     "react": "16.8.6",
-    "react-bootstrap": "1.0.0-beta.5",
     "react-dom": "16.8.6",
     "react-input-range": "1.3.0",
     "react-redux": "7.0.2",
@@ -51,6 +51,8 @@
     "redux-mock-store": "1.5.3",
     "redux-promise-middleware": "6.1.0",
     "redux-thunk": "2.3.0",
+    "semantic-ui-css": "2.4.1",
+    "semantic-ui-react": "0.86.0",
     "styled-jsx": "3.0.0",
     "webStorage": "2.1.1"
   },

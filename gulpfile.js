@@ -12,6 +12,10 @@ const paths = {
     src: 'node_modules/@fortawesome/fontawesome-free/webfonts/**',
     dest: 'static/fonts',
   },
+  semantic_ui_fonts: {
+    src: 'node_modules/semantic-ui-css/themes/**',
+    dest: 'static/styles/themes/',
+  },
 };
 
 /**
@@ -38,8 +42,17 @@ function fonts() {
     .pipe(gulp.dest(paths.fontawesome_fonts.dest));
 }
 
+/**
+ * Copy semantic-fonts to our local folder
+ */
+function semanticFonts() {
+  return gulp.src(paths.semantic_ui_fonts.src)
+    .pipe(gulp.dest(paths.semantic_ui_fonts.dest));
+}
+
 exports.clean = clean;
 exports.styles = styles;
 exports.fonts = fonts;
+exports.semanticFonts = semanticFonts;
 
-exports.default = gulp.series(clean, gulp.parallel(styles, fonts));
+exports.default = gulp.series(clean, gulp.parallel(styles, fonts, semanticFonts));
