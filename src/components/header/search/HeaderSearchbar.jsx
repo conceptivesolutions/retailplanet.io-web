@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { FormControl, InputGroup } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
 import { withRouter } from 'next/router';
+import { Form, Input, Search } from 'semantic-ui-react';
 import css from './HeaderSearchbar.scss';
 import { runSearch } from '../../../reducers/searchReducer';
 
@@ -10,6 +9,11 @@ import { runSearch } from '../../../reducers/searchReducer';
  * @author w.glanzer, 24.03.2019
  */
 class HeaderSearchbar extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.onSearchSumit = this.onSearchSumit.bind(this);
+  }
+
   onSearchSumit(e) {
     e.preventDefault();
     this.props.onExecute(e.target.query.value);
@@ -22,12 +26,9 @@ class HeaderSearchbar extends React.Component {
   }
 
   render() {
-    const { className, query } = this.props;
     return (
       <Form onSubmit={e => this.onSearchSumit(e)}>
-        <InputGroup className={className}>
-          <FormControl type="Query" name="query" className={`${css.searchField}`} defaultValue={query || ''} />
-        </InputGroup>
+        <Input name="query" className={`${css.searchField} ${this.props.className}`} icon="search" />
       </Form>
     );
   }

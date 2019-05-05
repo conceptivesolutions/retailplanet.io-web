@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Image } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Image } from 'semantic-ui-react';
 import css from './Language.scss';
 
 const flags = [];

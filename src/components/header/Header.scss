@@ -1,29 +1,12 @@
 @import "../../styles/variables";
 
 .pageHeader {
-  padding: 0.25rem 0.25rem;
   height: $header-height;
   border: 0;
-
-  :global(.nav-item) {
-    height: $header-height - 0.25rem;
-    display: flex;
-    align-items: center;
-  }
 
   .logo {
     padding: 0.25rem;
     height: $header-height - 0.25rem;
-  }
-}
-
-.bgPageHeader {
-  background-color: $header-background !important;
-}
-
-@include media-breakpoint-up(xl) {
-  .searchBar {
-    min-width: 650px;
   }
 }
 

@@ -3,13 +3,10 @@
 .pageFooter {
   background-color: #000;
   height: $header-height;
-}
 
-.pageFooter :global(.navbar-nav a) {
-  cursor: pointer;
-}
+  .logo {
+    padding: 0.4rem;
+    height: $header-height - 0.4rem;
+  }
 
-.logo {
-  padding: 0.4rem;
-  height: $header-height - 0.4rem;
 }

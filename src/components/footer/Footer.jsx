@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Image, Nav, Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Link from 'next/link';
+import { Image, Menu } from 'semantic-ui-react';
 import css from './Footer.scss';
 import Language from '../header/lang/Language';
 
@@ -14,48 +14,42 @@ import Language from '../header/lang/Language';
 class Footer extends React.Component {
   static renderLogo() {
     return (
-      <React.Fragment>
-        <Nav className="mr-auto" />
-        <Nav>
-          <Nav.Item className="text-light">
-            <Image className={css.logo} src="https://www.conceptive.io/static/logo/symbol_text/300_dark.png" />
-          </Nav.Item>
-        </Nav>
-      </React.Fragment>
+      <Menu.Menu position="right">
+        <Menu.Item>
+          <Link href="/">
+            <a>
+              <Image className={`${css.logo}`} src="https://www.conceptive.io/static/logo/symbol_text/300_dark.png" />
+            </a>
+          </Link>
+        </Menu.Item>
+      </Menu.Menu>
     );
   }
 
   static renderLang() {
     return (
-      <React.Fragment>
-        <Nav className="mr-auto" />
-        <Nav>
-          <Nav.Link>
-            <Language />
-          </Nav.Link>
-        </Nav>
-      </React.Fragment>
+      <Menu.Item>
+        <Language />
+      </Menu.Item>
     );
   }
 
   render() {
-    const { fixedBottom, withLogo, withLang, className } = this.props;
-
     return (
-      <Navbar fixed={fixedBottom ? 'bottom' : ''} variant="dark" expand="lg" className={`${css.pageFooter} border-0 ${className || ''}`}>
-        <Nav>
+      <Menu className={`${css.pageFooter} ${this.props.className || ''}`} inverted>
+        <Menu.Item>
           <Link href="/imprint">
-            <a className="nav-link text-white mr-4">Impressum</a>
+            <a>Impressum</a>
           </Link>
-        </Nav>
-        <Nav>
+        </Menu.Item>
+        <Menu.Item>
           <Link href="/privacy">
-            <a className="nav-link text-white mr-4">Datenschutz</a>
+            <a>Datenschutz</a>
           </Link>
-        </Nav>
-        {withLang ? Footer.renderLang() : ''}
-        {withLogo ? Footer.renderLogo() : ''}
-      </Navbar>
+        </Menu.Item>
+        {this.props.withLang ? Footer.renderLang() : ''}
+        {this.props.withLogo ? Footer.renderLogo() : ''}
+      </Menu>
     );
   }
 }
