@@ -36,7 +36,7 @@ export default class Header extends React.Component {
     return (
       <Menu className={`${css.pageHeader} ${this.props.className || ''}`} secondary>
         {this.props.withLogo ? Header.renderLogo() : ''}
-        <Menu.Menu secondary position="right">
+        <Menu.Menu position="right">
           {this.props.withSearch ? Header.renderSearch() : ''}
           <Menu.Item>
             <ProfileSmall />
