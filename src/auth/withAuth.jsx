@@ -15,17 +15,20 @@ let globalUser = null;
 const withAuth = (Page, { loginRequired = false, logoutRequired = false } = {}) => class BaseComponent extends React.Component {
   componentWillMount() {
     const { user, isFromServer } = this.props;
+    const canRedirect = typeof window !== 'undefined';
 
     if (isFromServer)
       globalUser = user;
 
     if (loginRequired && !logoutRequired && !user) {
-      Router.push('/login');
+      if (canRedirect)
+        Router.push('/login');
       return;
     }
 
     if (logoutRequired && user) {
-      Router.push('/logout');
+      if (canRedirect)
+        Router.push('/logout');
       return;
     }
 
