@@ -9,6 +9,7 @@ import './filters.stories.scss';
 storiesOf('Filters', module)
   .addDecorator(withI18N)
   .addDecorator(withReduxStore())
+  .addDecorator(pStory => <div className="filters">{pStory()}</div>)
   .add('All', () => (<ResultFilters />))
   .add('Price', () => (<PriceFilter />)) // todo does not show...
   .add('Location', () => (<GeoFilter />));
