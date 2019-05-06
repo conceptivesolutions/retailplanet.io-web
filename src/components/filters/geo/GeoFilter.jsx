@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import AsyncSelect from 'react-select/lib/Async';
-import { Button, Form, Input, Segment } from 'semantic-ui-react';
+import { Button, Form, Input } from 'semantic-ui-react';
 import css from './GeoFilter.scss';
 import { edit, rerunSearch, setFilter } from '../../../reducers/searchReducer';
 import { search, searchRev } from '../../../helpers/rest/geoLocationHelper';
@@ -107,15 +107,13 @@ class GeoFilter extends React.Component {
 
   render() {
     return (
-      <Segment>
-        <Form className={css.filterContainer} onSubmit={this.props.isEditing ? this.onSubmit : null}>
-          <h5>Märkte in der Nähe</h5>
-          {!this.props.isEditing
-            ? (<Button className={css.edit} variant="link" onClick={this.onEdit}>change</Button>)
-            : null}
-          {this.props.isEditing ? this.renderEditState() : this.renderShowState()}
-        </Form>
-      </Segment>
+      <Form className={css.filterContainer} onSubmit={this.props.isEditing ? this.onSubmit : null}>
+        <h5>Märkte in der Nähe</h5>
+        {!this.props.isEditing
+          ? (<Button className={css.edit} variant="link" onClick={this.onEdit}>change</Button>)
+          : null}
+        {this.props.isEditing ? this.renderEditState() : this.renderShowState()}
+      </Form>
     );
   }
 }
