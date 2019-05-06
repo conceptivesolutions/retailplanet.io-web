@@ -33,7 +33,7 @@ $unavailable: #bb0000;
   flex-shrink: 0;
   flex-grow: 0;
   overflow: hidden;
-  background: $white;
+  background: white;
 
   .image {
     width: 100%;
@@ -65,7 +65,7 @@ $unavailable: #bb0000;
   flex-grow: 0;
 
   .dot {
-    background-color: $gray-400;
+    background-color: lightgray;
     height: 1.25rem;
     width: 1.25rem;
     border-radius: 50%;
@@ -74,7 +74,7 @@ $unavailable: #bb0000;
   }
 
   .availability {
-    color: $gray-400;
+    color: lightgray;
     flex-grow: 1;
     padding-top: 0.2rem;
     line-height: 1rem;

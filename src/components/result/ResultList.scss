@@ -1,5 +1,14 @@
-.item {
+$space: 0.25rem;
+
+.list {
   display: flex;
   flex: 1 0 auto;
   flex-wrap: wrap;
+  margin-top: $space;
+  margin-left: $space;
+}
+
+.item {
+  margin-bottom: $space;
+  margin-right: $space;
 }

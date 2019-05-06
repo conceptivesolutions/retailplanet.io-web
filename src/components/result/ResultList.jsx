@@ -11,10 +11,10 @@ const ResultList = (props) => {
   if (!props.results || props.results.length === 0)
     return <span>No data</span>;
   return (
-    <div className={`${css.item} mb-3 mr-3`}>
+    <div className={css.list}>
       {/* eslint-disable-next-line react/no-array-index-key */}
       {props.results.map((pItem, pIndex) => (
-        <ResultItem className="ml-3 mt-3" data={pItem} key={pIndex} />
+        <ResultItem className={css.item} data={pItem} key={pIndex} />
       ))}
     </div>
   );
