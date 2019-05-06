@@ -13,7 +13,7 @@ $spacing: 10px;
   background: #40444A;
   color: #DDDDDD;
   padding: 1rem;
-  margin: $spacing $border-width $border-width;
+  margin: $spacing 2px 2px;
 
   :global(.form-label) b {
     margin-bottom: 0.25rem;
