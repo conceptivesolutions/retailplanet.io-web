@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Card } from 'semantic-ui-react';
 import ResultItem from './ResultItem';
 import css from './ResultList.scss';
 
@@ -12,10 +13,12 @@ const ResultList = (props) => {
     return <span>No data</span>;
   return (
     <div className={css.list}>
-      {/* eslint-disable-next-line react/no-array-index-key */}
-      {props.results.map((pItem, pIndex) => (
-        <ResultItem className={css.item} data={pItem} key={pIndex} />
-      ))}
+      <Card.Group itemsPerRow={6} doubling>
+        {/* eslint-disable-next-line react/no-array-index-key */}
+        {props.results.map((pItem, pIndex) => (
+          <ResultItem className={css.item} data={pItem} key={pIndex} />
+        ))}
+      </Card.Group>
     </div>
   );
 };

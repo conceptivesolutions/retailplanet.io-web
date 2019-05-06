@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Card, Image } from 'semantic-ui-react';
+import _ from 'lodash';
 import css from './ResultItem.scss';
 
 /**
@@ -37,27 +39,36 @@ class ResultItem extends React.Component {
   render() {
     const { image, name, source, address, availability } = this.props.data;
     return (
-      <div className={`${css.container} d-inline-flex flex-column ${this.props.className || ''}`}>
-        <div className={css.imageWrapper}>
-          <img className={css.image} src={image} alt="Product image" />
-        </div>
-        <h5 className={css.title}>{name}</h5>
-        <span className={css.market}>
-          <b>{source}</b>
-          <br />
-          {address ? address.split('\n').map((item, key) => (
-            <React.Fragment key={key}>
-              {item}
-              <br />
-            </React.Fragment>
-          )) : ''}
-        </span>
-        <div className={`${css.status} ${availability}`}>
-          <span className={css.dot} />
-          <span className={css.availability}>{this.getI18NAvailability()}</span>
-          <span className={css.price}>{this.getFormattedPrice()}</span>
-        </div>
-      </div>
+      <Card className={css.container}>
+        <Image src={image} wrapped ui={false} />
+        <Card.Content>
+          <Card.Header>
+            {_.truncate(name, {
+              length: 45,
+              separator: ' ',
+            })}
+          </Card.Header>
+        </Card.Content>
+        <Card.Content extra>
+          <span className={css.market}>
+            <b>{source}</b>
+            <br />
+            {address ? address.split('\n').map((item, key) => (
+              <React.Fragment key={key}>
+                {item}
+                <br />
+              </React.Fragment>
+            )) : ''}
+          </span>
+        </Card.Content>
+        <Card.Content extra>
+          <div className={`${css.status} ${availability}`}>
+            <span className={css.dot} />
+            <span className={css.availability}>{this.getI18NAvailability()}</span>
+            <span className={css.price}>{this.getFormattedPrice()}</span>
+          </div>
+        </Card.Content>
+      </Card>
     );
   }
 }

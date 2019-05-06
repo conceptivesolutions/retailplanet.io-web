@@ -1,11 +1,10 @@
-$space: 1rem;
+$space: 1.5rem;
 
 .list {
   display: flex;
   flex: 1 0 auto;
   flex-wrap: wrap;
-  margin-top: $space;
-  margin-left: $space;
+  margin: $space;
 }
 
 .item {
