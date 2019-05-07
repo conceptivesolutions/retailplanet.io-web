@@ -2,6 +2,10 @@
 
 $spacing: 10px;
 
+.header {
+  //
+}
+
 .edit {
   padding-top: 0;
   padding-bottom: 0;
@@ -15,26 +19,23 @@ $spacing: 10px;
   padding: 1rem;
   margin: $spacing 2px 2px;
 
-  :global(.form-label) b {
-    margin-bottom: 0.25rem;
-  }
-
 }
 
 .filterContainer:first-child {
   margin-top: 0;
 }
 
-.submit {
-  //
-}
+.buttons {
 
-.cancel {
-  margin-right: $spacing;
-}
-
-.submitCol {
-  display: flex;
-  flex-direction: row-reverse;
   margin-top: $spacing;
+  text-align: right;
+
+  .submit {
+    margin-right: $spacing;
+  }
+
+  .cancel {
+    //
+  }
+
 }

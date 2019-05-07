@@ -6,7 +6,7 @@ $input-range-track-transition: none;
 
 $input-range-primary-color: $primary;
 //$input-range-font-family: $font-family-sans-serif; todo
-$input-range-neutral-color: $body-color;
+$input-range-neutral-color: white;
 
 @import '../../../node_modules/react-input-range/src/scss/input-range/input-range-variables';
 @import '../../../node_modules/react-input-range/src/scss/input-range/input-range-slider';

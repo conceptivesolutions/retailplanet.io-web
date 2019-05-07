@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import AsyncSelect from 'react-select/lib/Async';
-import { Button, Form, Input } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
 import css from './GeoFilter.scss';
 import { edit, rerunSearch, setFilter } from '../../../reducers/searchReducer';
 import { search, searchRev } from '../../../helpers/rest/geoLocationHelper';
@@ -90,9 +90,20 @@ class GeoFilter extends React.Component {
     return (
       <React.Fragment>
         <AsyncSelect className={css.editAddress} defaultOptions loadOptions={search} onChange={this.onGeoLocationChange} />
-        <Input name="Dist" className={css.dist} placeholder="Distance" defaultValue={dist} />
-        <Button className={css.submit}>Accept</Button>
-        <Button onClick={() => this.props.onEdit(false)} className={css.cancel}>Cancel</Button>
+        <Input
+          name="Dist"
+          className={css.dist}
+          placeholder="Distance"
+          defaultValue={dist}
+          label={{
+            basic: true,
+            content: 'km',
+          }}
+          labelPosition="right" />
+        <div className={css.buttons}>
+          <Button primary className={css.submit}>Accept</Button>
+          <Button onClick={() => this.props.onEdit(false)} className={css.cancel}>Cancel</Button>
+        </div>
       </React.Fragment>
     );
   }
@@ -101,19 +112,21 @@ class GeoFilter extends React.Component {
     const { lat, lng, dist, name } = this.state;
     const display = !name ? `${lat}, ${lng}, ${dist}km` : `${name} (${dist}km)`;
     return (
-      <span>{display}</span>
+      <React.Fragment>
+        <span>{display}</span>
+        <div className={css.editWrapper}>
+          <Button className={css.edit} primary onClick={this.onEdit}>change</Button>
+        </div>
+      </React.Fragment>
     );
   }
 
   render() {
     return (
-      <Form className={css.filterContainer} onSubmit={this.props.isEditing ? this.onSubmit : null}>
+      <form className={css.filterContainer} onSubmit={this.props.isEditing ? this.onSubmit : null}>
         <h5>Märkte in der Nähe</h5>
-        {!this.props.isEditing
-          ? (<Button className={css.edit} variant="link" onClick={this.onEdit}>change</Button>)
-          : null}
         {this.props.isEditing ? this.renderEditState() : this.renderShowState()}
-      </Form>
+      </form>
     );
   }
 }

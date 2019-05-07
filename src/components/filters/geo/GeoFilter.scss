@@ -1,5 +1,10 @@
 @import "../common";
 
+.editWrapper {
+  margin-top: $spacing;
+  text-align: center;
+}
+
 .edit {
   //
 }
@@ -13,13 +18,18 @@
 }
 
 .dist {
+  width: 100%;
   margin-top: $spacing;
 }
 
-.cancel {
-  //
-}
+.buttons {
 
-.submit {
-  //
+  .cancel {
+    //
+  }
+
+  .submit {
+    //
+  }
+
 }
