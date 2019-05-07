@@ -28,7 +28,11 @@ class HeaderSearchbar extends React.Component {
   render() {
     return (
       <Form onSubmit={e => this.onSearchSumit(e)}>
-        <Input name="query" className={`${css.searchField} ${this.props.className}`} icon="search" />
+        <Input
+          name="query"
+          className={`${css.searchField} ${this.props.className}`}
+          icon="search"
+          defaultValue={this.props.query} />
       </Form>
     );
   }
