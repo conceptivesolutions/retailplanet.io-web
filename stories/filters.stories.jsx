@@ -1,5 +1,4 @@
 import React from 'react';
-import configureStore from 'redux-mock-store';
 import { storiesOf } from '@storybook/react';
 import { withI18N, withReduxStore } from '../.storybook/decorators';
 import PriceFilter from '../src/components/filters/price/PriceFilter';
@@ -7,8 +6,11 @@ import ResultFilters from '../src/components/filters/ResultFilters';
 import GeoFilter from '../src/components/filters/geo/GeoFilter';
 import './filters.stories.scss';
 
-const mockedStore = configureStore()({
+const mockedStore = {
   search: {
+    filters: {
+      editing: false,
+    },
     results: {
       filters: {
         price: [0, 100],
@@ -18,7 +20,7 @@ const mockedStore = configureStore()({
   i18nState: {
     lang: 'de',
   },
-});
+};
 
 storiesOf('Filters', module)
   .addDecorator(withI18N)

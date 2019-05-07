@@ -27,7 +27,7 @@ function mockResultItemsArray(size) {
   return items;
 }
 
-const mockedStore = configureStore()({
+const mockedStore = {
   search: {
     results: {
       query: 'My Dummy Query',
@@ -42,7 +42,7 @@ const mockedStore = configureStore()({
   i18nState: {
     lang: 'de',
   },
-});
+};
 
 storiesOf('Result', module)
   .addDecorator(withI18N)

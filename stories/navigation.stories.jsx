@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import configureStore from 'redux-mock-store';
 import Header from '../src/components/header/Header';
 import Footer from '../src/components/footer/Footer';
 import { withI18N, withReduxStore } from '../.storybook/decorators';
 
-const mockedStore = configureStore()({
+const mockedStore = {
   search: {
     results: {
       query: 'My Dummy Query',
@@ -14,7 +13,7 @@ const mockedStore = configureStore()({
   i18nState: {
     lang: 'de',
   },
-});
+};
 
 storiesOf('Navigation', module)
   .addDecorator(withI18N)
