@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Button, Col, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import AsyncSelect from 'react-select/lib/Async';
+import { Button, Input } from 'semantic-ui-react';
 import css from './GeoFilter.scss';
 import { edit, rerunSearch, setFilter } from '../../../reducers/searchReducer';
 import { search, searchRev } from '../../../helpers/rest/geoLocationHelper';
@@ -89,23 +89,21 @@ class GeoFilter extends React.Component {
     const { dist } = this.state;
     return (
       <React.Fragment>
-        <Form.Row>
-          <Col>
-            {/* todo GeoLocation Initial State */}
-            <AsyncSelect className={css.editAddress} defaultOptions loadOptions={search} onChange={this.onGeoLocationChange} />
-          </Col>
-        </Form.Row>
-        <Form.Row>
-          <Col>
-            <Form.Control className={css.dist} type="text" name="Dist" placeholder="Distance" defaultValue={dist} />
-          </Col>
-        </Form.Row>
-        <Form.Row>
-          <Col className={css.submitCol}>
-            <Button variant="primary" type="submit" className={css.submit}>Accept</Button>
-            <Button variant="secondary" onClick={() => this.props.onEdit(false)} className={css.cancel}>Cancel</Button>
-          </Col>
-        </Form.Row>
+        <AsyncSelect className={css.editAddress} defaultOptions loadOptions={search} onChange={this.onGeoLocationChange} />
+        <Input
+          name="Dist"
+          className={css.dist}
+          placeholder="Distance"
+          defaultValue={dist}
+          label={{
+            basic: true,
+            content: 'km',
+          }}
+          labelPosition="right" />
+        <div className={css.buttons}>
+          <Button primary className={css.submit}>Accept</Button>
+          <Button onClick={() => this.props.onEdit(false)} className={css.cancel}>Cancel</Button>
+        </div>
       </React.Fragment>
     );
   }
@@ -114,30 +112,21 @@ class GeoFilter extends React.Component {
     const { lat, lng, dist, name } = this.state;
     const display = !name ? `${lat}, ${lng}, ${dist}km` : `${name} (${dist}km)`;
     return (
-      <Form.Row>
-        <Col>
-          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-          <Form.Label className={css.editLabel}>{display}</Form.Label>
-        </Col>
-      </Form.Row>
+      <React.Fragment>
+        <span>{display}</span>
+        <div className={css.editWrapper}>
+          <Button className={css.edit} primary onClick={this.onEdit}>change</Button>
+        </div>
+      </React.Fragment>
     );
   }
 
   render() {
     return (
-      <Form className={css.filterContainer} onSubmit={this.props.isEditing ? this.onSubmit : null}>
-        <Form.Row>
-          <Col>
-            <Form.Label>
-              <b>Märkte in der Nähe</b>
-              {!this.props.isEditing
-                ? (<Button className={css.edit} variant="link" onClick={this.onEdit}>change</Button>)
-                : null}
-            </Form.Label>
-          </Col>
-        </Form.Row>
+      <form className={css.filterContainer} onSubmit={this.props.isEditing ? this.onSubmit : null}>
+        <h5>Märkte in der Nähe</h5>
         {this.props.isEditing ? this.renderEditState() : this.renderShowState()}
-      </Form>
+      </form>
     );
   }
 }

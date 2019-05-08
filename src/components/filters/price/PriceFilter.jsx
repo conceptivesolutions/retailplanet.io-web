@@ -1,7 +1,7 @@
 import React from 'react';
-import InputRange from 'react-input-range';
 import { connect } from 'react-redux';
-import _ from 'lodash';
+import { Input } from 'semantic-ui-react';
+import CurrencyFormat from 'react-currency-format';
 import css from './PriceFilter.scss';
 import { rerunSearch, setFilter } from '../../../reducers/searchReducer';
 
@@ -11,45 +11,18 @@ import { rerunSearch, setFilter } from '../../../reducers/searchReducer';
 class PriceFilter extends React.Component {
   static name = 'price';
 
-  state = {
-    auto: true,
-    fullMin: null,
-    fullMax: null,
-    value: {
-      min: 0,
-      max: 0,
-    },
-  };
+  constructor(props, context) {
+    super(props, context);
+    this.onPriceChanged = this.onPriceChanged.bind(this);
+  }
 
-  static getDerivedStateFromProps({ min, max }, prevState) {
-    let fullMin = _.round(min) || 0;
-    let fullMax = _.round(max) || 0;
-    let currMin = prevState.value.min;
-    let currMax = prevState.value.max;
-
-    if (fullMin > fullMax)
-      fullMin = 0;
-    if (fullMax < fullMin)
-      fullMax = fullMin;
-    if (!currMin)
-      currMin = fullMin;
-    if (!currMax)
-      currMax = fullMax;
-    if (currMin < fullMin)
-      currMin = fullMin;
-    if (currMax > fullMax)
-      currMax = fullMax;
-
-    const value = _.cloneDeep({
-      min: prevState.auto ? fullMin : currMin,
-      max: prevState.auto ? fullMax : currMax,
-    });
-
-    return {
-      fullMin,
-      fullMax,
-      value,
-    };
+  onPriceChanged(e) {
+    let { min, max } = this.props;
+    if (e.target.name === 'min')
+      min = e.target.value;
+    else
+      max = e.target.value;
+    this.props.onFilterChange(min, max);
   }
 
   render() {
@@ -60,19 +33,27 @@ class PriceFilter extends React.Component {
       <div className={css.filterContainer}>
         <b>Preis</b>
         <div className={css.rangeContainer}>
-          <InputRange
-            allowSameValues
-            minValue={this.state.fullMin || 0}
-            maxValue={this.state.fullMax || 1}
-            value={this.state.value}
-            onChange={(value) => {
-              if (value.min >= this.state.fullMin && value.max <= this.state.fullMax)
-                this.setState(prevState => ({
-                  auto: !prevState.auto ? (value.min === prevState.fullMin && value.max === prevState.fullMax) : false,
-                  value,
-                }));
-            }}
-            onChangeComplete={({ min, max }) => this.props.onFilterChange(min, max)} />
+          <CurrencyFormat
+            customInput={Input}
+            name="min"
+            decimalScale={2}
+            className={css.range}
+            value={this.props.min || 0}
+            isNumericString
+            onBlur={this.onPriceChanged}
+            icon="euro" />
+          <div className={css.separator}>
+            <span>-</span>
+          </div>
+          <CurrencyFormat
+            customInput={Input}
+            name="max"
+            decimalScale={2}
+            className={css.range}
+            value={this.props.max || 0}
+            isNumericString
+            onBlur={this.onPriceChanged}
+            icon="euro" />
         </div>
       </div>
     );

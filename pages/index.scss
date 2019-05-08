@@ -1,5 +1,12 @@
 .phrase {
-  font-size: 5rem;
-  line-height: 5rem;
-  padding-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.searchBar {
+  width: 100%;
+
+  input {
+    border-radius: 500rem !important;
+  }
 }

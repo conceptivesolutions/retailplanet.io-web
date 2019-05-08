@@ -1,16 +1,26 @@
 import * as React from 'react';
-import { NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { withRouter } from 'next/router';
+import { Dropdown, Image } from 'semantic-ui-react';
 import css from './HeaderProfile.scss';
 
 /**
  * @author w.glanzer, 27.01.2019
  */
 class HeaderProfile extends React.Component {
+  options = [
+    {
+      key: 'logout',
+      value: 'logout',
+      text: 'Sign out',
+    },
+  ];
+
   constructor(props) {
     super(props);
     this.getUserDisplayName = this.getUserDisplayName.bind(this);
+    this.createUserComp = this.createUserComp.bind(this);
+    this.handlePopupClick = this.handlePopupClick.bind(this);
   }
 
   /**
@@ -27,20 +37,45 @@ class HeaderProfile extends React.Component {
     return username;
   }
 
+  /**
+   * @returns {*} the user comp, displayable directly in header
+   */
+  createUserComp() {
+    return (
+      <span>
+        <Image avatar src={`/api/profile/avatar/${encodeURIComponent(this.props.user.profile.id)}.png`} />
+        {this.getUserDisplayName()}
+      </span>
+    );
+  }
+
+  /**
+   * Function which executes when an item in the dropdown menu has been clicked
+   *
+   * @param e event
+   * @param value clicked option value
+   */
+  handlePopupClick(e, { value }) {
+    switch (value) {
+      case 'logout':
+        this.props.router.push('/logout');
+        break;
+
+      default:
+        break;
+    }
+  }
+
   render() {
-    if (this.props.user.profile && !this.props.disableLogin)
+    if (this.props.user && this.props.user.profile && !this.props.disableLogin)
       return (
-        <NavDropdown className={`${css.innerDrop} d-flex align-items-center`}
-          title={(
-            <React.Fragment>
-              <img src={`/api/profile/avatar/${encodeURIComponent(this.props.user.profile.id)}.png`}
-                alt="avatar" className={`${css.profilepic} mr-2 rounded-circle`} />
-              {this.getUserDisplayName()}
-              <i className={`${css.dropdownToggleCustom} fa fa-angle-down`} />
-            </React.Fragment>
-          )} id="basic-nav-dropdown" alignRight>
-          <NavDropdown.Item onClick={() => this.props.router.push('/logout')}>Logout</NavDropdown.Item>
-        </NavDropdown>
+        <Dropdown
+          className={css.innerDrop}
+          trigger={this.createUserComp()}
+          onChange={this.handlePopupClick}
+          options={this.options}
+          pointing="top left"
+          icon={null} />
       );
 
     return (

@@ -3,18 +3,25 @@
 .filterContainer {
 
   .rangeContainer {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  }
+    display: flex;
+    padding-top: 1rem;
+    flex-direction: row;
 
-  :global(.input-range__label--max),
-  :global(.input-range__label--min) {
-    display: none;
-  }
+    .range {
+      min-width: 0;
 
-  :global(.input-range) {
-    margin-top: 1.25rem;
-    margin-bottom: 0;
+      input {
+        padding-right: 0.25rem;
+        padding-left: 0.5rem;
+      }
+    }
+
+    .separator {
+      width: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container } from 'semantic-ui-react';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import css from './TextOnlyLayout.scss';

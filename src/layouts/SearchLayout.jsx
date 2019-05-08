@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import Link from 'next/link';
-import { Image } from 'react-bootstrap';
+import { Image, Loader } from 'semantic-ui-react';
 import Header from '../components/header/Header';
-import LoadingIndicator from '../components/loading/LoadingIndicator';
 import css from './SearchLayout.scss';
 import ResultFilters from '../components/filters/ResultFilters';
 import Footer from '../components/footer/Footer';
@@ -14,8 +13,8 @@ const SearchLayout = ({ loading, children }) => {
 
   if (loading)
     container = (
-      <div className="d-flex flex-column align-items-center justify-content-center h-100">
-        <LoadingIndicator />
+      <div className={css.loader}>
+        <Loader inline active />
       </div>
     );
   else
@@ -34,7 +33,7 @@ const SearchLayout = ({ loading, children }) => {
           <Footer className={css.footer} withLang />
         </div>
         <div className={css.container}>
-          <Header withSearch />
+          <Header className={css.header} withSearch />
           <Navigation className={css.navigation} />
           <div className={css.subcontent}>
             {container}

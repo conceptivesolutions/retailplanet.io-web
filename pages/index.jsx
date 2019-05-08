@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Grid, Image } from 'semantic-ui-react';
 import IndexLayout from '../src/layouts/IndexLayout';
 import Searchbar from '../src/components/search/Searchbar';
 import css from './index.scss';
@@ -7,20 +8,20 @@ import withAuth from '../src/auth/withAuth';
 
 const Index = () => (
   <IndexLayout>
-    <div className="container h-100">
-      <div className="row h-100 justify-content-center align-items-center">
-        <div className="col-12">
-          <div className={css.phrase}>
-          Search for specific Items.
-            <br />
-            <b>Buy from a local store</b>
-          </div>
-          <Searchbar>
+    <Grid>
+      <Grid.Row centered columns={1}>
+        <Grid.Column>
+          <Image className={css.phrase} src="/static/phrase_1000.png" />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row centered columns={2}>
+        <Grid.Column>
+          <Searchbar className={css.searchBar}>
             <CountrySelection />
           </Searchbar>
-        </div>
-      </div>
-    </div>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   </IndexLayout>
 );
 

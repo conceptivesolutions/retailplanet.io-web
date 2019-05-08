@@ -9,6 +9,15 @@
 }
 
 .rootContainer {
-  background: white url("/static/background_main.jpg");
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex-grow: 1;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

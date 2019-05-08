@@ -2,6 +2,10 @@
 
 $spacing: 10px;
 
+.header {
+  //
+}
+
 .edit {
   padding-top: 0;
   padding-bottom: 0;
@@ -13,11 +17,7 @@ $spacing: 10px;
   background: #40444A;
   color: #DDDDDD;
   padding: 1rem;
-  margin: $spacing $border-width $border-width;
-
-  :global(.form-label) b {
-    margin-bottom: 0.25rem;
-  }
+  margin: $spacing 2px 2px;
 
 }
 
@@ -25,16 +25,17 @@ $spacing: 10px;
   margin-top: 0;
 }
 
-.submit {
-  //
-}
+.buttons {
 
-.cancel {
-  margin-right: $spacing;
-}
-
-.submitCol {
-  display: flex;
-  flex-direction: row-reverse;
   margin-top: $spacing;
+  text-align: right;
+
+  .submit {
+    margin-right: $spacing;
+  }
+
+  .cancel {
+    //
+  }
+
 }

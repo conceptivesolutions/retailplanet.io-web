@@ -2,20 +2,27 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Header from '../src/components/header/Header';
 import Footer from '../src/components/footer/Footer';
-import css from './navigation.stories.scss';
 import { withI18N, withReduxStore } from '../.storybook/decorators';
+
+const mockedStore = {
+  search: {
+    results: {
+      query: 'My Dummy Query',
+    },
+  },
+  i18nState: {
+    lang: 'de',
+  },
+};
 
 storiesOf('Navigation', module)
   .addDecorator(withI18N)
-  .addDecorator(withReduxStore())
+  .addDecorator(withReduxStore(mockedStore))
   .add('Page Header (Index)', () => (
-    <div className={css.headerPane}>
-      <Header withLogo />
-    </div>
+    <Header withLogo />
   ))
   .add('Page Header (Results)', () => (
-    <div className={css.headerPane}>
-      <Header withSearch />
-    </div>
+    <Header withSearch />
   ))
-  .add('Page Footer', () => <Footer withLogo />);
+  .add('Page Footer', () => <Footer withLogo />)
+  .add('Page Footer (Results)', () => <Footer withLang />);

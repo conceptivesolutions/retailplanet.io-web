@@ -1,35 +1,44 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Button, FormControl, InputGroup } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
 import { withRouter } from 'next/router';
-import css from './Searchbar.scss';
+import { Form, Input } from 'semantic-ui-react';
 
 /**
  * @author w.glanzer, 14.01.2019
  */
-const Searchbar = ({ router, className, query, children }) => (
-  <Form onSubmit={(e) => {
+class Searchbar extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(e) {
     e.preventDefault();
-    router.push({
+    this.props.router.push({
       pathname: '/search',
       query: {
         query: e.target.query.value,
       },
     });
-  }}>
-    <InputGroup className={className}>
-      <FormControl type="Query" placeholder="Durchsuchen Sie über 6.000.000 Produkte" name="query" className={`${css.searchField}`}
-        defaultValue={query || ''} />
-      <InputGroup.Append>
-        <Button variant="primary" type="submit" className={`${css.searchButton} px-4 border-0`}>
-          Suchen
-        </Button>
-      </InputGroup.Append>
-    </InputGroup>
-    {children}
-  </Form>
-);
+  }
+
+  render() {
+    const { className, query, children } = this.props;
+    return (
+      <Form className={this.props.className || ''} onSubmit={this.onSubmit}>
+        <Input
+          name="query"
+          className={className || ''} defaultValue={query || ''}
+          icon={{
+            name: 'search',
+            link: true,
+            onClick: this.onSubmit,
+          }} />
+        {children}
+      </Form>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   query: state.search.results.query,

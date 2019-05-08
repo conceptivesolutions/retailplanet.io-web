@@ -1,11 +1,7 @@
-// Functions and Variables for common usecases
-@import "../../node_modules/bootstrap/scss/functions";
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/mixins/breakpoints";
-
-// Colors
-$header-background: #f3f3f3;
+// Overwritten Colors
+$primary: #2E6BA1;
+$body-color: #333;
 
 // Sizes
 $header-height: 3rem;
-$filter-menu-width-xl: 20rem;
+$filter-menu-width-xl: 23rem;

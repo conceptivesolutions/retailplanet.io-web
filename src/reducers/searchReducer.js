@@ -70,7 +70,7 @@ function executeSearch(query, page, user, filters, sort) {
           return markets.map(pMarket => ({
             name: pElement.name,
             price: pElement.price,
-            image: pElement.previews ? pElement.previews[0] : '',
+            image: pElement.previews ? pElement.previews[0] : '', // eslint-disable-next-line no-underscore-dangle
             source: pMarket._type,
             availability: pMarket.availability,
             address: pMarket.address,
