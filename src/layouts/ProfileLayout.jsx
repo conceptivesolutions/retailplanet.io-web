@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container} from 'react-bootstrap';
+import { Container, Grid } from 'semantic-ui-react';
 import css from './ProfileLayout.scss';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
@@ -13,8 +13,14 @@ export default ({ nav, children }) => (
   <div className={css.page}>
     <Header withLogo />
     <Container className={css.content}>
-      {nav}
-      {children}
+      <Grid>
+        <Grid.Column width={4}>
+          {nav}
+        </Grid.Column>
+        <Grid.Column stretched width={12}>
+          {children}
+        </Grid.Column>
+      </Grid>
     </Container>
     <Footer withLogo />
   </div>
