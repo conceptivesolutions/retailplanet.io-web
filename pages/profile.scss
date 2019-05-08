@@ -1,4 +1,8 @@
 .content {
   flex-grow: 1;
-  background: red;
+
+  h1 {
+    border-bottom: 1px solid lightgray;
+  }
+
 }

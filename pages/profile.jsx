@@ -13,7 +13,7 @@ import pages from '../src/profile/pages/ProfilePages';
  */
 class Profile extends React.Component {
   state = {
-    activeItem: 'common',
+    activeItem: 'account',
   };
 
   constructor(props, context) {
@@ -32,14 +32,26 @@ class Profile extends React.Component {
   createSidebar() {
     const { activeItem } = this.state;
     return (
-      <Menu fluid vertical>
-        <Menu.Item name="common" active={activeItem === 'common'} content="Allgemein" onClick={this.handleItemClick} />
-      </Menu>
+      <React.Fragment>
+        <Menu fluid vertical>
+          <Menu.Item name="account" active={activeItem === 'account'} content="Account" onClick={this.handleItemClick} />
+        </Menu>
+        <Menu fluid vertical>
+          <Menu.Item name="clients" active={activeItem === 'clients'} content="Clients" onClick={this.handleItemClick} />
+          <Menu.Item name="products" active={activeItem === 'products'} content="Products" onClick={this.handleItemClick} />
+        </Menu>
+        <Menu color="teal" inverted fluid vertical>
+          <Menu.Item name="admin" active={activeItem === 'admin'} content="Admin" onClick={this.handleItemClick} />
+        </Menu>
+      </React.Fragment>
     );
   }
 
   createContent() {
     const Content = pages[this.state.activeItem];
+    if (!Content)
+      return <span>No content available</span>;
+
     return (
       <div className={css.content}>
         <Content />
