@@ -13,7 +13,7 @@ const ResultList = (props) => {
     return <span>No data</span>;
   return (
     <div className={css.list}>
-      <Card.Group itemsPerRow={6} doubling>
+      <Card.Group itemsPerRow={5} doubling>
         {/* eslint-disable-next-line react/no-array-index-key */}
         {props.results.map((pItem, pIndex) => (
           <ResultItem className={css.item} data={pItem} key={pIndex} />
