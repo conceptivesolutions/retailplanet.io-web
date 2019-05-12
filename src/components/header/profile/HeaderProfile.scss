@@ -1,29 +1,11 @@
 @import "../../../styles/variables";
 
-.innerDrop {
-  // Empty
+.divider {
+  margin: 0 !important;
 }
 
-.innerDrop :global(.nav-link) {
-  padding: 0;
-  display: flex;
-  align-items: center;
-}
-
-.innerDrop :global(.dropdown-toggle::after) {
-  display: none;
-}
-
-.dropdownToggleCustom {
-  margin-left: 0.5rem;
-  color: $primary;
-}
-
-.profilepic {
-  font-size: $header-height - 1rem;
-  margin: 0;
-  width: $header-height - 1rem;
-  height: $header-height - 1rem;
+.avatar {
+  margin-right: 0.5em !important;
 }
 
 .login {

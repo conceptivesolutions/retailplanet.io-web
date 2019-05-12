@@ -8,19 +8,10 @@ import css from './HeaderProfile.scss';
  * @author w.glanzer, 27.01.2019
  */
 class HeaderProfile extends React.Component {
-  options = [
-    {
-      key: 'logout',
-      value: 'logout',
-      text: 'Sign out',
-    },
-  ];
-
   constructor(props) {
     super(props);
     this.getUserDisplayName = this.getUserDisplayName.bind(this);
     this.createUserComp = this.createUserComp.bind(this);
-    this.handlePopupClick = this.handlePopupClick.bind(this);
   }
 
   /**
@@ -43,39 +34,20 @@ class HeaderProfile extends React.Component {
   createUserComp() {
     return (
       <span>
-        <Image avatar src={`/api/profile/avatar/${encodeURIComponent(this.props.user.profile.id)}.png`} />
+        <Image avatar className={css.avatar} src={`/api/profile/avatar/${encodeURIComponent(this.props.user.profile.id)}.png`} />
         {this.getUserDisplayName()}
       </span>
     );
   }
 
-  /**
-   * Function which executes when an item in the dropdown menu has been clicked
-   *
-   * @param e event
-   * @param value clicked option value
-   */
-  handlePopupClick(e, { value }) {
-    switch (value) {
-      case 'logout':
-        this.props.router.push('/logout');
-        break;
-
-      default:
-        break;
-    }
-  }
-
   render() {
     if (this.props.user && this.props.user.profile && !this.props.disableLogin)
       return (
-        <Dropdown
-          className={css.innerDrop}
-          trigger={this.createUserComp()}
-          onChange={this.handlePopupClick}
-          options={this.options}
-          pointing="top left"
-          icon={null} />
+        <Dropdown trigger={this.createUserComp()}>
+          <Dropdown.Menu>
+            <Dropdown.Item text="Profile" onClick={() => this.props.router.push('/profile')} />
+          </Dropdown.Menu>
+        </Dropdown>
       );
 
     return (
