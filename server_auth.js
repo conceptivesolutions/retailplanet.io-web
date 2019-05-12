@@ -1,10 +1,23 @@
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
+const fetch = require('node-fetch');
+
+/**
+ * Retrieves all user information from retailplanet backend
+ *
+ * @param accessToken Token of the current user to retrieve information for
+ */
+function retrieveUserInfo(accessToken) {
+  return fetch(`${process.env.BACKEND_URL}/profile`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  }).then(pResult => pResult.json());
+}
 
 /**
  * Convert Tokens to a User-Profile
  */
-// eslint-disable-next-line
 const tokenToProfile = async (accessToken, refreshToken, extraParams, profile, done) => {
   const { id, name, nickname, _json: { email } } = profile;
   const user = {
@@ -18,9 +31,21 @@ const tokenToProfile = async (accessToken, refreshToken, extraParams, profile, d
       accessToken,
       refreshToken,
     },
+    info: {},
   };
-  done(null, user);
+
+  retrieveUserInfo(accessToken)
+    .then((pResult) => {
+      user.info = {
+        ...pResult,
+      };
+      delete user.info.id;
+      delete user.info.avatar;
+    })
+    .catch(console.log)
+    .finally(() => done(null, user));
 };
+
 /**
  * Strategy which connects to our OAuth-Provider
  */

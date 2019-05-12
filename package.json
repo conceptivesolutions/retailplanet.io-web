@@ -35,6 +35,7 @@
     "next": "v8.1.1-canary.16",
     "next-nprogress": "1.4.0",
     "next-redux-wrapper": "3.0.0-alpha.2",
+    "node-fetch": "2.5.0",
     "node-sass": "4.12.0",
     "passport": "0.4.0",
     "passport-auth0": "1.1.0",
