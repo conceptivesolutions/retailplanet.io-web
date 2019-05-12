@@ -6,6 +6,7 @@ import ProfileLayout from '../src/layouts/ProfileLayout';
 import withAuth from '../src/auth/withAuth';
 import css from './profile.scss';
 import pages from '../src/profile/pages/ProfilePages';
+import { isAdmin } from '../src/helpers/rest/userHelper';
 
 /**
  * Profile-Page
@@ -74,7 +75,7 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  admin: state.user && state.user.info && state.user.info.admin,
+  admin: isAdmin(state.user),
 });
 
 // noinspection JSUnusedGlobalSymbols

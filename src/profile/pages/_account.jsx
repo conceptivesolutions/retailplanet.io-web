@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Button, Form, Image, Label, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import css from './_account.scss';
-import { updateAvatar } from '../../helpers/rest/updateUserHelper';
+import { isAdmin, updateAvatar } from '../../helpers/rest/userHelper';
 
 /**
  * Account Sub-Page in Profile
@@ -97,7 +97,7 @@ class Account extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  admin: state.user && state.user.info && state.user.info.admin,
+  admin: isAdmin(state.user),
   profile: state.user ? state.user.profile : null,
 });
 
