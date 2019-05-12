@@ -48,9 +48,9 @@ class HeaderProfile extends React.Component {
         <Dropdown trigger={this.createUserComp()}>
           <Dropdown.Menu>
             <Dropdown.Header>{`Logged in as '${user.profile.username}'`}</Dropdown.Header>
-            <Dropdown.Item text="My Profile" onClick={() => router.push('/profile')} />
+            <Dropdown.Item icon="user circle" text="My Profile" onClick={() => router.push('/profile')} />
             <Dropdown.Divider className={css.divider} />
-            <Dropdown.Item text="Sign Out" onClick={() => router.push('/logout')} />
+            <Dropdown.Item icon="sign-out" color="red" text="Sign Out" onClick={() => router.push('/logout')} />
           </Dropdown.Menu>
         </Dropdown>
       );

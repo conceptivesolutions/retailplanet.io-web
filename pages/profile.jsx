@@ -42,7 +42,7 @@ class Profile extends React.Component {
     return (
       <React.Fragment>
         <Menu fluid vertical>
-          <Menu.Item name="account" active={activeItem === 'account'} content="Account" onClick={this.handleItemClick} />
+          <Menu.Item icon="user" name="account" active={activeItem === 'account'} content="Account" onClick={this.handleItemClick} />
         </Menu>
         <Menu fluid vertical>
           <Menu.Item name="clients" active={activeItem === 'clients'} content="Clients" onClick={this.handleItemClick} />
