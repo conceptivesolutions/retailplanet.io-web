@@ -1,4 +1,4 @@
 /* eslint-disable global-require */
 export default {
-  common: require('./_common').default,
+  account: require('./_account').default,
 };

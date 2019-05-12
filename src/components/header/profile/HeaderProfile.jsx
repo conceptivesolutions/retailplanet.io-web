@@ -41,18 +41,23 @@ class HeaderProfile extends React.Component {
   }
 
   render() {
-    if (this.props.user && this.props.user.profile && !this.props.disableLogin)
+    const { user, disableLogin, router } = this.props;
+
+    if (user && user.profile && !disableLogin)
       return (
         <Dropdown trigger={this.createUserComp()}>
           <Dropdown.Menu>
-            <Dropdown.Item text="Profile" onClick={() => this.props.router.push('/profile')} />
+            <Dropdown.Header>{`Logged in as '${user.profile.username}'`}</Dropdown.Header>
+            <Dropdown.Item text="My Profile" onClick={() => router.push('/profile')} />
+            <Dropdown.Divider className={css.divider} />
+            <Dropdown.Item text="Sign Out" onClick={() => router.push('/logout')} />
           </Dropdown.Menu>
         </Dropdown>
       );
 
     return (
       // eslint-disable-next-line
-      <div className={`nav-link ${css.login}`} onClick={() => this.props.router.push('/login')}>
+      <div className={css.login} onClick={() => router.push('/login')}>
         Login
       </div>
     );
