@@ -30,7 +30,7 @@ const authStrategy = new Auth0Strategy({
   clientID: process.env.OAUTH_CLIENTID,
   clientSecret: process.env.OAUTH_SECRET,
   callbackURL: `${process.env.BASEURL}/login`,
-  scope: 'openid profile',
+  scope: 'openid email profile',
 }, tokenToProfile);
 
 /**
