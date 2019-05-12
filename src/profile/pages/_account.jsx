@@ -66,7 +66,7 @@ class Account extends React.Component {
       <React.Fragment>
         <h1>
           Account
-          <Label className={css.id}>{profile.id}</Label>
+          {this.props.admin ? <Label className={css.id}>{profile.id}</Label> : null}
         </h1>
         <Form loading={this.state.loading > 0} onSubmit={this._applyChanges}>
           <Form.Group widths="equal">
@@ -97,6 +97,7 @@ class Account extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user,
+  admin: state.user && state.user.info && state.user.info.admin,
   profile: state.user ? state.user.profile : null,
 });
 

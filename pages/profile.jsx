@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { withRouter } from 'next/router';
 import { Menu } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 import ProfileLayout from '../src/layouts/ProfileLayout';
 import withAuth from '../src/auth/withAuth';
 import css from './profile.scss';
@@ -31,6 +32,12 @@ class Profile extends React.Component {
 
   createSidebar() {
     const { activeItem } = this.state;
+    const adminMenu = (
+      <Menu color="teal" inverted fluid vertical>
+        <Menu.Item name="admin" active={activeItem === 'admin'} content="Admin" onClick={this.handleItemClick} />
+      </Menu>
+    );
+
     return (
       <React.Fragment>
         <Menu fluid vertical>
@@ -40,9 +47,7 @@ class Profile extends React.Component {
           <Menu.Item name="clients" active={activeItem === 'clients'} content="Clients" onClick={this.handleItemClick} />
           <Menu.Item name="products" active={activeItem === 'products'} content="Products" onClick={this.handleItemClick} />
         </Menu>
-        <Menu color="teal" inverted fluid vertical>
-          <Menu.Item name="admin" active={activeItem === 'admin'} content="Admin" onClick={this.handleItemClick} />
-        </Menu>
+        {this.props.admin ? adminMenu : null}
       </React.Fragment>
     );
   }
@@ -68,7 +73,11 @@ class Profile extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  admin: state.user && state.user.info && state.user.info.admin,
+});
+
 // noinspection JSUnusedGlobalSymbols
-export default withRouter(withAuth(Profile, {
+export default withRouter(withAuth(connect(mapStateToProps)(Profile), {
   loginRequired: true,
 }));
