@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withRouter } from 'next/router';
 import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ProfileLayout from '../src/layouts/ProfileLayout';
 import withAuth from '../src/auth/withAuth';
 import css from './profile.scss';
@@ -32,21 +33,22 @@ class Profile extends React.Component {
   }
 
   createSidebar() {
+    const { t } = this.context;
     const { activeItem } = this.state;
     const adminMenu = (
       <Menu color="teal" inverted fluid vertical>
-        <Menu.Item name="admin" active={activeItem === 'admin'} content="Admin" onClick={this.handleItemClick} />
+        <Menu.Item name="admin" active={activeItem === 'admin'} content={t('profile_admin')} onClick={this.handleItemClick} />
       </Menu>
     );
 
     return (
       <React.Fragment>
         <Menu fluid vertical>
-          <Menu.Item icon="user" name="account" active={activeItem === 'account'} content="Account" onClick={this.handleItemClick} />
+          <Menu.Item icon="user" name="account" active={activeItem === 'account'} content={t('profile_account')} onClick={this.handleItemClick} />
         </Menu>
         <Menu fluid vertical>
-          <Menu.Item name="clients" active={activeItem === 'clients'} content="Clients" onClick={this.handleItemClick} />
-          <Menu.Item name="products" active={activeItem === 'products'} content="Products" onClick={this.handleItemClick} />
+          <Menu.Item name="clients" active={activeItem === 'clients'} content={t('profile_clients')} onClick={this.handleItemClick} />
+          <Menu.Item name="products" active={activeItem === 'products'} content={t('profile_products')} onClick={this.handleItemClick} />
         </Menu>
         {this.props.admin ? adminMenu : null}
       </React.Fragment>
@@ -73,6 +75,10 @@ class Profile extends React.Component {
     );
   }
 }
+
+Profile.contextTypes = {
+  t: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   admin: isAdmin(state.user),

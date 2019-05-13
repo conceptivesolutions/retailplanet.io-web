@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for,object-curly-newline,no-underscore-dangle */
 import * as React from 'react';
-import { Button, Form, Image, Label, Menu, Message } from 'semantic-ui-react';
+import { Button, Form, Image, Label, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import css from './_account.scss';
 import { isAdmin, updateAvatar } from '../../helpers/rest/userHelper';
 
@@ -29,8 +30,8 @@ class Account extends React.Component {
     e.preventDefault();
     const { avatar } = this.state.uploads;
     if (avatar)
-      if (avatar.size > 5 * 1024 * 1024) // 5MB max
-        this.setState({ error: 'Image is too big (5 MB max)' });
+      if (avatar.size > 1024 * 1024) // 5MB max
+        this.setState({ error: this.context.t('profile_err_imgTooBig', { max: 5 }) });
       else {
         this._updateAvatar(avatar);
         e.target.file.value = ''; // Reset upload field
@@ -58,6 +59,7 @@ class Account extends React.Component {
   }
 
   render() {
+    const { t } = this.context;
     const { profile } = this.props;
     if (!profile)
       return <React.Fragment />;
@@ -65,19 +67,19 @@ class Account extends React.Component {
     return (
       <React.Fragment>
         <h1>
-          Account
-          {this.props.admin ? <Label color="teal" inverted className={css.id}>{profile.id}</Label> : null}
+          {t('profile_account')}
+          {this.props.admin ? <Label color="teal" className={css.id}>{profile.id}</Label> : null}
         </h1>
         <Form loading={this.state.loading > 0} onSubmit={this._applyChanges}>
           <Form.Group widths="equal">
-            <Form.Input name="fname" label="First Name" placeholder="First Name" defaultValue={profile.name.givenName} />
-            <Form.Input name="lname" label="Last Name" placeholder="Last Name" defaultValue={profile.name.familyName} />
+            <Form.Input label={t('profile_firstname')} placeholder={t('profile_firstname')} defaultValue={profile.name.givenName} />
+            <Form.Input label={t('profile_lastname')} placeholder={t('profile_lastname')} defaultValue={profile.name.familyName} />
           </Form.Group>
-          <Form.Input label="Username" placeholder="Username" defaultValue={profile.username} />
-          <Form.Input label="EMail" placeholder="EMail" defaultValue={profile.email} />
+          <Form.Input label={t('profile_username')} placeholder={t('profile_username')} defaultValue={profile.username} />
+          <Form.Input label={t('profile_email')} placeholder={t('profile_email')} defaultValue={profile.email} />
           <Form.Group widths="equal">
             <Form.Field>
-              <label>Avatar</label>
+              <label>{t('profile_avatar')}</label>
               <Image rounded className={css.avatar} key={this.state.uploads.avatar_timestamp}
                 src={`/api/profile/avatar/${encodeURIComponent(profile.id)}.png`} />
             </Form.Field>
@@ -85,15 +87,19 @@ class Account extends React.Component {
               uploads: {
                 avatar: e.target.files[0],
               },
-            })} name="file" type="file" label="Upload new avatar" accept=".png,.jpg,.jpeg" />
+            })} name="file" type="file" label={t('profile_uploadAvatar')} accept=".png,.jpg,.jpeg" />
           </Form.Group>
-          <Button type="submit" primary>Apply Changes</Button>
-          <Message error header="Failed to update profile" content={this.state.error} visible={!!this.state.error} />
+          <Button type="submit" primary>{t('apply')}</Button>
+          <Message error header={t('profile_err')} content={this.state.error} visible={!!this.state.error} />
         </Form>
       </React.Fragment>
     );
   }
 }
+
+Account.contextTypes = {
+  t: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   user: state.user,
