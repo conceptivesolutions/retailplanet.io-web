@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control,jsx-a11y/label-has-for,object-curly-newline,no-underscore-dangle */
 import * as React from 'react';
-import { Button, Form, Image, Label, Message } from 'semantic-ui-react';
+import { Button, Form, Image, Label, Menu, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import css from './_account.scss';
 import { isAdmin, updateAvatar } from '../../helpers/rest/userHelper';
@@ -66,7 +66,7 @@ class Account extends React.Component {
       <React.Fragment>
         <h1>
           Account
-          {this.props.admin ? <Label className={css.id}>{profile.id}</Label> : null}
+          {this.props.admin ? <Label color="teal" inverted className={css.id}>{profile.id}</Label> : null}
         </h1>
         <Form loading={this.state.loading > 0} onSubmit={this._applyChanges}>
           <Form.Group widths="equal">
