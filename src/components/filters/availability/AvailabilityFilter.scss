@@ -1,0 +1,15 @@
+@import "../common";
+
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+
+  :global(.checkbox) {
+    margin-top: $spacing;
+  }
+
+  * {
+    color: white !important;
+  }
+}

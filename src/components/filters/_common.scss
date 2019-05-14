@@ -1,6 +1,6 @@
 @import "../../styles/variables";
 
-$spacing: 10px;
+$spacing: 1rem;
 
 .header {
   //
@@ -17,8 +17,7 @@ $spacing: 10px;
   background: #40444A;
   color: #DDDDDD;
   padding: 1rem;
-  margin: $spacing 2px 2px;
-
+  margin: 0;
 }
 
 .filterContainer:first-child {

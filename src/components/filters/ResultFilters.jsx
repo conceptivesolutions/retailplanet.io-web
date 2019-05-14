@@ -1,6 +1,7 @@
 import React from 'react';
 import PriceFilter from './price/PriceFilter';
 import GeoFilter from './geo/GeoFilter';
+import AvailabilityFilter from './availability/AvailabilityFilter';
 
 /**
  * Simple container component which contains
@@ -12,5 +13,6 @@ export default props => (
   <div className={props.className}>
     <GeoFilter />
     <PriceFilter />
+    <AvailabilityFilter />
   </div>
 );
