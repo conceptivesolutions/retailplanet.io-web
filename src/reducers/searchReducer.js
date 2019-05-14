@@ -20,7 +20,7 @@ const initSearchState = {
   filters: {
     editing: null,
     pos: {
-      availability: [Availability.AVAILABLE],
+      availability: [Availability.AVAILABLE, Availability.ORDERABLE],
     },
     neg: {},
   },
