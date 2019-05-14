@@ -44,7 +44,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onExecute: (userinput) => {
-    dispatch(runSearch(userinput, 0));
+    dispatch(runSearch(userinput, 1));
   },
 });
 

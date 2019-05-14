@@ -58,7 +58,7 @@ function setQuery(query) {
 function executeSearch(query, page, user, filters, sort) {
   return {
     type: searchActions.SEARCH,
-    payload: bearerFetch(buildSearchQuery(query, sort, page * 20, 20, filters), user)
+    payload: bearerFetch(buildSearchQuery(query, sort, (page - 1) * 20, 20, filters), user)
       .then(response => response.json())
       .then((json) => {
         const result = {};
@@ -83,7 +83,7 @@ function executeSearch(query, page, user, filters, sort) {
         result.filters = json.filters;
         result.total = json.maxSize;
         result.page = {
-          count: Math.ceil(json.maxSize / json.length),
+          count: Math.ceil(json.maxSize / 20),
         };
         return result;
       }),
@@ -106,10 +106,13 @@ function clearSearch() {
  * - Start Search (-> Loading-Flag will be set)
  *
  * @param query
- * @param page
+ * @param page, starting on 1
  * @returns {Function}
  */
 export function runSearch(query, page) {
+  if (page <= 0)
+    throw new Error('runSearch has to be used with an index greater than 0');
+
   return (dispatch, getState) => {
     dispatch(setQuery({
       query,
@@ -134,7 +137,7 @@ export function rerunSearch() {
   return (dispatch, getState) => {
     const { search: { results: { query } } } = getState();
     if (query)
-      dispatch(runSearch(query, 0));
+      dispatch(runSearch(query, 1));
   };
 }
 

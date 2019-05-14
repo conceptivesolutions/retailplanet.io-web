@@ -13,18 +13,22 @@ class ResultPagination extends React.Component {
 
   switchPage(pPage) {
     this.props.onSwitchPage(this.props.query, pPage);
+    const query = {
+      query: this.props.query,
+    };
+
+    if (pPage > 1)
+      query.page = pPage;
+
     this.props.router.push({
       pathname: '/search',
-      query: {
-        query: this.props.query,
-        page: pPage,
-      },
+      query,
     });
   }
 
   render() {
     const { currentPage, pageCount } = this.props;
-    if (pageCount <= 1)
+    if (!pageCount || !currentPage || pageCount <= 1)
       return <React.Fragment />;
 
     return (

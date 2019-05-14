@@ -12,8 +12,8 @@ class Search extends React.Component {
     const { query } = this.props.router.query;
     let { page } = this.props.router.query;
 
-    if (!page)
-      page = 0;
+    if (!page || page <= 0)
+      page = 1;
     else
       // eslint-disable-next-line radix
       page = Number.parseInt(page);
@@ -32,7 +32,7 @@ class Search extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onExecuteSearch: (query, page = 0) => {
+  onExecuteSearch: (query, page = 1) => {
     dispatch(runSearch(query, page));
   },
 });
