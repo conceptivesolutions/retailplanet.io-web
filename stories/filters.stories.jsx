@@ -11,6 +11,8 @@ const mockedStore = {
   search: {
     filters: {
       editing: false,
+      pos: {},
+      neg: {},
     },
     results: {
       filters: {
