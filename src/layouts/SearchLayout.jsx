@@ -26,7 +26,7 @@ const SearchLayout = ({ loading, children }) => {
         <div className={css.filterContainer}>
           <Link href="/">
             <a>
-              <Image className={`${css.logo}`} src="/static/retailplanet-logo_dark.svg" />
+              <Image className={`${css.logo}`} src="/static/ci/logo-text_dark.svg" />
             </a>
           </Link>
           <ResultFilters className={css.filter} />

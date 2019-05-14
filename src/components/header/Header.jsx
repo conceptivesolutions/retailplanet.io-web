@@ -17,7 +17,7 @@ export default class Header extends React.Component {
       <Menu.Item>
         <Link href="/">
           <a>
-            <Image className={`${css.logo}`} src="/static/retailplanet-logo.svg" />
+            <Image className={`${css.logo}`} src="/static/ci/logo-text.svg" />
           </a>
         </Link>
       </Menu.Item>
