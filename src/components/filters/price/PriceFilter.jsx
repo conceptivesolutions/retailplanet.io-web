@@ -61,7 +61,8 @@ class PriceFilter extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  visible: state.search.results.filters && state.search.results.filters.price,
+  loading: state.search.loading,
+  visible: (state.search.results.filters && state.search.results.filters.price) || state.search.loading,
   min: state.search.results.filters && state.search.results.filters.price ? state.search.results.filters.price[0] : null,
   max: state.search.results.filters && state.search.results.filters.price ? state.search.results.filters.price[1] : null,
 });
