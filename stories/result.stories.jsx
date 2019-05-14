@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import configureStore from 'redux-mock-store';
 import ResultItem from '../src/components/result/ResultItem';
 import { withI18N, withReduxStore } from '../.storybook/decorators';
 import ResultPagination from '../src/components/result/ResultPagination';
 import ResultList from '../src/components/result/ResultList';
 import Navigation from '../src/components/search/Navigation';
+import { Availability } from '../src/reducers/searchReducer';
 
 function mockItemData() {
   return {
@@ -13,7 +13,7 @@ function mockItemData() {
     image: 'https://chronexttime.imgix.net/M/0/M02357/M02357_1_det1.png?w=800&auto=format&fm=jpg&q=75&usm=30&usmrad=1&h=800&fit=clamp',
     price: 7760.95,
     source: 'Media Markt',
-    availability: 'available',
+    availability: Availability.AVAILABLE,
     address: 'Ludwig Erhard Strasse 9\n84034 Landshut',
     rating: 4.99,
     ratingCount: 50,

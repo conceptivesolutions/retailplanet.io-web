@@ -8,13 +8,21 @@ export const searchSort = {
   RELEVANCE_DESC: 'RELEVANCE_DESC',
 };
 
+export const Availability = {
+  AVAILABLE: 'AVAILABLE',
+  ORDERABLE: 'ORDERABLE',
+  UNAVAILABLE: 'NOT_AVAILABLE',
+};
+
 const initSearchState = {
   countries: [],
   loading: false,
   filters: {
     editing: null,
-    pos: [],
-    neg: [],
+    pos: {
+      availability: [Availability.AVAILABLE],
+    },
+    neg: {},
   },
   sorting: searchSort.RELEVANCE_DESC,
   results: {
@@ -235,18 +243,18 @@ export default (state = initSearchState, action) => {
       const returnState = {
         ...state,
         filters: {
+          ...state.filters,
           editing: null,
-          pos: state.filters.pos.filter(pValue => pValue.type !== type),
-          neg: state.filters.neg.filter(pValue => pValue.type !== type),
         },
       };
 
+      // Remove filter with type
+      _.unset(returnState, `filters.pos.${type}`);
+      _.unset(returnState, `filters.neg.${type}`);
+
       // Add filter to new target array
       const target = isPositive ? returnState.filters.pos : returnState.filters.neg;
-      target.push({
-        type,
-        values,
-      });
+      target[type] = values;
       return returnState;
     }
 

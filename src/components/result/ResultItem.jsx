@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Card, Image } from 'semantic-ui-react';
 import _ from 'lodash';
 import css from './ResultItem.scss';
+import { Availability } from '../../reducers/searchReducer';
 
 /**
  * @author w.glanzer, 10.02.2019
@@ -19,12 +20,12 @@ class ResultItem extends React.Component {
     let { availability } = this.props.data;
     if (!availability)
       availability = 'NOTSET';
-    return this.context.t('availability')[availability];
+    return this.context.t(`availability_${availability}`);
   }
 
   getFormattedPrice() {
     const { lang, data: { availability, price } } = this.props;
-    if (availability === 'unavailable')
+    if (availability === Availability.UNAVAILABLE)
       return '';
 
     const formatter = new Intl.NumberFormat(lang, {

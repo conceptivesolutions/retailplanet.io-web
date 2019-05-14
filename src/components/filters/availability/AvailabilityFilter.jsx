@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Checkbox } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import css from './AvailabilityFilter.scss';
-import { rerunSearch, setFilter } from '../../../reducers/searchReducer';
+import { Availability, rerunSearch, setFilter } from '../../../reducers/searchReducer';
 
 /**
  * Filters the results with an availability type
@@ -11,17 +12,13 @@ import { rerunSearch, setFilter } from '../../../reducers/searchReducer';
 class AvailabilityFilter extends React.Component {
   static name = 'availability';
 
-  state = {
-    values: [],
-  };
-
   constructor(props, context) {
     super(props, context);
     this.onCheckboxChanged = this.onCheckboxChanged.bind(this);
   }
 
   onCheckboxChanged(type, { checked }) {
-    const { values } = this.state;
+    const { values } = this.props;
     if (checked && _.indexOf(values, type) === -1)
       values.push(type);
     else if (!checked && _.indexOf(values, type) > -1)
@@ -29,26 +26,36 @@ class AvailabilityFilter extends React.Component {
     else
       return;
 
-    this.setState({
-      values,
-    });
+    if (values.length === 0)
+      values.push(Availability.AVAILABLE);
+
     this.props.onFilterChange(values);
   }
 
   render() {
+    const { t } = this.context;
+
     return (
       <div className={css.filterContainer}>
         <b>Availability</b>
-        <Checkbox onChange={(e, v) => this.onCheckboxChanged('available', v)} label="Available" />
-        <Checkbox onChange={(e, v) => this.onCheckboxChanged('orderable', v)} label="Orderable" />
-        <Checkbox onChange={(e, v) => this.onCheckboxChanged('unavailable', v)} label="Unavailable" />
+        <Checkbox onChange={(e, v) => this.onCheckboxChanged(Availability.AVAILABLE, v)} label={t('availability_AVAILABLE')}
+          checked={_.indexOf(this.props.values, Availability.AVAILABLE) > -1} />
+        <Checkbox onChange={(e, v) => this.onCheckboxChanged(Availability.ORDERABLE, v)} label={t('availability_ORDERABLE')}
+          checked={_.indexOf(this.props.values, Availability.ORDERABLE) > -1} />
+        <Checkbox onChange={(e, v) => this.onCheckboxChanged(Availability.UNAVAILABLE, v)} label={t('availability_NOT_AVAILABLE')}
+          checked={_.indexOf(this.props.values, Availability.UNAVAILABLE) > -1} />
       </div>
     );
   }
 }
 
+AvailabilityFilter.contextTypes = {
+  t: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   loading: state.search.loading,
+  values: state.search.filters.pos.availability,
 });
 
 const mapDispatchToProps = dispatch => ({

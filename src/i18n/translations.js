@@ -3,12 +3,10 @@ export default {
   en: {
     imprint: require('./_imprint_de.html'),
     privacy: require('./_privacy_en.html'),
-    availability: {
-      AVAILABLE: 'Available',
-      ORDERABLE: 'Orderable',
-      UNAVAILABLE: 'Not Available',
-      NOTSET: 'No Info',
-    },
+    availability_AVAILABLE: 'Available',
+    availability_ORDERABLE: 'Orderable',
+    availability_NOT_AVAILABLE: 'Not Available',
+    availability_NOTSET: 'No Info',
     results: 'Displaying results for "{query}" ({total})',
     orderby: 'Order by',
     sort: {
@@ -37,12 +35,10 @@ export default {
   de: {
     imprint: require('./_imprint_de.html'),
     privacy: require('./_privacy_de.html'),
-    availability: {
-      AVAILABLE: 'Auf Lager',
-      ORDERABLE: 'Bestellbar',
-      UNAVAILABLE: 'Nicht Verfügbar',
-      NOTSET: 'Keine Info',
-    },
+    availability_AVAILABLE: 'Auf Lager',
+    availability_ORDERABLE: 'Bestellbar',
+    availability_NOT_AVAILABLE: 'Nicht Verfügbar',
+    availability_NOTSET: 'Keine Info',
     results: 'Suchergebnisse für "{query}" ({total})',
     orderby: 'Sortieren nach',
     sort: {
