@@ -6,22 +6,13 @@
     display: flex;
     padding-top: 1rem;
     flex-direction: row;
+    margin: $spacing $spacing/2 0;
 
-    .range {
-      min-width: 0;
-
-      input {
-        padding-right: 0.25rem;
-        padding-left: 0.5rem;
-      }
+    :global(.input-range__label--max),
+    :global(.input-range__label--min) {
+      display: none;
     }
 
-    .separator {
-      width: 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
   }
 
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Input } from 'semantic-ui-react';
-import CurrencyFormat from 'react-currency-format';
+import _ from 'lodash';
+import InputRange from 'react-input-range';
 import css from './PriceFilter.scss';
 import { rerunSearch, setFilter } from '../../../reducers/searchReducer';
 
@@ -11,49 +11,59 @@ import { rerunSearch, setFilter } from '../../../reducers/searchReducer';
 class PriceFilter extends React.Component {
   static name = 'price';
 
+  state = {
+    value: {
+      min: null,
+      max: null,
+    },
+  };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!nextProps.rangeMin || !nextProps.rangeMax)
+      return {};
+
+    const userdefined = prevState.value.min !== nextProps.rangeMin || prevState.value.max !== nextProps.rangeMax;
+    return {
+      min: userdefined && prevState.min !== undefined ? Math.max(prevState.min, nextProps.rangeMin) : nextProps.rangeMin,
+      max: userdefined && prevState.max !== undefined ? Math.min(prevState.max, nextProps.rangeMax) : nextProps.rangeMax,
+    };
+  }
+
   constructor(props, context) {
     super(props, context);
     this.onPriceChanged = this.onPriceChanged.bind(this);
   }
 
-  onPriceChanged(e) {
-    let { min, max } = this.props;
-    if (e.target.name === 'min')
-      min = e.target.value;
-    else
-      max = e.target.value;
+  onPriceChanged() {
+    const { value: { min, max } } = this.state;
     this.props.onFilterChange(min, max);
   }
 
   render() {
-    if (!this.props.visible)
-      return <React.Fragment />;
+    if (!this.props.rangeMin || !this.props.rangeMax)
+      return <span>nix</span>;
 
     return (
       <div className={css.filterContainer}>
         <b>Preis</b>
         <div className={css.rangeContainer}>
-          <CurrencyFormat
-            customInput={Input}
-            name="min"
-            decimalScale={2}
-            className={css.range}
-            value={this.props.min || 0}
-            isNumericString
-            onBlur={this.onPriceChanged}
-            icon="euro" />
-          <div className={css.separator}>
-            <span>-</span>
-          </div>
-          <CurrencyFormat
-            customInput={Input}
-            name="max"
-            decimalScale={2}
-            className={css.range}
-            value={this.props.max || 0}
-            isNumericString
-            onBlur={this.onPriceChanged}
-            icon="euro" />
+          <InputRange
+            minValue={this.props.rangeMin}
+            maxValue={this.props.rangeMax}
+            value={this.state.value.min && this.state.value.max ? this.state.value : {
+              min: this.props.rangeMin,
+              max: this.props.rangeMax,
+            }}
+            onChange={(value) => {
+              if (value.min >= this.props.rangeMin && value.max <= this.props.rangeMax)
+                this.setState({
+                  value: {
+                    min: value.min,
+                    max: value.max,
+                  },
+                });
+            }}
+            onChangeComplete={this.onPriceChanged} />
         </div>
       </div>
     );
@@ -61,10 +71,8 @@ class PriceFilter extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.search.loading,
-  visible: (state.search.results.filters && state.search.results.filters.price) || state.search.loading,
-  min: state.search.results.filters && state.search.results.filters.price ? state.search.results.filters.price[0] : null,
-  max: state.search.results.filters && state.search.results.filters.price ? state.search.results.filters.price[1] : null,
+  rangeMin: Math.floor(_.get(state.search, 'results.filters.price[0]')),
+  rangeMax: Math.ceil(_.get(state.search, 'results.filters.price[1]')),
 });
 
 const mapDispatchToProps = dispatch => ({

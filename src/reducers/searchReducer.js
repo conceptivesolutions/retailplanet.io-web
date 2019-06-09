@@ -211,7 +211,6 @@ export default (state = initSearchState, action) => {
         loading: true,
         results: {
           ...state.results,
-          filters: {},
           items: [],
         },
       };
