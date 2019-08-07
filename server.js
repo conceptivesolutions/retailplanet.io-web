@@ -3,7 +3,6 @@ const express = require('express');
 const session = require('express-session');
 const next = require('next');
 const proxy = require('http-proxy-middleware');
-const serverAuth = require('./server_auth');
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -37,13 +36,15 @@ nextApp
     }));
 
     // Enable authentication
-    serverAuth(expressApp);
+    if (!dev)
+    // eslint-disable-next-line global-require
+      require('./server_auth')(expressApp);
 
     // /api -> backend
     expressApp.use(
       '/api',
       proxy({
-        target: process.env.BACKEND_URL,
+        target: process.env.BACKEND_URL || 'https://api.retailplanet.io',
         changeOrigin: true,
         secure: false,
         pathRewrite: {
