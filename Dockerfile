@@ -1,5 +1,8 @@
 FROM node:11.14.0-alpine
 
+# To handle 'not get uid/gid'
+RUN npm config set unsafe-perm true
+
 # Install gulp
 RUN npm install --global gulp gulp-cli
 
