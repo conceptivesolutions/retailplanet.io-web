@@ -16,7 +16,7 @@ export default (pQuery, pSort, pOffset, pLength, pFilters) => {
     url = `${url}&offset=${pOffset}`;
   if (pLength)
     url = `${url}&length=${pLength}`;
-  if (pFilters)
-    url = `${url}&filter=${JSON.stringify(pFilters)}`;
+  //if (pFilters) // todo
+  //  url = `${url}&filter=${JSON.stringify(pFilters)}`;
   return url;
 };

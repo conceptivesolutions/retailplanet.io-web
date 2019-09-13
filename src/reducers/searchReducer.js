@@ -71,18 +71,18 @@ function executeSearch(query, page, user, filters, sort) {
       .then((json) => {
         const result = {};
         result.items = _.flatMap(json.elements, (pElement) => {
-          const { markets } = pElement;
-          if (!markets)
-            return [];
+          const { availability } = pElement;
+          if (!availability)
+            return []; // todo
 
-          return markets.map(pMarket => ({
+          return _.map(availability, (pName, pMarket) => ({
             name: pElement.name,
             price: pElement.price,
-            image: pElement.previews ? pElement.previews[0] : '', // eslint-disable-next-line no-underscore-dangle
-            source: pMarket._type,
+            image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-11-pro-max-space-select-2019?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1566953858806', // eslint-disable-next-line no-underscore-dangle
+            source: "MediaMarkt", // todo
             availability: pMarket.availability,
-            address: pMarket.address,
-            location: pMarket.location,
+            address: "MediaMarkt",
+            location: "MediaMarkt",
             rating: 0,
             ratingCount: 0,
           }));
