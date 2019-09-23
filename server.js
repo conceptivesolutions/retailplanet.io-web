@@ -41,9 +41,30 @@ nextApp
 
     // /api -> backend
     expressApp.use(
-      '/api',
+      '/api/search',
       proxy({
-        target: process.env.BACKEND_URL,
+        target: process.env.SEARCH_URL,
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/api': '/',
+        },
+
+        // We have to "ignore" 401-Errors, so that Safari does not open a login screen, wtf.
+        // eslint-disable-next-line
+        onProxyRes(proxyRes, req, res) {
+          if (proxyRes.statusCode === 401)
+            // eslint-disable-next-line no-param-reassign
+            proxyRes.statusCode = 404;
+        },
+      }),
+    );
+
+    // /api -> backend
+    expressApp.use(
+      '/api/profile',
+      proxy({
+        target: process.env.PROFILE_URL,
         changeOrigin: true,
         secure: false,
         pathRewrite: {
